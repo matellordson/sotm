@@ -1,13 +1,32 @@
 "use client";
-
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { COLORS } from "@/lib/colors";
 
-const NAV_LINKS: string[] = ["Home", "About", "Participate", "Schedule", "Exhibition", "Sponsorship"];
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+const NAV_LINKS: NavLink[] = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Participate", href: "/participate" },
+  { label: "Schedule", href: "/#" },
+  { label: "Exhibition", href: "/exhibition" },
+  { label: "Sponsorship", href: "/sponsorship" },
+];
 
 export default function SiteHeader(): any {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const pathname = usePathname();
+
+  // Exact match for "/", prefix match for everything else so nested
+  // routes (e.g. /schedule/day-1) still highlight their parent link.
+  const isActive = (href: string): boolean =>
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <header style={{ position: "sticky", top: 0, zIndex: 30, background: "white", boxShadow: "0 1px 2px rgba(0,0,0,0.06)" }}>
@@ -16,7 +35,6 @@ export default function SiteHeader(): any {
         .sotm-nav-toggle { display: none; }
         .sotm-nav-register { display: inline-block; }
         .sotm-mobile-menu { display: none; }
-
         @media (max-width: 520px) {
           .sotm-nav-links { display: none; }
           .sotm-nav-toggle { display: block; }
@@ -24,9 +42,8 @@ export default function SiteHeader(): any {
           .sotm-mobile-menu.open { display: flex; }
         }
       `}</style>
-
       <div style={{ maxWidth: 1152, minHeight: 60, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 20px" }}>
-        <a href="#" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
+        <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
           <Image
             src="/logo.png"
             alt="logo"
@@ -35,24 +52,26 @@ export default function SiteHeader(): any {
             priority
             style={{ height: "clamp(32px, 6vw, 44px)", width: "clamp(32px, 6vw, 44px)" }}
           />
-        </a>
-
+        </Link>
         <nav className="sotm-nav-links" style={{ fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
-          {NAV_LINKS.map((link: string, i: number) => (
-            <a key={link} href="#" style={{ color: i === 0 ? COLORS.green : COLORS.heading, textDecoration: "none" }}>
-              {link}
-            </a>
+          {NAV_LINKS.map((link: NavLink) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              aria-current={isActive(link.href) ? "page" : undefined}
+              style={{ color: isActive(link.href) ? COLORS.green : COLORS.heading, textDecoration: "none" }}
+            >
+              {link.label}
+            </Link>
           ))}
         </nav>
-
-
-       <a  href="#register"
+        <a
+          href="#register"
           className="sotm-nav-register"
           style={{ background: COLORS.green, color: "white", padding: "10px 20px", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", textDecoration: "none" }}
         >
           Register
         </a>
-
         <button
           className="sotm-nav-toggle"
           aria-label="Toggle menu"
@@ -65,7 +84,6 @@ export default function SiteHeader(): any {
           </svg>
         </button>
       </div>
-
       <nav
         className={`sotm-mobile-menu${menuOpen ? " open" : ""}`}
         style={{
@@ -76,10 +94,11 @@ export default function SiteHeader(): any {
           background: "white",
         }}
       >
-        {NAV_LINKS.map((link: string, i: number) => (
-
-           <a key={link}
-            href="#"
+        {NAV_LINKS.map((link: NavLink) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            aria-current={isActive(link.href) ? "page" : undefined}
             onClick={() => setMenuOpen(false)}
             style={{
               padding: "10px 0",
@@ -87,15 +106,15 @@ export default function SiteHeader(): any {
               fontWeight: 600,
               textTransform: "uppercase",
               letterSpacing: "0.05em",
-              color: i === 0 ? COLORS.green : COLORS.heading,
+              color: isActive(link.href) ? COLORS.green : COLORS.heading,
               textDecoration: "none",
             }}
           >
-            {link}
-          </a>
+            {link.label}
+          </Link>
         ))}
-
-         <a href="#register"
+        <a
+          href="#register"
           onClick={() => setMenuOpen(false)}
           style={{
             marginTop: 8,
