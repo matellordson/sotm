@@ -2,20 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-
-// ---- Design tokens (exact hex values from the brief) ----
-// Font family is intentionally NOT set anywhere in this file — it inherits
-// whatever font your app already defines globally (e.g. via next/font in
-// layout.tsx). Nothing here overrides that.
-const COLORS: Record<string, string> = {
-  heading: "#1D293D",
-  paragraph: "#45556C",
-  muted: "#90A1B9",
-  green: "#00A63E",
-  line: "#E2E8F0",
-};
-
-const NAV_LINKS: string[] = ["Home", "About", "Participate", "Schedule", "Exhibition", "Sponsorship"];
+import { COLORS } from "@/lib/colors";
 
 interface ScheduleDay {
   day: string;
@@ -163,55 +150,20 @@ export default function ConferenceLandingPage(): any {
         as designed at any preview width instead of collapsing to a single
         column in a narrow panel. One max-width query handles small phones.
         No font-family is set anywhere — everything inherits your app's font.
+        Nav/header markup now lives in components/SiteHeader.tsx, rendered
+        from app/layout.tsx — this file only owns page content.
       */}
       <style>{`
-        .sotm-nav-links { display: flex; align-items: center; gap: 28px; }
-        .sotm-nav-toggle { display: none; }
-        .sotm-nav-register { display: inline-block; }
-
         .sotm-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
         .sotm-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-        .sotm-grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        .sotm-grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; }
 
         @media (max-width: 520px) {
-          .sotm-nav-links { display: none; }
-          .sotm-nav-toggle { display: block; }
-          .sotm-nav-register { display: none; }
           .sotm-grid-2 { grid-template-columns: 1fr; }
           .sotm-grid-3 { grid-template-columns: 1fr; }
+          .sotm-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
       `}</style>
-
-      {/* ---------------- NAV ---------------- */}
-      <header style={{ position: "sticky", top: 0, zIndex: 30, background: "white", boxShadow: "0 1px 2px rgba(0,0,0,0.06)" }}>
-        <div style={{ maxWidth: 1152, height: 60, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 20px" }}>
-          <a href="#" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
-            <Image src={"/logo.png"} alt="logo" width={80} height={80} priority />
-          </a>
-
-          <nav className="sotm-nav-links" style={{ fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
-            {NAV_LINKS.map((link: string, i: number) => (
-              <a key={link} href="#" style={{ color: i === 0 ? COLORS.green : COLORS.heading, textDecoration: "none" }}>
-                {link}
-              </a>
-            ))}
-          </nav>
-
-
-          <a href="#register"
-            className="sotm-nav-register"
-            style={{ background: COLORS.green, color: "white", padding: "10px 20px", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", textDecoration: "none" }}
-          >
-            Register
-          </a>
-
-          <button className="sotm-nav-toggle" aria-label="Toggle menu" style={{ color: COLORS.heading, background: "none", border: "none" }}>
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M4 7h16M4 12h16M4 17h16" />
-            </svg>
-          </button>
-        </div>
-      </header>
 
       {/* ---------------- HERO ---------------- */}
       <section style={{ position: "relative", display: "flex", minHeight: 440, alignItems: "center", overflow: "hidden" }}>
@@ -250,11 +202,14 @@ export default function ConferenceLandingPage(): any {
           <span>Min</span>
         </div>
 
-        <div className="sotm-grid-4" style={{ maxWidth: 560, margin: "32px auto 0", border: `1px solid ${COLORS.line}` }}>
+        <div
+          className="sotm-grid-4"
+          style={{ maxWidth: 560, margin: "32px auto 0", background: COLORS.line, padding: 1 }}
+        >
           {SCHEDULE_DAYS.map((d: ScheduleDay, i: number) => {
             const active = i === 0;
             return (
-              <div key={d.day} style={{ padding: "16px 12px", background: active ? COLORS.green : "white", borderLeft: i > 0 ? `1px solid ${COLORS.line}` : "none" }}>
+              <div key={d.day} style={{ padding: "16px 12px", background: active ? COLORS.green : "white" }}>
                 <p style={{ fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.15em", color: active ? "rgba(255,255,255,0.85)" : COLORS.muted, margin: 0 }}>
                   {d.day}
                 </p>
@@ -281,7 +236,8 @@ export default function ConferenceLandingPage(): any {
             loading="lazy"
           />
 
-          <a href={`https://www.openstreetmap.org/?mlat=${VENUE_LAT}&mlon=${VENUE_LON}#map=15/${VENUE_LAT}/${VENUE_LON}`}
+
+           <a href={`https://www.openstreetmap.org/?mlat=${VENUE_LAT}&mlon=${VENUE_LON}#map=15/${VENUE_LAT}/${VENUE_LON}`}
             target="_blank"
             rel="noopener noreferrer"
             style={{ display: "block", marginTop: 8, fontSize: 11, fontWeight: 600, color: COLORS.green, textDecoration: "none" }}
