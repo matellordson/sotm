@@ -14,7 +14,7 @@ const NAV_LINKS: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Participate", href: "/participate" },
-  { label: "Schedule", href: "/#" },
+  { label: "Schedule", href: "/schedule" },
   { label: "Exhibition", href: "/exhibition" },
   { label: "Sponsorship", href: "/sponsorship" },
 ];
@@ -47,10 +47,10 @@ export default function SiteHeader(): any {
           <Image
             src="/logo.png"
             alt="logo"
-            width={80}
-            height={80}
+            width={120}
+            height={120}
             priority
-            style={{ height: "clamp(32px, 6vw, 44px)", width: "clamp(32px, 6vw, 44px)" }}
+            style={{ height: "clamp(48px, 8vw, 68px)", width: "clamp(48px, 8vw, 68px)" }}
           />
         </Link>
         <nav className="sotm-nav-links" style={{ fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
@@ -65,8 +65,8 @@ export default function SiteHeader(): any {
             </Link>
           ))}
         </nav>
-        <a
-          href="#register"
+
+        <a  href="#register"
           className="sotm-nav-register"
           style={{ background: COLORS.green, color: "white", padding: "10px 20px", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", textDecoration: "none" }}
         >
@@ -113,8 +113,8 @@ export default function SiteHeader(): any {
             {link.label}
           </Link>
         ))}
-        <a
-          href="#register"
+
+       <a href="#register"
           onClick={() => setMenuOpen(false)}
           style={{
             marginTop: 8,
