@@ -168,31 +168,23 @@ export default function SponsorsPage(): any {
       <section style={{ padding: "56px 0 0" }}>
         <div style={{ maxWidth: 760, margin: "0 auto", padding: "0 20px" }}>
           <p style={{ fontSize: 12, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: COLORS.green, margin: 0 }}>
-            State of the Map Nigeria
+            State of the Map Nigeria 2026
           </p>
           <p style={{ marginTop: 14, fontSize: 14, lineHeight: 1.75, color: COLORS.paragraph }}>
-            It is a highly anticipated conference and fundraiser of the OpenStreetMap Nigeria through
-            the Unique Mappers Network — an OpenStreetMap Local Community NGO in Nigeria dedicated to
-            the growth, expansion and community engagement of the OpenStreetMap project in Nigeria.
+            State of the Map Nigeria is the premier annual conference and gathering of OpenStreetMap Nigeria and Unique Mappers Network — an OpenStreetMap local community NGO dedicated to open data development, geospatial innovation, climate action, and community resilience in Nigeria.
           </p>
 
           <p style={{ marginTop: 32, fontSize: 12, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: COLORS.green, margin: "32px 0 0" }}>
-            Sponsorship Opportunities
+            5th Annual Edition Sponsorship Opportunities
           </p>
           <p style={{ marginTop: 14, fontSize: 14, lineHeight: 1.75, color: COLORS.paragraph }}>
-            {/* TODO: confirm the edition number for the 2026 conference */}
-            We're thrilled to host State of the Map Nigeria this year in Uyo, Akwa Ibom State, after
-            our successful previous editions. We welcome you to the green city of Uyo.
+            We are thrilled to host the <strong>5th Annual Edition of State of the Map Nigeria</strong> from <strong>3–6 November 2026</strong> at the <strong>University of Uyo, Akwa Ibom State</strong> under the theme <em>&quot;Open Geospatial Innovation for Climate Action and Community Resilience&quot;</em>.
           </p>
           <p style={{ marginTop: 14, fontSize: 14, lineHeight: 1.75, color: COLORS.paragraph }}>
-            Our sponsorship packages help you reach diverse audiences, increase brand awareness and
-            social media coverage, and demonstrate your commitment to open data, female empowerment
-            and community building.
+            Our sponsorship packages help your organization reach diverse tech leaders, GIS professionals, university researchers, government agencies, and young talent across Africa, while demonstrating your commitment to open data, climate resilience, and sustainable development.
           </p>
           <p style={{ marginTop: 14, fontSize: 14, lineHeight: 1.75, color: COLORS.paragraph }}>
-            We look forward to working with prospective sponsors at this edition of SOTM Nigeria. We'd
-            be excited to have you collaborate with Unique Mappers Network to support SOTM Nigeria and
-            also receive important brand exposure.
+            We invite corporate sponsors, technology providers, and development partners to collaborate with Unique Mappers Network and support SOTM Nigeria 2026.
           </p>
         </div>
       </section>

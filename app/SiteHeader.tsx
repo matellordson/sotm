@@ -17,6 +17,7 @@ const NAV_LINKS: NavLink[] = [
   { label: "Schedule", href: "/schedule" },
   { label: "Exhibition", href: "/exhibition" },
   { label: "Sponsorship", href: "/sponsorship" },
+  { label: "Register", href: "/register" },
 ];
 
 export default function SiteHeader(): any {
@@ -66,12 +67,13 @@ export default function SiteHeader(): any {
           ))}
         </nav>
 
-        <a  href="#register"
+        <Link
+          href="/register"
           className="sotm-nav-register"
           style={{ background: COLORS.green, color: "white", padding: "10px 20px", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", textDecoration: "none" }}
         >
           Register
-        </a>
+        </Link>
         <button
           className="sotm-nav-toggle"
           aria-label="Toggle menu"
@@ -114,7 +116,8 @@ export default function SiteHeader(): any {
           </Link>
         ))}
 
-       <a href="#register"
+        <Link
+          href="/register"
           onClick={() => setMenuOpen(false)}
           style={{
             marginTop: 8,
@@ -130,7 +133,7 @@ export default function SiteHeader(): any {
           }}
         >
           Register
-        </a>
+        </Link>
       </nav>
     </header>
   );
