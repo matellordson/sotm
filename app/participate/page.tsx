@@ -77,10 +77,10 @@ interface DateItem {
 }
 
 const DATES: DateItem[] = [
-  { n: "01", label: "Abstract submission opens", date: "1 June 2026" },
-  { n: "02", label: "Abstract submission deadline", date: "31 Aug 2026 · 23:59 WAT" },
-  { n: "03", label: "Notification of acceptance", date: "15 September 2026" },
-  { n: "04", label: "Full paper submission deadline", date: "9 Oct 2026 · 23:59 WAT" },
+  { n: "01", label: "Abstract submission begins", date: "1 August 2026" },
+  { n: "02", label: "Deadline for Abstract submission", date: "3 October 2026" },
+  { n: "03", label: "Announcement of accepted papers", date: "3 October 2026" },
+  { n: "04", label: "Review & full paper submission", date: "5 Sept – 19 Oct 2026" },
   { n: "05", label: "Conference dates", date: "3–6 November 2026" },
 ];
 

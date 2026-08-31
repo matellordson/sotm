@@ -134,10 +134,10 @@ export default function RegisterPage() {
           {/* Timeline Badges */}
           <div style={{ marginTop: 28, display: "inline-flex", flexWrap: "wrap", justifyContent: "center", gap: 1, background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.2)" }}>
             <div style={{ padding: "10px 20px", background: COLORS.green, color: "white", fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em" }}>
-              Early Birds ENDS — 20th SEPT.
+              Early Birds ENDS — 19th October
             </div>
             <div style={{ padding: "10px 20px", background: "rgba(0,0,0,0.3)", color: "white", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em" }}>
-              Late Registration — 1st October
+              Late Registration — 20th October
             </div>
           </div>
         </div>
@@ -186,7 +186,7 @@ export default function RegisterPage() {
                 <div style={{ marginTop: 18, borderTop: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, padding: "14px 0", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
                   <div>
                     <span style={{ display: "block", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: COLORS.green }}>
-                      Early Bird (Till Sep 20)
+                      Early Bird (Till Oct 19)
                     </span>
                     <span style={{ display: "block", marginTop: 4, fontSize: 18, fontWeight: 900, color: COLORS.heading }}>
                       {tier.earlyBird}
@@ -194,7 +194,7 @@ export default function RegisterPage() {
                   </div>
                   <div style={{ borderLeft: `1px solid ${COLORS.line}`, paddingLeft: 12 }}>
                     <span style={{ display: "block", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: COLORS.muted }}>
-                      Late (From Oct 1)
+                      Late (From Oct 20)
                     </span>
                     <span style={{ display: "block", marginTop: 4, fontSize: 18, fontWeight: 800, color: COLORS.paragraph }}>
                       {tier.lateReg}
@@ -241,8 +241,8 @@ export default function RegisterPage() {
               <thead>
                 <tr>
                   <th>Category</th>
-                  <th>Early Bird (Ends 20th Sept)</th>
-                  <th>Late Registration (1st October)</th>
+                  <th>Early Bird (Ends 19th October)</th>
+                  <th>Late Registration (From 20th October)</th>
                   <th style={{ textAlign: "right" }}>Action</th>
                 </tr>
               </thead>
