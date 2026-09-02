@@ -17,78 +17,82 @@ import {
 interface FeeTier {
   id: string;
   category: string;
-  subtext: string;
-  earlyBird: string;
-  lateReg: string;
-  link: string;
+  titleLines?: string[];
+  currency: string;
+  amount: string;
+  regType: string;
+  paymentLink: string;
 }
 
 const REGISTRATION_FORM_URL = "https://forms.gle/RJvswX2xg9mqHy6A6";
 
-const FEE_TIERS: FeeTier[] = [
+export const FEE_TIERS: FeeTier[] = [
   {
     id: "undergraduate",
-    category: "Undergraduate",
-    subtext: "Current undergraduate students with valid student ID",
-    earlyBird: "₦10,000",
-    lateReg: "₦15,000",
-    link: REGISTRATION_FORM_URL,
+    category: "Undergraduate Students",
+    currency: "₦",
+    amount: "15,000",
+    regType: "Registration",
+    paymentLink: "https://paystack.shop/pay/ugstudent",
   },
   {
     id: "postgraduate",
-    category: "Postgraduate",
-    subtext: "Masters and PhD students with valid academic ID",
-    earlyBird: "₦15,000",
-    lateReg: "₦20,000",
-    link: REGISTRATION_FORM_URL,
+    category: "Postgraduate Students",
+    currency: "₦",
+    amount: "20,000",
+    regType: "Late Registration",
+    paymentLink: "https://paystack.shop/pay/pgstudent",
   },
   {
-    id: "osm-members",
-    category: "OSM Members",
-    subtext: "Active OpenStreetMap & Unique Mappers Network community members",
-    earlyBird: "₦20,000",
-    lateReg: "₦25,000",
-    link: REGISTRATION_FORM_URL,
+    id: "osm-contributors",
+    category: "OpenStreetMap Nigeria Contributors",
+    titleLines: ["OpenStreetMap", "Nigeria Contributors"],
+    currency: "₦",
+    amount: "25,000",
+    regType: "Late Registration",
+    paymentLink: "https://paystack.shop/pay/osmcontributors",
   },
   {
     id: "non-members",
     category: "Non-Members",
-    subtext: "General participants, professionals & industry practitioners",
-    earlyBird: "₦25,000",
-    lateReg: "₦30,000",
-    link: REGISTRATION_FORM_URL,
+    currency: "₦",
+    amount: "30,000",
+    regType: "Late Registration",
+    paymentLink: "https://paystack.shop/pay/non_members",
   },
   {
     id: "corporate-5",
-    category: "Corporate Bodies (5 Persons)",
-    subtext: "Group registration for organizations & institutions (up to 5 delegates)",
-    earlyBird: "₦250,000",
-    lateReg: "₦300,000",
-    link: REGISTRATION_FORM_URL,
+    category: "Corporate Bodies (5 persons)",
+    titleLines: ["Corporate Bodies", "(5 persons)"],
+    currency: "₦",
+    amount: "300,000",
+    regType: "Late Registration",
+    paymentLink: "https://paystack.shop/pay/corporate-bodies",
   },
   {
     id: "corporate-10",
-    category: "Corporate Bodies (10 Persons)",
-    subtext: "Group registration for organizations & institutions (up to 10 delegates)",
-    earlyBird: "₦350,000",
-    lateReg: "₦400,000",
-    link: REGISTRATION_FORM_URL,
+    category: "Corporate Bodies (10 persons)",
+    titleLines: ["Corporate Bodies", "(10 persons)"],
+    currency: "₦",
+    amount: "400,000",
+    regType: "Late Registration",
+    paymentLink: "https://paystack.shop/pay/corporate-bodies02",
   },
   {
     id: "international",
-    category: "International Participants",
-    subtext: "Delegates attending from outside Nigeria (in-person attendance)",
-    earlyBird: "$20",
-    lateReg: "$25",
-    link: REGISTRATION_FORM_URL,
+    category: "International Participant",
+    currency: "$",
+    amount: "25",
+    regType: "Late Registration",
+    paymentLink: "https://paystack.shop/pay/xnb8m8bph4",
   },
   {
-    id: "online",
-    category: "Online Participants",
-    subtext: "Virtual access to live streams, digital sessions & materials",
-    earlyBird: "₦10,000",
-    lateReg: "₦15,000",
-    link: REGISTRATION_FORM_URL,
+    id: "online-local",
+    category: "Online Participant (Local)",
+    currency: "₦",
+    amount: "15,000",
+    regType: "Registration",
+    paymentLink: "https://paystack.shop/pay/online-participants",
   },
 ];
 
@@ -107,11 +111,45 @@ export default function RegisterPage() {
     <div style={{ color: COLORS.paragraph, background: "white", minHeight: "100vh" }}>
       <style>{`
         .reg-table { width: 100%; border-collapse: collapse; }
-        .reg-table th, .reg-table td { padding: 16px 20px; border-bottom: 1px solid ${COLORS.line}; text-align: left; }
+        .reg-table th, .reg-table td { padding: 14px 18px; border-bottom: 1px solid ${COLORS.line}; text-align: left; }
         .reg-table th { background: #F8FAFC; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: ${COLORS.heading}; }
-        .reg-grid-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+        .reg-grid-cards {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 20px;
+        }
+        .reg-card {
+          background: white;
+          border: 1px solid ${COLORS.line};
+          display: flex;
+          flex-direction: column;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .reg-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        }
+        .reg-card-btn {
+          display: inline-block;
+          background: ${COLORS.green};
+          color: white;
+          padding: 10px 24px;
+          font-size: 11.5px;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          text-decoration: none;
+          text-align: center;
+          transition: opacity 0.2s ease;
+        }
+        .reg-card-btn:hover {
+          opacity: 0.9;
+        }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
+          .reg-grid-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 640px) {
           .reg-grid-cards { grid-template-columns: 1fr; }
           .reg-table-container { overflow-x: auto; }
         }
@@ -130,100 +168,116 @@ export default function RegisterPage() {
           <p style={{ marginTop: 12, fontSize: 13.5, color: "rgba(255,255,255,0.8)", maxWidth: 640, margin: "12px auto 0", lineHeight: 1.6 }}>
             Join geospatial experts, researchers, developers, students, and community mappers from 3–6 November 2026 at the University of Uyo, Akwa Ibom State.
           </p>
-
-          {/* Timeline Badges */}
-          <div style={{ marginTop: 28, display: "inline-flex", flexWrap: "wrap", justifyContent: "center", gap: 1, background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.2)" }}>
-            <div style={{ padding: "10px 20px", background: COLORS.green, color: "white", fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em" }}>
-              Early Birds ENDS — 19th October
-            </div>
-            <div style={{ padding: "10px 20px", background: "rgba(0,0,0,0.3)", color: "white", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em" }}>
-              Late Registration — 20th October
-            </div>
-          </div>
         </div>
       </section>
 
       {/* ---------------- REGISTRATION OPTIONS & PRICING TABLE ---------------- */}
-      <section style={{ maxWidth: 960, margin: "0 auto", padding: "64px 20px" }}>
-        <div style={{ textAlign: "center", marginBottom: 36 }}>
+      <section style={{ maxWidth: 1160, margin: "0 auto", padding: "64px 20px" }}>
+        <div style={{ textAlign: "center", marginBottom: 40 }}>
           <h2 style={{ fontSize: "clamp(15px, 2.6vw, 18px)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: COLORS.heading, margin: 0 }}>
             Select Your Registration Category
           </h2>
           <p style={{ marginTop: 8, fontSize: 13, color: COLORS.muted }}>
-            Choose the option that matches your status. Click on any category to complete your registration.
+            Choose the category that matches your status to complete your registration.
           </p>
         </div>
 
         {/* Pricing Grid */}
         <div className="reg-grid-cards">
           {FEE_TIERS.map((tier) => (
-            <div
-              key={tier.id}
-              style={{
-                border: `1px solid ${COLORS.line}`,
-                padding: "24px 24px",
-                background: "white",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-              }}
-            >
-              <div>
-                <div>
-                  <span style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: COLORS.green }}>
-                    Category
-                  </span>
-                  <h3 style={{ margin: "4px 0 0", fontSize: 15, fontWeight: 800, textTransform: "uppercase", color: COLORS.heading }}>
-                    {tier.category}
-                  </h3>
-                </div>
-
-                <p style={{ marginTop: 8, fontSize: 12.5, lineHeight: 1.5, color: COLORS.paragraph }}>
-                  {tier.subtext}
-                </p>
-
-                {/* Price Display */}
-                <div style={{ marginTop: 18, borderTop: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, padding: "14px 0", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-                  <div>
-                    <span style={{ display: "block", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: COLORS.green }}>
-                      Early Bird (Till Oct 19)
-                    </span>
-                    <span style={{ display: "block", marginTop: 4, fontSize: 18, fontWeight: 900, color: COLORS.heading }}>
-                      {tier.earlyBird}
-                    </span>
-                  </div>
-                  <div style={{ borderLeft: `1px solid ${COLORS.line}`, paddingLeft: 12 }}>
-                    <span style={{ display: "block", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: COLORS.muted }}>
-                      Late (From Oct 20)
-                    </span>
-                    <span style={{ display: "block", marginTop: 4, fontSize: 18, fontWeight: 800, color: COLORS.paragraph }}>
-                      {tier.lateReg}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ marginTop: 20 }}>
-                <a
-                  href={tier.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
+            <div key={tier.id} className="reg-card">
+              {/* Header */}
+              <div
+                style={{
+                  background: COLORS.heading,
+                  color: "white",
+                  padding: "16px 12px",
+                  minHeight: 68,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textAlign: "center",
+                }}
+              >
+                <h3
                   style={{
-                    display: "block",
-                    width: "100%",
-                    textAlign: "center",
-                    background: COLORS.green,
-                    color: "white",
-                    padding: "12px 16px",
-                    fontSize: 11.5,
+                    margin: 0,
+                    fontSize: 13,
                     fontWeight: 800,
                     textTransform: "uppercase",
-                    letterSpacing: "0.06em",
-                    textDecoration: "none",
+                    letterSpacing: "0.04em",
+                    lineHeight: 1.3,
+                    color: "white",
+                    whiteSpace: "pre-line",
                   }}
                 >
-                  Register as {tier.category}
-                </a>
+                  {tier.titleLines ? tier.titleLines.join("\n") : tier.category}
+                </h3>
+              </div>
+
+              {/* Body */}
+              <div
+                style={{
+                  padding: "32px 20px 28px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  flex: 1,
+                  background: "white",
+                }}
+              >
+                {/* Price Display */}
+                <div style={{ textAlign: "center" }}>
+                  <div style={{ display: "inline-flex", alignItems: "flex-start", justifyContent: "center" }}>
+                    <span
+                      style={{
+                        fontSize: 18,
+                        fontWeight: 800,
+                        color: COLORS.green,
+                        marginTop: 2,
+                        marginRight: 3,
+                      }}
+                    >
+                      {tier.currency}
+                    </span>
+                    <span
+                      style={{
+                        fontSize: 34,
+                        fontWeight: 900,
+                        color: COLORS.heading,
+                        lineHeight: 1,
+                        letterSpacing: "-0.01em",
+                      }}
+                    >
+                      {tier.amount}
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      margin: "8px 0 0",
+                      fontSize: 11.5,
+                      color: COLORS.muted,
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    {tier.regType}
+                  </p>
+                </div>
+
+                {/* Button */}
+                <div style={{ marginTop: 28, width: "100%", display: "flex", justifyContent: "center" }}>
+                  <a
+                    href={tier.paymentLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="reg-card-btn"
+                  >
+                    Register Now
+                  </a>
+                </div>
               </div>
             </div>
           ))}
@@ -231,7 +285,7 @@ export default function RegisterPage() {
 
         {/* ---------------- COMPARISON TABLE ---------------- */}
         <div style={{ marginTop: 48, border: `1px solid ${COLORS.line}` }}>
-          <div style={{ padding: "20px 24px", background: "#F8FAFC", borderBottom: `1px solid ${COLORS.line}` }}>
+          <div style={{ padding: "18px 24px", background: "#F8FAFC", borderBottom: `1px solid ${COLORS.line}` }}>
             <h3 style={{ margin: 0, fontSize: 13, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em", color: COLORS.heading }}>
               Fee Summary Table
             </h3>
@@ -241,8 +295,8 @@ export default function RegisterPage() {
               <thead>
                 <tr>
                   <th>Category</th>
-                  <th>Early Bird (Ends 19th October)</th>
-                  <th>Late Registration (From 20th October)</th>
+                  <th>Registration Type</th>
+                  <th>Fee</th>
                   <th style={{ textAlign: "right" }}>Action</th>
                 </tr>
               </thead>
@@ -252,21 +306,21 @@ export default function RegisterPage() {
                     <td style={{ fontWeight: 700, color: COLORS.heading, fontSize: 13 }}>
                       {tier.category}
                     </td>
-                    <td style={{ fontWeight: 800, color: COLORS.green, fontSize: 13 }}>
-                      {tier.earlyBird}
-                    </td>
                     <td style={{ fontWeight: 600, color: COLORS.paragraph, fontSize: 13 }}>
-                      {tier.lateReg}
+                      {tier.regType}
+                    </td>
+                    <td style={{ fontWeight: 800, color: COLORS.green, fontSize: 14 }}>
+                      {tier.currency}{tier.amount}
                     </td>
                     <td style={{ textAlign: "right" }}>
                       <a
-                        href={tier.link}
+                        href={tier.paymentLink}
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{
                           display: "inline-block",
-                          border: `1px solid ${COLORS.line}`,
-                          color: COLORS.heading,
+                          background: COLORS.heading,
+                          color: "white",
                           padding: "6px 14px",
                           fontSize: 11,
                           fontWeight: 700,
