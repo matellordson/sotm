@@ -75,7 +75,7 @@ export default function AboutPage() {
             State of the Map Nigeria 2026
           </h1>
           <p style={{ marginTop: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(255,255,255,0.9)", fontSize: "clamp(12px, 2.2vw, 15px)" }}>
-            3–6 November 2026 • University of Uyo, Akwa Ibom State
+            10th – 13th November 2026 • University of Uyo, Akwa Ibom State
           </p>
 
           <div style={{ marginTop: 24, borderTop: "1px solid rgba(255,255,255,0.2)", borderBottom: "1px solid rgba(255,255,255,0.2)", padding: "14px 20px" }}>
@@ -100,7 +100,7 @@ export default function AboutPage() {
               State of the Map Nigeria (SOTM Nigeria) is the official annual conference bringing together contributors, researchers, developers, and practitioners of OpenStreetMap and open geospatial technology across Nigeria and beyond.
             </p>
             <p style={{ marginTop: 14, fontSize: 13.5, lineHeight: 1.7, color: COLORS.paragraph }}>
-              Now in its <strong>5th Annual Edition</strong>, SOTM Nigeria 2026 takes place at the <strong>University of Uyo, Akwa Ibom State</strong> from <strong>3–6 November 2026</strong>. The event provides a collaborative platform to explore cutting-edge developments in GeoAI, Citizen Science, Open Mapping, and Climate Action.
+              Now in its <strong>5th Annual Edition</strong>, SOTM Nigeria 2026 takes place at the <strong>University of Uyo, Akwa Ibom State</strong> from <strong>10th – 13th November 2026</strong>. The event provides a collaborative platform to explore cutting-edge developments in GeoAI, Citizen Science, Open Mapping, and Climate Action.
             </p>
             <p style={{ marginTop: 14, fontSize: 13.5, lineHeight: 1.7, color: COLORS.paragraph }}>
               Through hands-on training workshops, peer-reviewed academic presentations, dynamic mapathons, commercial exhibitions, and the Annual General Assembly (AGA), SOTM Nigeria accelerates community empowerment and evidence-based decision-making.

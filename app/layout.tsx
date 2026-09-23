@@ -5,7 +5,7 @@ import { SiteFooter } from "./SiteFooter";
 
 export const metadata: Metadata = {
   title: "State of the Map Nigeria 2026 | 5th Annual Conference, Training Workshops & AGA",
-  description: "3–6 November 2026 | University of Uyo, Akwa Ibom State, Nigeria. Theme: Open Geospatial Innovation for Climate Action and Community Resilience.",
+  description: "10th – 13th November 2026 | University of Uyo, Akwa Ibom State, Nigeria. Theme: Open Geospatial Innovation for Climate Action and Community Resilience.",
 };
 
 export default function RootLayout({

@@ -27,10 +27,10 @@ interface ScheduleDay {
 }
 
 const SCHEDULE_DAYS: ScheduleDay[] = [
-  { day: "Tuesday", date: "03", label: "Workshops & Opening" },
-  { day: "Wednesday", date: "04", label: "Paper Tracks & Expo" },
-  { day: "Thursday", date: "05", label: "Mapathon & Tracks" },
-  { day: "Friday", date: "06", label: "AGA & Closing" },
+  { day: "Tuesday", date: "10", label: "Workshops & Opening" },
+  { day: "Wednesday", date: "11", label: "Paper Tracks & Expo" },
+  { day: "Thursday", date: "12", label: "Mapathon & Tracks" },
+  { day: "Friday", date: "13", label: "AGA & Closing" },
 ];
 
 const FOCUS_AREAS = [
@@ -136,8 +136,8 @@ const SPEAKERS: Speaker[] = [
   },
 ];
 
-// Target date the countdown counts down to (Day 1 of the conference: Nov 3, 2026)
-const TARGET_DATE: Date = new Date("2026-11-03T09:00:00");
+// Target date the countdown counts down to (Day 1 of the conference: Nov 10, 2026)
+const TARGET_DATE: Date = new Date("2026-11-10T09:00:00");
 
 // Venue coordinates — University of Uyo, Akwa Ibom State, Nigeria
 const VENUE_LAT: number = 5.0418;
@@ -200,10 +200,94 @@ export default function ConferenceLandingPage() {
         .sotm-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
         .sotm-grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; }
 
+        /* Focus Areas Responsive Grid */
+        .focus-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          border: 1px solid ${COLORS.line};
+          background: white;
+        }
+        .focus-card {
+          padding: 26px 28px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+        .focus-card:nth-child(odd) {
+          border-right: 1px solid ${COLORS.line};
+        }
+        .focus-card:nth-child(-n+2) {
+          border-bottom: 1px solid ${COLORS.line};
+        }
+
+        /* Programme Structure Responsive Grid */
+        .programme-container {
+          margin-top: 40px;
+          border: 1px solid ${COLORS.line};
+          background: white;
+        }
+        .programme-item {
+          padding: 24px 28px;
+          display: grid;
+          grid-template-columns: 64px 1fr;
+          gap: 20px;
+          align-items: start;
+        }
+        .programme-item:not(:last-child) {
+          border-bottom: 1px solid ${COLORS.line};
+        }
+        .programme-header {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: baseline;
+          justify-content: space-between;
+          gap: 8px;
+        }
+        .programme-points-grid {
+          margin-top: 12px;
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 8px 24px;
+        }
+
         @media (max-width: 768px) {
           .sotm-grid-2 { grid-template-columns: 1fr; }
           .sotm-grid-3 { grid-template-columns: 1fr; }
           .sotm-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        @media (max-width: 680px) {
+          .focus-grid {
+            grid-template-columns: 1fr;
+          }
+          .focus-card {
+            padding: 20px 18px;
+          }
+          .focus-card:nth-child(odd) {
+            border-right: none;
+          }
+          .focus-card:nth-child(-n+2) {
+            border-bottom: none;
+          }
+          .focus-card:not(:last-child) {
+            border-bottom: 1px solid ${COLORS.line};
+          }
+
+          .programme-item {
+            padding: 20px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+          }
+          .programme-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+          }
+          .programme-points-grid {
+            grid-template-columns: 1fr;
+            gap: 8px;
+          }
         }
       `}</style>
 
@@ -215,7 +299,7 @@ export default function ConferenceLandingPage() {
         <div style={{ position: "relative", width: "100%", maxWidth: 840, margin: "0 auto", padding: "72px 20px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
           
           <p style={{ margin: 0, fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.15em", color: COLORS.green }}>
-            3–6 November 2026 • University of Uyo, Nigeria
+            10th – 13th November 2026 • University of Uyo, Nigeria
           </p>
 
           <h1 style={{ marginTop: 14, fontWeight: 900, textTransform: "uppercase", lineHeight: 1.15, color: "white", fontSize: "clamp(26px, 5.5vw, 44px)", margin: "14px 0 0", letterSpacing: "0.02em" }}>
@@ -298,7 +382,7 @@ export default function ConferenceLandingPage() {
           })}
         </div>
         <p style={{ marginTop: 20, fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em", color: COLORS.heading }}>
-          3–6 November 2026 • University of Uyo
+          10th – 13th November 2026 • University of Uyo
         </p>
 
         {/* ---- Venue map ---- */}
@@ -334,24 +418,36 @@ export default function ConferenceLandingPage() {
             Focus Areas
           </h2>
 
-          <div className="sotm-grid-2" style={{ marginTop: 40, border: `1px solid ${COLORS.line}`, background: "white" }}>
-            {FOCUS_AREAS.map((fa, i) => (
-              <div
-                key={fa.name}
-                style={{
-                  padding: "26px 28px",
-                  borderRight: i % 2 === 0 ? `1px solid ${COLORS.line}` : "none",
-                  borderBottom: i < 2 ? `1px solid ${COLORS.line}` : "none",
-                }}
-              >
-                <h3 style={{ fontSize: 12, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em", color: COLORS.green, margin: 0 }}>
-                  {fa.name}
-                </h3>
-                <p style={{ marginTop: 10, fontSize: 13.5, lineHeight: 1.6, color: COLORS.paragraph, margin: "10px 0 0" }}>
-                  {fa.desc}
-                </p>
-              </div>
-            ))}
+          <div className="focus-grid" style={{ marginTop: 40 }}>
+            {FOCUS_AREAS.map((fa) => {
+              const IconComp = fa.icon;
+              return (
+                <div key={fa.name} className="focus-card">
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <div
+                      style={{
+                        width: 32,
+                        height: 32,
+                        borderRadius: 6,
+                        background: "rgba(0, 166, 62, 0.1)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <IconComp size={16} color={COLORS.green} />
+                    </div>
+                    <h3 style={{ fontSize: 13, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em", color: COLORS.green, margin: 0 }}>
+                      {fa.name}
+                    </h3>
+                  </div>
+                  <p style={{ marginTop: 4, fontSize: 13.5, lineHeight: 1.6, color: COLORS.paragraph, margin: 0 }}>
+                    {fa.desc}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -363,42 +459,55 @@ export default function ConferenceLandingPage() {
             Conference Programme Structure
           </h2>
 
-          <div style={{ marginTop: 40, border: `1px solid ${COLORS.line}` }}>
-            {PROGRAMME_PILLARS.map((pillar, i) => (
-              <div
-                key={pillar.num}
-                style={{
-                  padding: "24px 28px",
-                  borderBottom: i < PROGRAMME_PILLARS.length - 1 ? `1px solid ${COLORS.line}` : "none",
-                  display: "grid",
-                  gridTemplateColumns: "60px 1fr",
-                  gap: 20,
-                  alignItems: "start",
-                }}
-              >
-                <span style={{ fontSize: 16, fontWeight: 900, color: COLORS.green }}>{pillar.num}</span>
-
-                <div>
-                  <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", justifyContent: "space-between", gap: 8 }}>
-                    <h3 style={{ margin: 0, fontSize: 14, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em", color: COLORS.heading }}>
-                      {pillar.title}
-                    </h3>
-                    <span style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", color: COLORS.muted }}>
-                      {pillar.tagline}
+          <div className="programme-container">
+            {PROGRAMME_PILLARS.map((pillar) => {
+              const IconComp = pillar.icon;
+              return (
+                <div key={pillar.num} className="programme-item">
+                  {/* Left Column (Desktop) / Top badge row (Mobile) */}
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <span style={{ fontSize: 18, fontWeight: 900, color: COLORS.green, lineHeight: 1 }}>
+                      {pillar.num}
                     </span>
+                    <div
+                      style={{
+                        width: 28,
+                        height: 28,
+                        borderRadius: 4,
+                        background: "rgba(0, 166, 62, 0.1)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <IconComp size={15} color={COLORS.green} />
+                    </div>
                   </div>
 
-                  <div style={{ marginTop: 12, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 6 }}>
-                    {pillar.points.map((pt, idx) => (
-                      <div key={idx} style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13, color: COLORS.paragraph, lineHeight: 1.5 }}>
-                        <span style={{ color: COLORS.green, fontWeight: 700 }}>•</span>
-                        <span>{pt}</span>
-                      </div>
-                    ))}
+                  {/* Right Column: Header & Points */}
+                  <div style={{ width: "100%" }}>
+                    <div className="programme-header">
+                      <h3 style={{ margin: 0, fontSize: 14, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em", color: COLORS.heading }}>
+                        {pillar.title}
+                      </h3>
+                      <span style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", color: COLORS.muted }}>
+                        {pillar.tagline}
+                      </span>
+                    </div>
+
+                    <div className="programme-points-grid">
+                      {pillar.points.map((pt, idx) => (
+                        <div key={idx} style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13, color: COLORS.paragraph, lineHeight: 1.5 }}>
+                          <span style={{ color: COLORS.green, fontWeight: 700, flexShrink: 0 }}>•</span>
+                          <span>{pt}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div style={{ marginTop: 32, display: "flex", justifyContent: "center" }}>

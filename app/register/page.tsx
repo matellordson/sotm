@@ -12,15 +12,22 @@ import {
   Monitor,
   CheckCircle2,
   AlertCircle,
+  Calendar,
+  CreditCard,
+  Phone,
+  Mail,
+  Copy,
+  Check,
 } from "lucide-react";
+import { useState } from "react";
 
 interface FeeTier {
   id: string;
   category: string;
   titleLines?: string[];
   currency: string;
-  amount: string;
-  regType: string;
+  earlyBird: string;
+  lateReg: string;
   paymentLink: string;
 }
 
@@ -31,33 +38,33 @@ export const FEE_TIERS: FeeTier[] = [
     id: "undergraduate",
     category: "Undergraduate Students",
     currency: "₦",
-    amount: "15,000",
-    regType: "Registration",
+    earlyBird: "10,000",
+    lateReg: "15,000",
     paymentLink: "https://paystack.shop/pay/ugstudent",
   },
   {
     id: "postgraduate",
     category: "Postgraduate Students",
     currency: "₦",
-    amount: "20,000",
-    regType: "Late Registration",
+    earlyBird: "15,000",
+    lateReg: "20,000",
     paymentLink: "https://paystack.shop/pay/pgstudent",
   },
   {
     id: "osm-contributors",
-    category: "OpenStreetMap Nigeria Contributors",
-    titleLines: ["OpenStreetMap", "Nigeria Contributors"],
+    category: "OSM Members",
+    titleLines: ["OSM Members", "(OpenStreetMap Contributors)"],
     currency: "₦",
-    amount: "25,000",
-    regType: "Late Registration",
+    earlyBird: "20,000",
+    lateReg: "25,000",
     paymentLink: "https://paystack.shop/pay/osmcontributors",
   },
   {
     id: "non-members",
     category: "Non-Members",
     currency: "₦",
-    amount: "30,000",
-    regType: "Late Registration",
+    earlyBird: "25,000",
+    lateReg: "30,000",
     paymentLink: "https://paystack.shop/pay/non_members",
   },
   {
@@ -65,8 +72,8 @@ export const FEE_TIERS: FeeTier[] = [
     category: "Corporate Bodies (5 persons)",
     titleLines: ["Corporate Bodies", "(5 persons)"],
     currency: "₦",
-    amount: "300,000",
-    regType: "Late Registration",
+    earlyBird: "250,000",
+    lateReg: "300,000",
     paymentLink: "https://paystack.shop/pay/corporate-bodies",
   },
   {
@@ -74,24 +81,24 @@ export const FEE_TIERS: FeeTier[] = [
     category: "Corporate Bodies (10 persons)",
     titleLines: ["Corporate Bodies", "(10 persons)"],
     currency: "₦",
-    amount: "400,000",
-    regType: "Late Registration",
+    earlyBird: "350,000",
+    lateReg: "400,000",
     paymentLink: "https://paystack.shop/pay/corporate-bodies02",
   },
   {
     id: "international",
-    category: "International Participant",
+    category: "International Participants",
     currency: "$",
-    amount: "25",
-    regType: "Late Registration",
+    earlyBird: "20",
+    lateReg: "25",
     paymentLink: "https://paystack.shop/pay/xnb8m8bph4",
   },
   {
     id: "online-local",
-    category: "Online Participant (Local)",
+    category: "Online Participants",
     currency: "₦",
-    amount: "15,000",
-    regType: "Registration",
+    earlyBird: "10,000",
+    lateReg: "15,000",
     paymentLink: "https://paystack.shop/pay/online-participants",
   },
 ];
@@ -107,6 +114,14 @@ const INCLUSIONS = [
 ];
 
 export default function RegisterPage() {
+  const [copied, setCopied] = useState(false);
+
+  const copyAccountNo = () => {
+    navigator.clipboard.writeText("1225974127");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
+
   return (
     <div style={{ color: COLORS.paragraph, background: "white", minHeight: "100vh" }}>
       <style>{`
@@ -133,7 +148,7 @@ export default function RegisterPage() {
           display: inline-block;
           background: ${COLORS.green};
           color: white;
-          padding: 10px 24px;
+          padding: 10px 20px;
           font-size: 11.5px;
           font-weight: 800;
           text-transform: uppercase;
@@ -145,9 +160,15 @@ export default function RegisterPage() {
         .reg-card-btn:hover {
           opacity: 0.9;
         }
+        .inquiry-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 16px;
+        }
 
         @media (max-width: 1024px) {
           .reg-grid-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          .inquiry-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 640px) {
           .reg-grid-cards { grid-template-columns: 1fr; }
@@ -157,28 +178,61 @@ export default function RegisterPage() {
 
       {/* ---------------- HERO ---------------- */}
       <section style={{ background: COLORS.heading, color: "white", padding: "64px 20px 52px", textAlign: "center" }}>
-        <div style={{ maxWidth: 760, margin: "0 auto" }}>
-          <p style={{ margin: 0, fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.15em", color: COLORS.green }}>
-            State of the Map Nigeria 2026
+        <div style={{ maxWidth: 840, margin: "0 auto" }}>
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "6px 16px",
+              background: "rgba(0, 166, 62, 0.2)",
+              border: "1px solid rgba(0, 166, 62, 0.4)",
+              color: "#34D399",
+              fontSize: 11,
+              fontWeight: 800,
+              textTransform: "uppercase",
+              letterSpacing: "0.12em",
+              marginBottom: 16,
+            }}
+          >
+            <Calendar size={13} />
+            10th – 13th November 2026 • University of Uyo Campus
+          </div>
+
+          <h1 style={{ fontWeight: 900, textTransform: "uppercase", fontSize: "clamp(22px, 4.5vw, 36px)", margin: "0 0 14px" }}>
+            Conference Registration Fees 2026
+          </h1>
+          <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.85)", maxWidth: 680, margin: "0 auto", lineHeight: 1.6 }}>
+            State of the Map Nigeria 2026 — 5th Annual Conference/Workshop &amp; AGA. Join geospatial experts, researchers, developers, students, and community mappers in Uyo, Akwa Ibom State.
           </p>
 
-          <h1 style={{ marginTop: 14, fontWeight: 900, textTransform: "uppercase", fontSize: "clamp(22px, 4.5vw, 36px)", margin: "14px 0 0" }}>
-            Conference Registration Fees
-          </h1>
-          <p style={{ marginTop: 12, fontSize: 13.5, color: "rgba(255,255,255,0.8)", maxWidth: 640, margin: "12px auto 0", lineHeight: 1.6 }}>
-            Join geospatial experts, researchers, developers, students, and community mappers from 3–6 November 2026 at the University of Uyo, Akwa Ibom State.
-          </p>
+          {/* Timeline Badges */}
+          <div style={{ marginTop: 28, display: "inline-flex", flexWrap: "wrap", justifyContent: "center", gap: 1, background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.2)" }}>
+            <div style={{ padding: "10px 20px", background: COLORS.green, color: "white", fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+              Early Birds ENDS — 26th October
+            </div>
+            <div style={{ padding: "10px 20px", background: "rgba(0,0,0,0.35)", color: "white", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+              Late Registration — 27th October
+            </div>
+          </div>
+
+          {/* Dates Strip */}
+          <div style={{ marginTop: 18, display: "flex", justifyContent: "center", gap: 24, fontSize: 12, color: "rgba(255,255,255,0.8)" }}>
+            <span><strong>Arrival Date:</strong> 10th-Nov-2026</span>
+            <span>•</span>
+            <span><strong>Departure Date:</strong> 13th-Nov-2026</span>
+          </div>
         </div>
       </section>
 
       {/* ---------------- REGISTRATION OPTIONS & PRICING TABLE ---------------- */}
       <section style={{ maxWidth: 1160, margin: "0 auto", padding: "64px 20px" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <h2 style={{ fontSize: "clamp(15px, 2.6vw, 18px)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: COLORS.heading, margin: 0 }}>
+          <h2 style={{ fontSize: "clamp(16px, 2.6vw, 20px)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: COLORS.heading, margin: 0 }}>
             Select Your Registration Category
           </h2>
           <p style={{ marginTop: 8, fontSize: 13, color: COLORS.muted }}>
-            Choose the category that matches your status to complete your registration.
+            Choose the category that matches your status. Pay via Paystack online or through direct bank deposit.
           </p>
         </div>
 
@@ -218,7 +272,7 @@ export default function RegisterPage() {
               {/* Body */}
               <div
                 style={{
-                  padding: "32px 20px 28px",
+                  padding: "24px 18px",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
@@ -227,55 +281,36 @@ export default function RegisterPage() {
                   background: "white",
                 }}
               >
-                {/* Price Display */}
-                <div style={{ textAlign: "center" }}>
-                  <div style={{ display: "inline-flex", alignItems: "flex-start", justifyContent: "center" }}>
-                    <span
-                      style={{
-                        fontSize: 18,
-                        fontWeight: 800,
-                        color: COLORS.green,
-                        marginTop: 2,
-                        marginRight: 3,
-                      }}
-                    >
-                      {tier.currency}
+                {/* Dual Price Display: Early Bird & Late Registration */}
+                <div style={{ width: "100%", borderTop: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, padding: "14px 0", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, textAlign: "center" }}>
+                  <div>
+                    <span style={{ display: "block", fontSize: 9.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: COLORS.green }}>
+                      Early Bird (Till Oct 26)
                     </span>
-                    <span
-                      style={{
-                        fontSize: 34,
-                        fontWeight: 900,
-                        color: COLORS.heading,
-                        lineHeight: 1,
-                        letterSpacing: "-0.01em",
-                      }}
-                    >
-                      {tier.amount}
+                    <span style={{ display: "block", marginTop: 4, fontSize: 18, fontWeight: 900, color: COLORS.heading }}>
+                      {tier.currency}{tier.earlyBird}
                     </span>
                   </div>
-                  <p
-                    style={{
-                      margin: "8px 0 0",
-                      fontSize: 11.5,
-                      color: COLORS.muted,
-                      fontWeight: 700,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.05em",
-                    }}
-                  >
-                    {tier.regType}
-                  </p>
+                  <div style={{ borderLeft: `1px solid ${COLORS.line}`, paddingLeft: 8 }}>
+                    <span style={{ display: "block", fontSize: 9.5, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: COLORS.muted }}>
+                      Late (From Oct 27)
+                    </span>
+                    <span style={{ display: "block", marginTop: 4, fontSize: 18, fontWeight: 800, color: COLORS.paragraph }}>
+                      {tier.currency}{tier.lateReg}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Button */}
-                <div style={{ marginTop: 28, width: "100%", display: "flex", justifyContent: "center" }}>
+                <div style={{ marginTop: 24, width: "100%", display: "flex", justifyContent: "center" }}>
                   <a
                     href={tier.paymentLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="reg-card-btn"
+                    style={{ width: "100%" }}
                   >
-                    Register Now
+                    Pay Online
                   </a>
                 </div>
               </div>
@@ -295,8 +330,8 @@ export default function RegisterPage() {
               <thead>
                 <tr>
                   <th>Category</th>
-                  <th>Registration Type</th>
-                  <th>Fee</th>
+                  <th>Early Bird (Ends 26th October)</th>
+                  <th>Late Registration (From 27th October)</th>
                   <th style={{ textAlign: "right" }}>Action</th>
                 </tr>
               </thead>
@@ -306,11 +341,11 @@ export default function RegisterPage() {
                     <td style={{ fontWeight: 700, color: COLORS.heading, fontSize: 13 }}>
                       {tier.category}
                     </td>
-                    <td style={{ fontWeight: 600, color: COLORS.paragraph, fontSize: 13 }}>
-                      {tier.regType}
+                    <td style={{ fontWeight: 800, color: COLORS.green, fontSize: 13 }}>
+                      {tier.currency}{tier.earlyBird}
                     </td>
-                    <td style={{ fontWeight: 800, color: COLORS.green, fontSize: 14 }}>
-                      {tier.currency}{tier.amount}
+                    <td style={{ fontWeight: 700, color: COLORS.paragraph, fontSize: 13 }}>
+                      {tier.currency}{tier.lateReg}
                     </td>
                     <td style={{ textAlign: "right" }}>
                       <a
@@ -339,8 +374,86 @@ export default function RegisterPage() {
           </div>
         </div>
 
+        {/* ---------------- BANK ACCOUNT DETAILS ---------------- */}
+        <div
+          style={{
+            marginTop: 48,
+            padding: "32px 28px",
+            border: `2px solid ${COLORS.green}`,
+            background: "rgba(0, 166, 62, 0.04)",
+          }}
+        >
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 16, borderBottom: `1px solid ${COLORS.line}`, paddingBottom: 16 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <CreditCard size={24} color={COLORS.green} />
+              <div>
+                <h3 style={{ margin: 0, fontSize: 15, fontWeight: 900, textTransform: "uppercase", color: COLORS.heading }}>
+                  Direct Bank Transfer / Deposit Details
+                </h3>
+                <p style={{ margin: "2px 0 0", fontSize: 12, color: COLORS.muted }}>
+                  For Nigerian local participants and organizations paying via direct bank transfer
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={copyAccountNo}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                background: COLORS.green,
+                color: "white",
+                border: "none",
+                padding: "8px 16px",
+                fontSize: 11.5,
+                fontWeight: 800,
+                textTransform: "uppercase",
+                cursor: "pointer",
+              }}
+            >
+              {copied ? <Check size={14} /> : <Copy size={14} />}
+              {copied ? "Copied Account No!" : "Copy Account Number"}
+            </button>
+          </div>
+
+          <div style={{ marginTop: 24, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 20 }}>
+            <div>
+              <span style={{ display: "block", fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: COLORS.muted }}>
+                Bank Name
+              </span>
+              <span style={{ display: "block", marginTop: 4, fontSize: 16, fontWeight: 800, color: COLORS.heading }}>
+                Zenith Bank PLC.
+              </span>
+            </div>
+            <div>
+              <span style={{ display: "block", fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: COLORS.muted }}>
+                Account Name
+              </span>
+              <span style={{ display: "block", marginTop: 4, fontSize: 16, fontWeight: 800, color: COLORS.heading }}>
+                UNIQUE MAPPERS NETWORK-SOTM
+              </span>
+            </div>
+            <div>
+              <span style={{ display: "block", fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: COLORS.muted }}>
+                Account Number
+              </span>
+              <span style={{ display: "block", marginTop: 4, fontSize: 20, fontWeight: 900, color: COLORS.green, letterSpacing: "0.05em" }}>
+                1225974127
+              </span>
+            </div>
+          </div>
+
+          <p style={{ marginTop: 20, fontSize: 12.5, color: COLORS.paragraph, lineHeight: 1.6, borderTop: `1px solid ${COLORS.line}`, paddingTop: 14 }}>
+            <strong>Note after bank payment:</strong> Please send your payment receipt / teller screenshot and full name to{" "}
+            <a href="mailto:stateofthemapnigeria@gmail.com" style={{ color: COLORS.green, fontWeight: 700 }}>
+              stateofthemapnigeria@gmail.com
+            </a>{" "}
+            or via WhatsApp to <strong>+234 806 390 8020</strong> to confirm accreditation and issue your delegate confirmation code.
+          </p>
+        </div>
+
         {/* ---------------- WHAT YOUR FEE COVERS ---------------- */}
-        <div style={{ marginTop: 48, padding: "32px 28px", border: `1px solid ${COLORS.line}`, background: "#F8FAFC" }}>
+        <div style={{ marginTop: 40, padding: "32px 28px", border: `1px solid ${COLORS.line}`, background: "#F8FAFC" }}>
           <h3 style={{ margin: 0, fontSize: 13, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em", color: COLORS.heading }}>
             What Is Included in Your Registration Fee?
           </h3>
@@ -354,21 +467,65 @@ export default function RegisterPage() {
           </div>
         </div>
 
-        {/* ---------------- PAYMENT & ENQUIRIES ---------------- */}
-        <div style={{ marginTop: 32, padding: "28px 24px", border: `1px solid ${COLORS.line}`, background: "white" }}>
-          <div style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
-            <AlertCircle size={18} color={COLORS.green} style={{ flexShrink: 0, marginTop: 2 }} />
-            <div>
-              <h4 style={{ margin: 0, fontSize: 13, fontWeight: 800, textTransform: "uppercase", color: COLORS.heading }}>
-                Registration &amp; Payment Support
-              </h4>
-              <p style={{ marginTop: 6, fontSize: 13, lineHeight: 1.6, color: COLORS.paragraph, margin: "6px 0 0" }}>
-                For group bookings, invoice requests, institutional sponsorship, or international wire payment queries, please reach out to our organizing committee at{" "}
-                <a href="mailto:stateofthemapnigeria@gmail.com" style={{ color: COLORS.green, fontWeight: 700, textDecoration: "none" }}>
-                  stateofthemapnigeria@gmail.com
-                </a>
-                .
-              </p>
+        {/* ---------------- INQUIRIES & CONTACTS ---------------- */}
+        <div style={{ marginTop: 40, padding: "32px 28px", border: `1px solid ${COLORS.line}`, background: "white" }}>
+          <div style={{ textAlign: "center", marginBottom: 24 }}>
+            <p style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: COLORS.green, margin: 0 }}>
+              Need Help Registering?
+            </p>
+            <h3 style={{ margin: "4px 0 0", fontSize: 16, fontWeight: 900, textTransform: "uppercase", color: COLORS.heading }}>
+              For Inquiries, Contact Unique Mappers Network, Nigeria
+            </h3>
+          </div>
+
+          <div className="inquiry-grid">
+            <div style={{ padding: "16px 20px", background: "#F8FAFC", border: `1px solid ${COLORS.line}` }}>
+              <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", color: COLORS.green, display: "block" }}>
+                National Coordinator / SOTM Nigeria Chair
+              </span>
+              <strong style={{ fontSize: 14, color: COLORS.heading, display: "block", marginTop: 4 }}>
+                Dr. Victor N. Sunday
+              </strong>
+              <a
+                href="https://wa.me/2348063908020"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontSize: 13, color: COLORS.paragraph, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, marginTop: 6 }}
+              >
+                <Phone size={14} color={COLORS.green} /> +234 806 390 8020 (WhatsApp)
+              </a>
+            </div>
+
+            <div style={{ padding: "16px 20px", background: "#F8FAFC", border: `1px solid ${COLORS.line}` }}>
+              <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", color: COLORS.green, display: "block" }}>
+                LoC Programs
+              </span>
+              <strong style={{ fontSize: 14, color: COLORS.heading, display: "block", marginTop: 4 }}>
+                Martins-Ateli Grace
+              </strong>
+              <a
+                href="https://wa.me/2349018726215"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontSize: 13, color: COLORS.paragraph, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, marginTop: 6 }}
+              >
+                <Phone size={14} color={COLORS.green} /> +234 901 872 6215 (WhatsApp)
+              </a>
+            </div>
+
+            <div style={{ padding: "16px 20px", background: "#F8FAFC", border: `1px solid ${COLORS.line}` }}>
+              <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", color: COLORS.green, display: "block" }}>
+                Co-Chair / Logistics / Academic Track
+              </span>
+              <strong style={{ fontSize: 14, color: COLORS.heading, display: "block", marginTop: 4 }}>
+                Prof. Joseph Udoh
+              </strong>
+              <a
+                href="tel:+2348038673326"
+                style={{ fontSize: 13, color: COLORS.paragraph, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, marginTop: 6 }}
+              >
+                <Phone size={14} color={COLORS.green} /> +234 803 867 3326
+              </a>
             </div>
           </div>
         </div>

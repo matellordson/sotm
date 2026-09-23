@@ -36,7 +36,7 @@ const SCHEDULE_DATA: DaySchedule[] = [
   {
     id: "day-1",
     day: "Tuesday",
-    date: "03 November 2026",
+    date: "10 November 2026",
     title: "Arrivals, Opening Ceremony & Training Workshops",
     summary: "Hands-on, practical capacity development sessions across GIS, GeoAI, Earth Observation, and UAV technologies. Bring your laptop!",
     icon: Laptop,
@@ -86,7 +86,7 @@ const SCHEDULE_DATA: DaySchedule[] = [
   {
     id: "day-2",
     day: "Wednesday",
-    date: "04 November 2026",
+    date: "11 November 2026",
     title: "Conference Presentations (Tracks 1 & 2) & Exhibition Opening",
     summary: "Academic and practical presentations focusing on Geospatial Innovation, Open Mapping, and GeoAI.",
     icon: Presentation,
@@ -153,7 +153,7 @@ const SCHEDULE_DATA: DaySchedule[] = [
   {
     id: "day-3",
     day: "Thursday",
-    date: "05 November 2026",
+    date: "12 November 2026",
     title: "Conference Presentations (Tracks 3 & 4) & Collaborative Mapathon",
     summary: "Climate action, disaster risk reduction, citizen science, and a nationwide collaborative Mapathon.",
     icon: Compass,
@@ -214,7 +214,7 @@ const SCHEDULE_DATA: DaySchedule[] = [
   {
     id: "day-4",
     day: "Friday",
-    date: "06 November 2026",
+    date: "13 November 2026",
     title: "Track 5 Presentations, AGA & Awards Ceremony",
     summary: "SDG geospatial applications, the Annual General Assembly of OSM Nigeria, awards, and grand closing.",
     icon: Award,
@@ -284,7 +284,7 @@ export default function SchedulePage() {
       <section style={{ background: COLORS.heading, color: "white", padding: "64px 20px 48px", textAlign: "center" }}>
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <p style={{ margin: 0, fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.15em", color: COLORS.green }}>
-            3–6 November 2026 • University of Uyo
+            10th – 13th November 2026 • University of Uyo
           </p>
 
           <h1 style={{ marginTop: 14, fontWeight: 900, textTransform: "uppercase", fontSize: "clamp(22px, 4.5vw, 34px)", margin: "14px 0 0" }}>
