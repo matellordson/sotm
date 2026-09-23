@@ -12,14 +12,12 @@ import {
   Calendar,
   MapPin,
   TrendingUp,
-  Users,
   Award,
   Sparkles,
   CheckCircle2,
   ExternalLink,
-  FileText,
   ArrowRight,
-  Eye,
+  FileDown,
 } from "lucide-react";
 
 /*
@@ -29,8 +27,8 @@ import {
   - Location: Uyo, Akwa Ibom State
   - Theme: Climate Action - Open Mapping
   - Slogan: "Open Mapping for Change, Community Empowerment, and Sustainable Development in Nigeria"
-  - Official Prospectus Pages: Introduction, Vision & Mission, Benefits for Sponsors, Participant Growth
   - Official Contact: +234 808 390 8020 | stateofthemapnigeria@gmail.com | uniquemappersinfo@gmail.com
+  - Direct PDF download: /prospectus/SOTM_Nigeria_2026_Sponsorship_Prospectus.pdf
 */
 
 interface Tier {
@@ -144,26 +142,16 @@ const PAST_SPONSORS: Sponsor[] = [
   { name: "SpatialMatrix", img: "/sponsors/spatialmatrix-logo.png" },
 ];
 
-const PROSPECTUS_PAGES = [
-  { title: "Cover", src: "/prospectus/cover.png", desc: "Cover & Official Theme" },
-  { title: "Introduction", src: "/prospectus/page-1-intro.png", desc: "Page 1: Conference Overview" },
-  { title: "Vision & Mission", src: "/prospectus/page-2-vision-mission.png", desc: "Page 2: Strategic Pillars" },
-  { title: "Sponsor Benefits", src: "/prospectus/page-3-benefits.png", desc: "Page 3: Four Strategic Pillars" },
-  { title: "Participant Reach", src: "/prospectus/page-4-participants.png", desc: "Page 4: 2025 vs 2026 Growth" },
-];
-
 export default function SponsorsPage(): any {
   const [openTier, setOpenTier] = useState<string | null>(TIERS[0].name);
-  const [activePreviewIndex, setActivePreviewIndex] = useState<number>(0);
 
   return (
     <div style={{ color: COLORS.paragraph, background: "white", minHeight: "100vh" }}>
       <style>{`
         .sponsors-logo-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 20px 32px; }
-        .sponsors-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; align-items: center; }
+        .sponsors-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; align-items: start; }
         .benefits-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
         .stats-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-        .prospectus-thumbs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
         .contact-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
         .cta-btn-primary {
           background: ${COLORS.green};
@@ -206,10 +194,6 @@ export default function SponsorsPage(): any {
           .benefits-grid { grid-template-columns: 1fr; }
           .stats-grid { grid-template-columns: 1fr; }
           .contact-grid { grid-template-columns: 1fr; }
-          .prospectus-thumbs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-        }
-        @media (max-width: 540px) {
-          .prospectus-thumbs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
       `}</style>
 
@@ -478,78 +462,112 @@ export default function SponsorsPage(): any {
                   textTransform: "uppercase",
                   letterSpacing: "0.15em",
                   color: COLORS.heading,
+                  margin: 0,
                 }}
               >
                 Mapping. Innovation. Impact.
               </p>
             </div>
 
-            {/* Right: Featured Cover & Download Preview */}
+            {/* Right: Clean Prospectus Download Callout Card */}
             <div
               style={{
                 background: "#F8FAFC",
                 border: `1px solid ${COLORS.line}`,
-                padding: "20px",
+                borderTop: `4px solid ${COLORS.green}`,
+                padding: "32px 28px",
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center",
-                textAlign: "center",
+                gap: 18,
               }}
             >
-              <div
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  maxWidth: 320,
-                  boxShadow: "0 14px 30px rgba(0,0,0,0.12)",
-                  border: `1px solid ${COLORS.line}`,
-                  overflow: "hidden",
-                }}
-              >
-                <img
-                  src="/prospectus/cover.png"
-                  alt="State of the Map Nigeria 2026 Sponsorship Prospectus Cover"
-                  style={{ width: "100%", height: "auto", display: "block" }}
-                />
-              </div>
-
-              <div style={{ marginTop: 20, width: "100%" }}>
-                <p
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <div
                   style={{
-                    fontSize: 13,
-                    fontWeight: 800,
-                    color: COLORS.heading,
-                    margin: 0,
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Official Prospectus Document
-                </p>
-                <p style={{ fontSize: 12, color: COLORS.muted, margin: "4px 0 16px" }}>
-                  Includes sponsorship tiers, participant data &amp; full partnership benefits
-                </p>
-                <a
-                  href="/prospectus/SOTM_Nigeria_2026_Sponsorship_Prospectus.pdf"
-                  download="SOTM_Nigeria_2026_Sponsorship_Prospectus.pdf"
-                  style={{
-                    display: "inline-flex",
+                    width: 44,
+                    height: 44,
+                    borderRadius: 8,
+                    background: "rgba(0, 166, 62, 0.12)",
+                    color: COLORS.green,
+                    display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    gap: 8,
-                    width: "100%",
-                    background: COLORS.heading,
-                    color: "white",
-                    padding: "12px 18px",
-                    fontSize: 12,
-                    fontWeight: 700,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.06em",
-                    textDecoration: "none",
+                    flexShrink: 0,
                   }}
                 >
-                  <Download size={14} /> Download Full PDF Prospectus
-                </a>
+                  <FileDown size={22} />
+                </div>
+                <div>
+                  <h3
+                    style={{
+                      fontSize: 15,
+                      fontWeight: 800,
+                      color: COLORS.heading,
+                      textTransform: "uppercase",
+                      margin: 0,
+                    }}
+                  >
+                    Official Prospectus PDF
+                  </h3>
+                  <span style={{ fontSize: 12, color: COLORS.muted }}>
+                    Complete Sponsorship Guide &amp; Package Details
+                  </span>
+                </div>
               </div>
+
+              <p style={{ fontSize: 13.5, lineHeight: 1.65, color: COLORS.paragraph, margin: 0 }}>
+                Download our complete sponsorship prospectus for detailed breakdown of sponsorship
+                tiers, participant demographics, branding benefits, and customized partnership
+                opportunities.
+              </p>
+
+              <div
+                style={{
+                  background: "white",
+                  border: `1px solid ${COLORS.line}`,
+                  padding: "16px",
+                  borderRadius: 4,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 8,
+                  fontSize: 12.5,
+                }}
+              >
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <span style={{ color: COLORS.muted }}>Document Type:</span>
+                  <strong style={{ color: COLORS.heading }}>PDF Prospectus</strong>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <span style={{ color: COLORS.muted }}>Edition:</span>
+                  <strong style={{ color: COLORS.heading }}>SOTM Nigeria 2026</strong>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <span style={{ color: COLORS.muted }}>Venue:</span>
+                  <strong style={{ color: COLORS.heading }}>University of Uyo, Akwa Ibom</strong>
+                </div>
+              </div>
+
+              <a
+                href="/prospectus/SOTM_Nigeria_2026_Sponsorship_Prospectus.pdf"
+                download="SOTM_Nigeria_2026_Sponsorship_Prospectus.pdf"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 8,
+                  background: COLORS.green,
+                  color: "white",
+                  padding: "13px 20px",
+                  fontSize: 12,
+                  fontWeight: 800,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.06em",
+                  textDecoration: "none",
+                  marginTop: 6,
+                }}
+              >
+                <Download size={15} /> Download Full PDF Prospectus
+              </a>
             </div>
           </div>
         </div>
@@ -1049,161 +1067,6 @@ export default function SponsorsPage(): any {
         </div>
       </section>
 
-      {/* ---------------- PROSPECTUS PAGE VIEWER ---------------- */}
-      <section style={{ padding: "64px 0", background: "#F1F5F9" }}>
-        <div style={{ maxWidth: 960, margin: "0 auto", padding: "0 20px" }}>
-          <div style={{ textAlign: "center", maxWidth: 640, margin: "0 auto 36px" }}>
-            <p
-              style={{
-                fontSize: 11.5,
-                fontWeight: 800,
-                textTransform: "uppercase",
-                letterSpacing: "0.12em",
-                color: COLORS.green,
-                margin: 0,
-              }}
-            >
-              Document Gallery
-            </p>
-            <h2
-              style={{
-                fontSize: "clamp(22px, 3.2vw, 30px)",
-                fontWeight: 900,
-                color: COLORS.heading,
-                margin: "8px 0 10px",
-              }}
-            >
-              Browse Prospectus Pages
-            </h2>
-            <p style={{ fontSize: 13.5, color: COLORS.paragraph, margin: 0 }}>
-              Click any page below to inspect the high-resolution prospectus spread.
-            </p>
-          </div>
-
-          {/* Thumbnails row */}
-          <div className="prospectus-thumbs" style={{ marginBottom: 28 }}>
-            {PROSPECTUS_PAGES.map((page, idx) => {
-              const isActive = activePreviewIndex === idx;
-              return (
-                <button
-                  key={idx}
-                  onClick={() => setActivePreviewIndex(idx)}
-                  style={{
-                    background: isActive ? "white" : "rgba(255,255,255,0.6)",
-                    border: isActive ? `2px solid ${COLORS.green}` : `1px solid ${COLORS.line}`,
-                    padding: 8,
-                    cursor: "pointer",
-                    textAlign: "center",
-                    transition: "all 0.15s ease",
-                    boxShadow: isActive ? "0 8px 18px rgba(0,0,0,0.08)" : "none",
-                  }}
-                >
-                  <img
-                    src={page.src}
-                    alt={page.title}
-                    style={{
-                      width: "100%",
-                      height: 90,
-                      objectFit: "cover",
-                      objectPosition: "top",
-                      display: "block",
-                      marginBottom: 8,
-                    }}
-                  />
-                  <span
-                    style={{
-                      display: "block",
-                      fontSize: 11,
-                      fontWeight: 800,
-                      color: isActive ? COLORS.green : COLORS.heading,
-                    }}
-                  >
-                    {page.title}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Active Preview */}
-          <div
-            style={{
-              background: "white",
-              border: `1px solid ${COLORS.line}`,
-              padding: "24px",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <div
-              style={{
-                width: "100%",
-                maxWidth: 620,
-                boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
-                border: `1px solid ${COLORS.line}`,
-                marginBottom: 20,
-              }}
-            >
-              <img
-                src={PROSPECTUS_PAGES[activePreviewIndex].src}
-                alt={PROSPECTUS_PAGES[activePreviewIndex].title}
-                style={{ width: "100%", height: "auto", display: "block" }}
-              />
-            </div>
-
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 16,
-                alignItems: "center",
-                justifyContent: "space-between",
-                width: "100%",
-                maxWidth: 620,
-                paddingTop: 16,
-                borderTop: `1px solid ${COLORS.line}`,
-              }}
-            >
-              <div>
-                <p
-                  style={{
-                    fontSize: 13,
-                    fontWeight: 800,
-                    color: COLORS.heading,
-                    margin: 0,
-                  }}
-                >
-                  {PROSPECTUS_PAGES[activePreviewIndex].title}
-                </p>
-                <p style={{ fontSize: 11.5, color: COLORS.muted, margin: "2px 0 0" }}>
-                  {PROSPECTUS_PAGES[activePreviewIndex].desc}
-                </p>
-              </div>
-
-              <a
-                href="/prospectus/SOTM_Nigeria_2026_Sponsorship_Prospectus.pdf"
-                download="SOTM_Nigeria_2026_Sponsorship_Prospectus.pdf"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 6,
-                  background: COLORS.green,
-                  color: "white",
-                  padding: "9px 18px",
-                  fontSize: 11.5,
-                  fontWeight: 800,
-                  textTransform: "uppercase",
-                  textDecoration: "none",
-                }}
-              >
-                <Download size={14} /> Download Entire PDF
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ---------------- SPONSORSHIP PACKAGES (ACCORDION) ---------------- */}
       <section id="packages" style={{ padding: "64px 0", background: COLORS.heading }}>
         <div style={{ maxWidth: 860, margin: "0 auto", padding: "0 20px" }}>
@@ -1246,6 +1109,27 @@ export default function SponsorsPage(): any {
             >
               NB: Local sponsors can use the current exchange rate in Nigerian Naira (₦).
             </p>
+
+            <a
+              href="/prospectus/SOTM_Nigeria_2026_Sponsorship_Prospectus.pdf"
+              download="SOTM_Nigeria_2026_Sponsorship_Prospectus.pdf"
+              style={{
+                marginTop: 20,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                background: COLORS.green,
+                color: "white",
+                padding: "12px 24px",
+                fontSize: 12,
+                fontWeight: 800,
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
+                textDecoration: "none",
+              }}
+            >
+              <Download size={15} /> Download Our Sponsorship Prospectus (PDF)
+            </a>
           </div>
 
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.15)" }}>
