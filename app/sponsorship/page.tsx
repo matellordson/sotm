@@ -322,6 +322,15 @@ export default function SponsorsPage(): any {
               <Mail size={15} />
               Contact Sponsorship Team
             </a>
+            <a
+              href="https://paystack.shop/pay/sotmnigeria2025_donation"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta-btn-primary"
+            >
+              <ExternalLink size={15} />
+              Donate Now
+            </a>
           </div>
         </div>
       </section>
