@@ -357,7 +357,25 @@ export default function ConferenceLandingPage() {
                 textDecoration: "none",
               }}
             >
-              Donate
+              Donate (₦ Naira)
+            </a>
+            <a
+              href="https://paystack.shop/pay/sotmnigeria2025donation"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                background: "transparent",
+                border: "2px solid rgba(255,255,255,0.7)",
+                padding: "12px 28px",
+                fontSize: 12,
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
+                color: "white",
+                textDecoration: "none",
+              }}
+            >
+              Donate ($ USD)
             </a>
           </div>
         </div>

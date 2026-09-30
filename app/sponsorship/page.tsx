@@ -329,7 +329,16 @@ export default function SponsorsPage(): any {
               className="cta-btn-primary"
             >
               <ExternalLink size={15} />
-              Donate Now
+              Donate (₦ Naira)
+            </a>
+            <a
+              href="https://paystack.shop/pay/sotmnigeria2025donation"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta-btn-primary"
+            >
+              <ExternalLink size={15} />
+              Donate ($ USD)
             </a>
           </div>
         </div>
