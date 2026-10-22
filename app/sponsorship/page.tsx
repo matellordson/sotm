@@ -23,7 +23,7 @@ import {
 /*
   State of the Map Nigeria 2026 - Sponsorship Prospectus & Call for Sponsors
   Updated with latest official prospectus details:
-  - Dates: 10th – 13th November 2026
+  - Dates: 17th – 20th November 2026
   - Location: Uyo, Akwa Ibom State
   - Theme: Climate Action - Open Mapping
   - Slogan: "Open Mapping for Change, Community Empowerment, and Sustainable Development in Nigeria"
@@ -252,7 +252,7 @@ export default function SponsorsPage(): any {
             }}
           >
             <Calendar size={13} />
-            10th – 13th Nov. 2026 • Uyo, Akwa Ibom State
+            17th – 20th Nov. 2026 • Uyo, Akwa Ibom State
           </div>
 
           <h1
@@ -368,7 +368,7 @@ export default function SponsorsPage(): any {
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <Calendar size={15} color={COLORS.green} />
             <span>
-              <strong>Dates:</strong> 10th – 13th November 2026
+              <strong>Dates:</strong> 17th – 20th November 2026
             </span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>

@@ -36,7 +36,7 @@ const SCHEDULE_DATA: DaySchedule[] = [
   {
     id: "day-1",
     day: "Tuesday",
-    date: "10 November 2026",
+    date: "17 November 2026",
     title: "Arrivals, Opening Ceremony & Training Workshops",
     summary: "Hands-on, practical capacity development sessions across GIS, GeoAI, Earth Observation, and UAV technologies. Bring your laptop!",
     icon: Laptop,
@@ -51,7 +51,7 @@ const SCHEDULE_DATA: DaySchedule[] = [
         time: "09:30 – 11:00",
         title: "Official Opening Ceremony & Presidential Keynote",
         type: "Plenary",
-        description: "Welcome addresses by Unique Mappers Network, University of Uyo dignitaries, government stakeholders, and keynote address on 'Open Geospatial Innovation for Climate Action and Community Resilience'.",
+        description: "Welcome addresses by Unique Mappers Network, University of Uyo dignitaries, government stakeholders, and Lead Keynote Address by Prof. Robert Etim Ekpenyong on 'Open Geospatial Innovation for Climate Action and Community Resilience: The Role of Geography, Technology and Communities'.",
       },
       {
         time: "11:00 – 11:30",
@@ -68,6 +68,7 @@ const SCHEDULE_DATA: DaySchedule[] = [
           "Workshop 2: GeoAI, Artificial Intelligence & Spatial Data Science — Machine Learning in GIS",
           "Workshop 3: Earth Observation, Google Earth Engine & Digital Earth Africa — Satellite Analytics for Climate Resilience",
           "Workshop 4: Citizen Science, Mobile GIS, UAV & Climate/Disaster Mapping — Field Data Collection & Drone Photogrammetry",
+          "Special Workshop: Use of Climate Data — From Downloading to Data Embellishment (Trainer: Samson Feranmi Ayodele)",
         ],
       },
       {
@@ -86,7 +87,7 @@ const SCHEDULE_DATA: DaySchedule[] = [
   {
     id: "day-2",
     day: "Wednesday",
-    date: "11 November 2026",
+    date: "18 November 2026",
     title: "Conference Presentations (Tracks 1 & 2) & Exhibition Opening",
     summary: "Academic and practical presentations focusing on Geospatial Innovation, Open Mapping, and GeoAI.",
     icon: Presentation,
@@ -100,7 +101,7 @@ const SCHEDULE_DATA: DaySchedule[] = [
         time: "09:00 – 10:00",
         title: "Keynote Address: The Future of GeoAI and Open Geospatial Data in Africa",
         type: "Keynote",
-        description: "Distinguished guest speaker on leveraging open algorithms and big geospatial data for sustainable development.",
+        description: "Distinguished keynote addresses by Dr. Caroline Nickerson, Dr. Ibrahimaa Cisse, Dr. AA Usman, and Prof. Rebecca Boger on citizen science, spatial intelligence, and open mapping innovation.",
       },
       {
         time: "10:00 – 10:30",
@@ -153,7 +154,7 @@ const SCHEDULE_DATA: DaySchedule[] = [
   {
     id: "day-3",
     day: "Thursday",
-    date: "12 November 2026",
+    date: "19 November 2026",
     title: "Conference Presentations (Tracks 3 & 4) & Collaborative Mapathon",
     summary: "Climate action, disaster risk reduction, citizen science, and a nationwide collaborative Mapathon.",
     icon: Compass,
@@ -214,7 +215,7 @@ const SCHEDULE_DATA: DaySchedule[] = [
   {
     id: "day-4",
     day: "Friday",
-    date: "13 November 2026",
+    date: "20 November 2026",
     title: "Track 5 Presentations, AGA & Awards Ceremony",
     summary: "SDG geospatial applications, the Annual General Assembly of OSM Nigeria, awards, and grand closing.",
     icon: Award,
@@ -284,7 +285,7 @@ export default function SchedulePage() {
       <section style={{ background: COLORS.heading, color: "white", padding: "64px 20px 48px", textAlign: "center" }}>
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <p style={{ margin: 0, fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.15em", color: COLORS.green }}>
-            10th – 13th November 2026 • University of Uyo
+            17th – 20th November 2026 • University of Uyo
           </p>
 
           <h1 style={{ marginTop: 14, fontWeight: 900, textTransform: "uppercase", fontSize: "clamp(22px, 4.5vw, 34px)", margin: "14px 0 0" }}>

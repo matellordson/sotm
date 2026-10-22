@@ -196,7 +196,7 @@ export default function RegisterPage() {
             }}
           >
             <Calendar size={13} />
-            10th – 13th November 2026 • University of Uyo Campus
+            17th – 20th November 2026 • University of Uyo Campus
           </div>
 
           <h1 style={{ fontWeight: 900, textTransform: "uppercase", fontSize: "clamp(22px, 4.5vw, 36px)", margin: "0 0 14px" }}>
@@ -218,9 +218,9 @@ export default function RegisterPage() {
 
           {/* Dates Strip */}
           <div style={{ marginTop: 18, display: "flex", justifyContent: "center", gap: 24, fontSize: 12, color: "rgba(255,255,255,0.8)" }}>
-            <span><strong>Arrival Date:</strong> 10th-Nov-2026</span>
+            <span><strong>Arrival Date:</strong> 17th-Nov-2026</span>
             <span>•</span>
-            <span><strong>Departure Date:</strong> 13th-Nov-2026</span>
+            <span><strong>Departure Date:</strong> 20th-Nov-2026</span>
           </div>
         </div>
       </section>

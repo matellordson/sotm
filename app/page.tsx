@@ -18,6 +18,8 @@ import {
   Flame,
   Globe2,
   BookOpenCheck,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 
 interface ScheduleDay {
@@ -27,10 +29,10 @@ interface ScheduleDay {
 }
 
 const SCHEDULE_DAYS: ScheduleDay[] = [
-  { day: "Tuesday", date: "10", label: "Workshops & Opening" },
-  { day: "Wednesday", date: "11", label: "Paper Tracks & Expo" },
-  { day: "Thursday", date: "12", label: "Mapathon & Tracks" },
-  { day: "Friday", date: "13", label: "AGA & Closing" },
+  { day: "Tuesday", date: "17", label: "Workshops & Opening" },
+  { day: "Wednesday", date: "18", label: "Paper Tracks & Expo" },
+  { day: "Thursday", date: "19", label: "Mapathon & Tracks" },
+  { day: "Friday", date: "20", label: "AGA & Closing" },
 ];
 
 const FOCUS_AREAS = [
@@ -114,30 +116,76 @@ const PROGRAMME_PILLARS: ProgrammePillar[] = [
 
 interface Speaker {
   name: string;
+  badge: "Lead Keynote Speaker" | "Keynote Speaker";
   role: string;
+  topic?: string;
+  bio?: string;
   img: string;
 }
 
-const SPEAKERS: Speaker[] = [
+interface WorkshopTrainer {
+  name: string;
+  badge: string;
+  role: string;
+  workshopTitle: string;
+  img: string;
+}
+
+const KEYNOTE_SPEAKERS: Speaker[] = [
   {
-    name: "Rev. Surv. Ez. Ndukwu Emmanuel Chiemelu",
-    role: "University of Nigeria, Enugu",
-    img: "https://placehold.co/300x300/1D293D/e2e8f0?text=Photo",
+    name: "Professor Robert Etim Ekpenyong",
+    badge: "Lead Keynote Speaker",
+    role: "Department of Geography & Natural Resources Management, University of Uyo, Akwa Ibom State",
+    topic: "Open Geospatial Innovation for Climate Action and Community Resilience: The Role of Geography, Technology and Communities.",
+    bio: "Professor Robert Etim Ekpenyong is a distinguished academic researcher and lecturer in Geography and Natural Resources Management at the University of Uyo. His research specializes in Geographic Information Systems (GIS), Remote Sensing, Cartography, and Environmental & Resources Management, with extensive work in climate change threats, carbon stocks/sequestration, and erosion risk modeling.",
+    img: "/speakers/robert_ekpenyong.jpg",
   },
   {
-    name: "Laura Mujeha",
-    role: "Member - Board of Directors",
-    img: "https://placehold.co/300x300/45556C/e2e8f0?text=Photo",
+    name: "Dr. Ibrahimaa Cisse",
+    badge: "Keynote Speaker",
+    role: "Regional Director, Open Mapping Hub West & North Africa — Humanitarian OpenStreetMap Team (HOT)",
+    topic: "Citizen Science, Community Mapping & Humanitarian Action",
+    bio: "Dr. Ibrahimaa Cisse is the Regional Director for the Open Mapping Hub in Western and Northern Africa at the Humanitarian OpenStreetMap Team (HOT). He leads regional open-mapping initiatives across Africa, mobilizing local communities and global volunteers to leverage open geospatial data for disaster risk reduction, crisis response, and sustainable development.",
+    img: "/speakers/ibrahimaa_cisse.svg",
   },
   {
-    name: "Captain Tobi Sowole",
-    role: "CEO, SpatialMatrix",
-    img: "https://placehold.co/300x300/90A1B9/1D293D?text=Photo",
+    name: "Dr. Caroline Nickerson",
+    badge: "Keynote Speaker",
+    role: "Executive Director & Co-Founder, Florida Community Innovation • NASA EMERGE Initiative • CitSci.org",
+    topic: "From Citizens to Scientists: Harnessing Citizen Science and Community Data for Climate Action and Resilience",
+    bio: "Dr. Caroline Nickerson is a communications and citizen science professional who works at the intersection of community engagement, open data, and civic technology. She is Executive Director and co-founder of Florida Community Innovation, a civic technology nonprofit, and Communications Specialist at Colorado State University's Natural Resource Ecology Laboratory and CitSci.org, a global citizen science platform. She also serves as Communications Lead for the NASA-funded EMERGE initiative at the University of Florida's GeoDI Lab and as Citizen Science Coordinator at the Human Computation Institute. Caroline holds a PhD in Agricultural Education and Communication from the University of Florida. She previously delivered a keynote at State of the Map Nigeria 2024.",
+    img: "/speakers/caroline_nickerson.jpg",
+  },
+  {
+    name: "Dr. AA Usman",
+    badge: "Keynote Speaker",
+    role: "Founder/CEO RESLARC Group • Founder & Executive Chairman, Geospatial Intelligence Foundation of Nigeria (GIFON)",
+    topic: "From Geospatial Information to Spatial Intelligence: Democratizing Decision Making in the Digital Age",
+    bio: "Dr. AA Usman is the Founder and CEO of RESLARC Group and Founder & Executive Chairman of the Geospatial Intelligence Foundation of Nigeria (GIFON). He is an authority in spatial intelligence, geospatial infrastructure, and democratizing spatial decision-making tools for institutions and grassroots communities.",
+    img: "/speakers/aa_usman.svg",
+  },
+  {
+    name: "Prof. Rebecca Boger",
+    badge: "Keynote Speaker",
+    role: "Professor, Brooklyn College, CUNY • Vice President & Co-Founder, Next Generation Global Collaborative",
+    topic: "Geospatial Technologies, Urban Sustainability & Citizen Science Education",
+    bio: "Rebecca Boger is a founding member and Vice President of the nonprofit Next Generation Global Collaborative (nextgenglobe.org). She is a professor in the Department of Earth and Environmental Sciences at Brooklyn College, City University of New York (CUNY). She has a background in geospatial technologies, mapping, environmental science, and science education. She teaches geospatial technologies (GIS, remote sensing, and GPS) and urban sustainability courses. She is the Director of Science, Training, Education, and Public Engagement for the NASA GLOBE Implementation Office (GIO-STEPE). In 2022-2023, Rebecca was a Fulbright Scholar in Kenya where she worked with faculty from the United States International University and representatives at the Kenya Space Agency.",
+    img: "/speakers/rebecca_boger.jpg",
   },
 ];
 
-// Target date the countdown counts down to (Day 1 of the conference: Nov 10, 2026)
-const TARGET_DATE: Date = new Date("2026-11-10T09:00:00");
+const WORKSHOP_TRAINERS: WorkshopTrainer[] = [
+  {
+    name: "Samson Feranmi Ayodele",
+    badge: "Workshop Trainer",
+    role: "Geospatial Analyst & Climate Data Specialist",
+    workshopTitle: "Use of Climate Data: From Downloading to Data Embellishment",
+    img: "/speakers/samson_ayodele.jpg",
+  },
+];
+
+// Target date the countdown counts down to (Day 1 of the conference: Nov 17, 2026)
+const TARGET_DATE: Date = new Date("2026-11-17T09:00:00");
 
 // Venue coordinates — University of Uyo, Akwa Ibom State, Nigeria
 const VENUE_LAT: number = 5.0418;
@@ -192,6 +240,8 @@ function MapBackdrop() {
 
 export default function ConferenceLandingPage() {
   const { days, hours, minutes } = useCountdown(TARGET_DATE);
+  const [expandedBio, setExpandedBio] = useState<string | null>(null);
+  const toggleBio = (name: string) => setExpandedBio((prev) => (prev === name ? null : name));
 
   return (
     <div style={{ color: COLORS.paragraph, background: "white", minHeight: "100vh" }}>
@@ -199,6 +249,22 @@ export default function ConferenceLandingPage() {
         .sotm-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
         .sotm-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
         .sotm-grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; }
+
+        .speakers-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 24px;
+        }
+        @media (max-width: 900px) {
+          .speakers-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+        }
+        @media (max-width: 580px) {
+          .speakers-grid {
+            grid-template-columns: 1fr;
+          }
+        }
 
         /* Focus Areas Responsive Grid */
         .focus-grid {
@@ -299,7 +365,7 @@ export default function ConferenceLandingPage() {
         <div style={{ position: "relative", width: "100%", maxWidth: 840, margin: "0 auto", padding: "72px 20px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
           
           <p style={{ margin: 0, fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.15em", color: COLORS.green }}>
-            10th – 13th November 2026 • University of Uyo, Nigeria
+            17th – 20th November 2026 • University of Uyo, Nigeria
           </p>
 
           <h1 style={{ marginTop: 14, fontWeight: 900, textTransform: "uppercase", lineHeight: 1.15, color: "white", fontSize: "clamp(26px, 5.5vw, 44px)", margin: "14px 0 0", letterSpacing: "0.02em" }}>
@@ -418,7 +484,7 @@ export default function ConferenceLandingPage() {
           })}
         </div>
         <p style={{ marginTop: 20, fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em", color: COLORS.heading }}>
-          10th – 13th November 2026 • University of Uyo
+          17th – 20th November 2026 • University of Uyo
         </p>
 
         {/* ---- Venue map ---- */}
@@ -616,23 +682,204 @@ export default function ConferenceLandingPage() {
         </div>
       </section>
 
-      {/* ---------------- SPEAKERS ---------------- */}
-      <section style={{ padding: "64px 0" }}>
-        <div style={{ maxWidth: 960, margin: "0 auto", padding: "0 20px" }}>
-          <h2 style={{ textAlign: "center", fontSize: "clamp(14px,2.4vw,16px)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.15em", color: COLORS.heading, margin: 0 }}>
-            Conference Speakers
-          </h2>
+      {/* ---------------- KEYNOTE SPEAKERS ---------------- */}
+      <section style={{ padding: "72px 0 64px", background: "#FFFFFF" }}>
+        <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 20px" }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.15em", color: COLORS.green }}>
+              Distinguished Guests &amp; Thought Leaders
+            </span>
+            <h2 style={{ fontSize: "clamp(20px, 3.5vw, 28px)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", color: COLORS.heading, margin: "8px 0 0" }}>
+              Keynote Speakers
+            </h2>
+            <p style={{ maxWidth: 640, margin: "10px auto 0", fontSize: 13.5, color: COLORS.paragraph, lineHeight: 1.6 }}>
+              Leading scholars, practitioners, and advocates shaping the future of open geospatial innovation, GeoAI, citizen science, and climate resilience.
+            </p>
+          </div>
 
-          <div className="sotm-grid-3" style={{ marginTop: 40 }}>
-            {SPEAKERS.map((s: Speaker) => (
-              <div key={s.name} style={{ border: `1px solid ${COLORS.line}` }}>
-                <img src={s.img} alt={s.name} style={{ display: "block", width: "100%", aspectRatio: "1 / 1", objectFit: "cover" }} />
-                <div style={{ padding: 16 }}>
-                  <p style={{ fontSize: 14, fontWeight: 700, lineHeight: 1.35, color: COLORS.green, margin: 0 }}>{s.name}</p>
-                  <p style={{ marginTop: 4, fontSize: 12, color: COLORS.muted, margin: "4px 0 0" }}>{s.role}</p>
+          <div className="speakers-grid">
+            {KEYNOTE_SPEAKERS.map((s: Speaker) => {
+              const isLead = s.badge === "Lead Keynote Speaker";
+              const isExpanded = expandedBio === s.name;
+              return (
+                <div
+                  key={s.name}
+                  style={{
+                    border: isLead ? `2px solid ${COLORS.green}` : `1px solid ${COLORS.line}`,
+                    background: "white",
+                    display: "flex",
+                    flexDirection: "column",
+                    borderRadius: 3,
+                    overflow: "hidden",
+                    boxShadow: isLead ? "0 4px 16px rgba(46,125,50,0.14)" : "0 1px 3px rgba(0,0,0,0.04)",
+                  }}
+                >
+                  <div style={{ position: "relative", width: "100%", aspectRatio: "1 / 1", background: "#F1F5F9", overflow: "hidden" }}>
+                    <img
+                      src={s.img}
+                      alt={s.name}
+                      style={{
+                        display: "block",
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        objectPosition: "top center",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: 12,
+                        left: 12,
+                        background: isLead ? COLORS.green : COLORS.heading,
+                        color: "white",
+                        fontSize: 10,
+                        fontWeight: 800,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.08em",
+                        padding: "5px 10px",
+                        borderRadius: 2,
+                        boxShadow: "0 2px 4px rgba(0,0,0,0.25)",
+                      }}
+                    >
+                      {s.badge}
+                    </div>
+                  </div>
+
+                  <div style={{ padding: "20px 18px", display: "flex", flexDirection: "column", flex: 1 }}>
+                    <h3 style={{ fontSize: 16, fontWeight: 800, lineHeight: 1.35, color: COLORS.heading, margin: 0 }}>
+                      {s.name}
+                    </h3>
+                    <p style={{ marginTop: 6, fontSize: 12, fontWeight: 600, color: COLORS.paragraph, lineHeight: 1.45 }}>
+                      {s.role}
+                    </p>
+
+                    {s.topic && (
+                      <div
+                        style={{
+                          marginTop: 14,
+                          padding: "10px 12px",
+                          background: "#F8FAFC",
+                          borderLeft: `3px solid ${isLead ? COLORS.green : COLORS.heading}`,
+                          borderRadius: 2,
+                        }}
+                      >
+                        <span style={{ fontSize: 9.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", color: isLead ? COLORS.green : COLORS.muted, display: "block", marginBottom: 3 }}>
+                          Keynote Presentation
+                        </span>
+                        <p style={{ margin: 0, fontSize: 12, fontWeight: 700, color: COLORS.heading, lineHeight: 1.4 }}>
+                          &ldquo;{s.topic}&rdquo;
+                        </p>
+                      </div>
+                    )}
+
+                    {s.bio && (
+                      <div style={{ marginTop: "auto", paddingTop: 14 }}>
+                        <button
+                          type="button"
+                          onClick={() => toggleBio(s.name)}
+                          style={{
+                            background: "transparent",
+                            border: "none",
+                            padding: 0,
+                            color: COLORS.green,
+                            fontSize: 12,
+                            fontWeight: 700,
+                            cursor: "pointer",
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: 4,
+                          }}
+                        >
+                          {isExpanded ? "Hide Biography" : "Read Biography"}
+                          {isExpanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                        </button>
+                        {isExpanded && (
+                          <p style={{ marginTop: 8, fontSize: 12, lineHeight: 1.6, color: COLORS.paragraph, background: "#F8FAFC", padding: "12px", border: `1px solid ${COLORS.line}`, borderRadius: 2 }}>
+                            {s.bio}
+                          </p>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
+          </div>
+
+          {/* ---------------- WORKSHOP TRAINERS (SEPARATED) ---------------- */}
+          <div style={{ marginTop: 72, paddingTop: 56, borderTop: `1px solid ${COLORS.line}` }}>
+            <div style={{ textAlign: "center", marginBottom: 36 }}>
+              <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.15em", color: COLORS.green }}>
+                Practical Masterclasses &amp; Labs
+              </span>
+              <h3 style={{ fontSize: "clamp(18px, 3vw, 24px)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", color: COLORS.heading, margin: "8px 0 0" }}>
+                Workshop Trainers
+              </h3>
+              <p style={{ maxWidth: 640, margin: "8px auto 0", fontSize: 13.5, color: COLORS.paragraph, lineHeight: 1.6 }}>
+                Expert instructors leading practical capacity development sessions and technical masterclasses.
+              </p>
+            </div>
+
+            <div style={{ maxWidth: 640, margin: "0 auto" }}>
+              {WORKSHOP_TRAINERS.map((t: WorkshopTrainer) => (
+                <div
+                  key={t.name}
+                  style={{
+                    border: `1px solid ${COLORS.line}`,
+                    background: "white",
+                    display: "flex",
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    alignItems: "center",
+                    gap: 20,
+                    padding: 20,
+                    borderRadius: 3,
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+                  }}
+                >
+                  <div style={{ width: 120, height: 120, flexShrink: 0, position: "relative", borderRadius: 2, overflow: "hidden", background: "#F1F5F9" }}>
+                    <img
+                      src={t.img}
+                      alt={t.name}
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    />
+                  </div>
+                  <div style={{ flex: 1, minWidth: 240 }}>
+                    <span
+                      style={{
+                        display: "inline-block",
+                        background: "#0284C7",
+                        color: "white",
+                        fontSize: 9.5,
+                        fontWeight: 800,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.08em",
+                        padding: "3px 8px",
+                        borderRadius: 2,
+                        marginBottom: 6,
+                      }}
+                    >
+                      {t.badge}
+                    </span>
+                    <h4 style={{ margin: "2px 0 4px", fontSize: 16, fontWeight: 800, color: COLORS.heading }}>
+                      {t.name}
+                    </h4>
+                    <p style={{ margin: "0 0 10px", fontSize: 12, color: COLORS.paragraph }}>
+                      {t.role}
+                    </p>
+                    <div style={{ padding: "8px 12px", background: "#F0F9FF", borderLeft: "3px solid #0284C7", borderRadius: 2 }}>
+                      <span style={{ fontSize: 9.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", color: "#0284C7", display: "block" }}>
+                        Workshop Masterclass
+                      </span>
+                      <p style={{ margin: "2px 0 0", fontSize: 12.5, fontWeight: 700, color: COLORS.heading }}>
+                        &ldquo;{t.workshopTitle}&rdquo;
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

@@ -110,7 +110,7 @@ const DATES: DateItem[] = [
   { n: "02", label: "Deadline for Abstract submission", date: "24th October 2026", highlight: true },
   { n: "03", label: "Announcement of accepted papers", date: "3rd October 2026" },
   { n: "04", label: "Progressive review, feedback & full paper submission", date: "5th Sept – 31st Oct 2026" },
-  { n: "05", label: "Conference dates (Arrival: 10th | Dep: 13th)", date: "10th – 13th November 2026", highlight: true },
+  { n: "05", label: "Conference dates (Arrival: 17th | Dep: 20th)", date: "17th – 20th November 2026", highlight: true },
 ];
 
 function HeroBackdrop() {
@@ -166,7 +166,7 @@ export default function ParticipatePage() {
             }}
           >
             <Calendar size={13} />
-            10th – 13th November 2026 • University of Uyo Campus
+            17th – 20th November 2026 • University of Uyo Campus
           </div>
 
           <h1 style={{ fontWeight: 900, textTransform: "uppercase", lineHeight: 1.15, color: "white", fontSize: "clamp(24px, 5vw, 38px)", margin: "0 0 10px" }}>
@@ -396,9 +396,9 @@ export default function ParticipatePage() {
 
           {/* Arrival & Departure note */}
           <div style={{ marginTop: 24, textAlign: "center", display: "flex", justifyContent: "center", gap: 24, fontSize: 13, color: COLORS.paragraph }}>
-            <span><strong>Arrival Date:</strong> 10th-Nov-2026</span>
+            <span><strong>Arrival Date:</strong> 17th-Nov-2026</span>
             <span>•</span>
-            <span><strong>Departure Date:</strong> 13th-Nov-2026</span>
+            <span><strong>Departure Date:</strong> 20th-Nov-2026</span>
           </div>
         </div>
       </section>
