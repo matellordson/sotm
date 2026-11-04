@@ -121,6 +121,8 @@ interface Speaker {
   topic?: string;
   bio?: string;
   img: string;
+  linkedin?: string;
+  x?: string;
 }
 
 interface WorkshopTrainer {
@@ -128,6 +130,7 @@ interface WorkshopTrainer {
   badge: string;
   role: string;
   workshopTitle: string;
+  bio?: string;
   img: string;
 }
 
@@ -139,6 +142,22 @@ const KEYNOTE_SPEAKERS: Speaker[] = [
     topic: "Open Geospatial Innovation for Climate Action and Community Resilience: The Role of Geography, Technology and Communities.",
     bio: "Professor Robert Etim Ekpenyong is a distinguished academic researcher and lecturer in Geography and Natural Resources Management at the University of Uyo. His research specializes in Geographic Information Systems (GIS), Remote Sensing, Cartography, and Environmental & Resources Management, with extensive work in climate change threats, carbon stocks/sequestration, and erosion risk modeling.",
     img: "/speakers/robert_ekpenyong.jpg",
+  },
+  {
+    name: "Dr. AA Usman",
+    badge: "Keynote Speaker",
+    role: "Founder/CEO RESLARC Group • Founder & Executive Chairman, Geospatial Intelligence Foundation of Nigeria (GIFON)",
+    topic: "From Geospatial Information to Spatial Intelligence: Democratizing Decision Making in the Digital Age",
+    bio: "Dr. AA Usman is the Founder and CEO of RESLARC Group and Founder & Executive Chairman of the Geospatial Intelligence Foundation of Nigeria (GIFON). He is an authority in spatial intelligence, geospatial infrastructure, and democratizing spatial decision-making tools for institutions and grassroots communities.",
+    img: "/speakers/aa_usman.jpg",
+  },
+  {
+    name: "Prof. Rebecca Boger",
+    badge: "Keynote Speaker",
+    role: "Professor, Brooklyn College, CUNY • Vice President & Co-Founder, Next Generation Global Collaborative",
+    topic: "Citizen Science, Science Diplomacy and Emerging Technologies: Engaging Volunteers and Open Mapping Communities for Climate Action and Global Collaboration",
+    bio: "Rebecca Boger is a founding member and Vice President of the nonprofit Next Generation Global Collaborative (nextgenglobe.org). She is a professor in the Department of Earth and Environmental Sciences at Brooklyn College, City University of New York (CUNY). She has a background in geospatial technologies, mapping, environmental science, and science education. She teaches geospatial technologies (GIS, remote sensing, and GPS) and urban sustainability courses. She is the Director of Science, Training, Education, and Public Engagement for the NASA GLOBE Implementation Office (GIO-STEPE). In 2022-2023, Rebecca was a Fulbright Scholar in Kenya where she worked with faculty from the United States International University and representatives at the Kenya Space Agency.",
+    img: "/speakers/rebecca_boger.jpg",
   },
   {
     name: "Dr. Ibrahimaa Cisse",
@@ -157,20 +176,22 @@ const KEYNOTE_SPEAKERS: Speaker[] = [
     img: "/speakers/caroline_nickerson.jpg",
   },
   {
-    name: "Dr. AA Usman",
+    name: "Joseph Tuyishimire",
     badge: "Keynote Speaker",
-    role: "Founder/CEO RESLARC Group • Founder & Executive Chairman, Geospatial Intelligence Foundation of Nigeria (GIFON)",
-    topic: "From Geospatial Information to Spatial Intelligence: Democratizing Decision Making in the Digital Age",
-    bio: "Dr. AA Usman is the Founder and CEO of RESLARC Group and Founder & Executive Chairman of the Geospatial Intelligence Foundation of Nigeria (GIFON). He is an authority in spatial intelligence, geospatial infrastructure, and democratizing spatial decision-making tools for institutions and grassroots communities.",
-    img: "/speakers/aa_usman.svg",
+    role: "User Engagement Manager, Digital Earth Africa PMO • Center for Geographic Information Systems & Remote Sensing, University of Rwanda (CGIS-UR)",
+    topic: "Digital Earth Africa: Earth Observation Data for Evidence-Based Decision Making & Sustainable Development",
+    bio: "Joseph Tuyishimire is an Earth observation (EO) and Geospatial Information System (GIS) specialist. He works for Digital Earth Africa Project Management Office (PMO) as a User Engagement Manager. Joseph plays a key role in capacity development and support of stakeholders across Africa — with a focus on Francophone countries. He brings his experience in capacity building and EO to enable users to use DE Africa data for evidence-based decision making, contributing to the progress towards the UN Sustainable Development Goals and the African Union Agenda 2063. Joseph is based in Kigali, Rwanda, and has been working for the Center for Geographic Information Systems and Remote Sensing-University of Rwanda (CGIS-UR) since 2012.",
+    img: "/speakers/joseph_tuyishimire.jpg",
+    linkedin: "https://www.linkedin.com/in/joseph-tuyishimire-91a6a277/",
+    x: "https://x.com/JosephTUYISHIMI",
   },
   {
-    name: "Prof. Rebecca Boger",
+    name: "Christopher Beddow",
     badge: "Keynote Speaker",
-    role: "Professor, Brooklyn College, CUNY • Vice President & Co-Founder, Next Generation Global Collaborative",
-    topic: "Geospatial Technologies, Urban Sustainability & Citizen Science Education",
-    bio: "Rebecca Boger is a founding member and Vice President of the nonprofit Next Generation Global Collaborative (nextgenglobe.org). She is a professor in the Department of Earth and Environmental Sciences at Brooklyn College, City University of New York (CUNY). She has a background in geospatial technologies, mapping, environmental science, and science education. She teaches geospatial technologies (GIS, remote sensing, and GPS) and urban sustainability courses. She is the Director of Science, Training, Education, and Public Engagement for the NASA GLOBE Implementation Office (GIO-STEPE). In 2022-2023, Rebecca was a Fulbright Scholar in Kenya where she worked with faculty from the United States International University and representatives at the Kenya Space Agency.",
-    img: "/speakers/rebecca_boger.jpg",
+    role: "Geospatial Data Engineer • Former Mapillary & Meta Maps • Overture Maps",
+    topic: "GeoAI: Image Recognition (Aerial, Street View, Single Photos) and Crowdsourcing with AI",
+    bio: "Christopher Beddow is a geospatial data engineer who focuses on the relationship of photographs and street view to the map. He previously worked on Mapillary and the maps team at Meta, helped Overture Maps improve data with imagery and AI, and plans to help everyone everywhere map the world with photos. He has a Masters in GIS from University of Washington in USA and today lives near Zürich, Switzerland.",
+    img: "/speakers/christopher_beddow.jpg",
   },
 ];
 
@@ -181,6 +202,14 @@ const WORKSHOP_TRAINERS: WorkshopTrainer[] = [
     role: "Geospatial Analyst & Climate Data Specialist",
     workshopTitle: "Use of Climate Data: From Downloading to Data Embellishment",
     img: "/speakers/samson_ayodele.jpg",
+  },
+  {
+    name: "Godwin Archibong",
+    badge: "Workshop Trainer",
+    role: "Graphic Designer, Photographer & Field Photo Mapping Specialist",
+    workshopTitle: "Field-Based Photo Mapping with Fotoshi: Collecting, Uploading & Exploring Georeferenced Imagery",
+    bio: "Godwin Archibong is a Nigerian graphic designer and photographer with professional experience in visual design, digital content creation, and photography. He has hands-on experience using Fotoshi for field-based photo mapping, including collecting and uploading location-based images and exploring mapped points.",
+    img: "/speakers/godwin_archibong.png",
   },
 ];
 
@@ -773,28 +802,86 @@ export default function ConferenceLandingPage() {
                       </div>
                     )}
 
-                    {s.bio && (
+                    {(s.bio || s.linkedin || s.x) && (
                       <div style={{ marginTop: "auto", paddingTop: 14 }}>
-                        <button
-                          type="button"
-                          onClick={() => toggleBio(s.name)}
-                          style={{
-                            background: "transparent",
-                            border: "none",
-                            padding: 0,
-                            color: COLORS.green,
-                            fontSize: 12,
-                            fontWeight: 700,
-                            cursor: "pointer",
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: 4,
-                          }}
-                        >
-                          {isExpanded ? "Hide Biography" : "Read Biography"}
-                          {isExpanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-                        </button>
-                        {isExpanded && (
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+                          {s.bio ? (
+                            <button
+                              type="button"
+                              onClick={() => toggleBio(s.name)}
+                              style={{
+                                background: "transparent",
+                                border: "none",
+                                padding: 0,
+                                color: COLORS.green,
+                                fontSize: 12,
+                                fontWeight: 700,
+                                cursor: "pointer",
+                                display: "inline-flex",
+                                alignItems: "center",
+                                gap: 4,
+                              }}
+                            >
+                              {isExpanded ? "Hide Biography" : "Read Biography"}
+                              {isExpanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                            </button>
+                          ) : <span />}
+
+                          {(s.linkedin || s.x) && (
+                            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                              {s.linkedin && (
+                                <a
+                                  href={s.linkedin}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  aria-label={`${s.name} on LinkedIn`}
+                                  title="LinkedIn Profile"
+                                  style={{
+                                    color: "#0A66C2",
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    width: 26,
+                                    height: 26,
+                                    borderRadius: 4,
+                                    background: "#F1F5F9",
+                                    textDecoration: "none",
+                                  }}
+                                >
+                                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.67 1.67 0 1 0 0 3.34 1.67 1.67 0 0 0 0-3.34Z" />
+                                  </svg>
+                                </a>
+                              )}
+                              {s.x && (
+                                <a
+                                  href={s.x}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  aria-label={`${s.name} on X`}
+                                  title="X (Twitter) Profile"
+                                  style={{
+                                    color: "#0F1419",
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    width: 26,
+                                    height: 26,
+                                    borderRadius: 4,
+                                    background: "#F1F5F9",
+                                    textDecoration: "none",
+                                  }}
+                                >
+                                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                  </svg>
+                                </a>
+                              )}
+                            </div>
+                          )}
+                        </div>
+
+                        {s.bio && isExpanded && (
                           <p style={{ marginTop: 8, fontSize: 12, lineHeight: 1.6, color: COLORS.paragraph, background: "#F8FAFC", padding: "12px", border: `1px solid ${COLORS.line}`, borderRadius: 2 }}>
                             {s.bio}
                           </p>
@@ -821,64 +908,96 @@ export default function ConferenceLandingPage() {
               </p>
             </div>
 
-            <div style={{ maxWidth: 640, margin: "0 auto" }}>
-              {WORKSHOP_TRAINERS.map((t: WorkshopTrainer) => (
-                <div
-                  key={t.name}
-                  style={{
-                    border: `1px solid ${COLORS.line}`,
-                    background: "white",
-                    display: "flex",
-                    flexDirection: "row",
-                    flexWrap: "wrap",
-                    alignItems: "center",
-                    gap: 20,
-                    padding: 20,
-                    borderRadius: 3,
-                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
-                  }}
-                >
-                  <div style={{ width: 120, height: 120, flexShrink: 0, position: "relative", borderRadius: 2, overflow: "hidden", background: "#F1F5F9" }}>
-                    <img
-                      src={t.img}
-                      alt={t.name}
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    />
-                  </div>
-                  <div style={{ flex: 1, minWidth: 240 }}>
-                    <span
-                      style={{
-                        display: "inline-block",
-                        background: "#0284C7",
-                        color: "white",
-                        fontSize: 9.5,
-                        fontWeight: 800,
-                        textTransform: "uppercase",
-                        letterSpacing: "0.08em",
-                        padding: "3px 8px",
-                        borderRadius: 2,
-                        marginBottom: 6,
-                      }}
-                    >
-                      {t.badge}
-                    </span>
-                    <h4 style={{ margin: "2px 0 4px", fontSize: 16, fontWeight: 800, color: COLORS.heading }}>
-                      {t.name}
-                    </h4>
-                    <p style={{ margin: "0 0 10px", fontSize: 12, color: COLORS.paragraph }}>
-                      {t.role}
-                    </p>
-                    <div style={{ padding: "8px 12px", background: "#F0F9FF", borderLeft: "3px solid #0284C7", borderRadius: 2 }}>
-                      <span style={{ fontSize: 9.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", color: "#0284C7", display: "block" }}>
-                        Workshop Masterclass
+            <div style={{ maxWidth: 720, margin: "0 auto", display: "flex", flexDirection: "column", gap: 20 }}>
+              {WORKSHOP_TRAINERS.map((t: WorkshopTrainer) => {
+                const isExpanded = expandedBio === t.name;
+                return (
+                  <div
+                    key={t.name}
+                    style={{
+                      border: `1px solid ${COLORS.line}`,
+                      background: "white",
+                      display: "flex",
+                      flexDirection: "row",
+                      flexWrap: "wrap",
+                      alignItems: "flex-start",
+                      gap: 20,
+                      padding: 20,
+                      borderRadius: 3,
+                      boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+                    }}
+                  >
+                    <div style={{ width: 120, height: 120, flexShrink: 0, position: "relative", borderRadius: 2, overflow: "hidden", background: "#F1F5F9" }}>
+                      <img
+                        src={t.img}
+                        alt={t.name}
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      />
+                    </div>
+                    <div style={{ flex: 1, minWidth: 240 }}>
+                      <span
+                        style={{
+                          display: "inline-block",
+                          background: "#0284C7",
+                          color: "white",
+                          fontSize: 9.5,
+                          fontWeight: 800,
+                          textTransform: "uppercase",
+                          letterSpacing: "0.08em",
+                          padding: "3px 8px",
+                          borderRadius: 2,
+                          marginBottom: 6,
+                        }}
+                      >
+                        {t.badge}
                       </span>
-                      <p style={{ margin: "2px 0 0", fontSize: 12.5, fontWeight: 700, color: COLORS.heading }}>
-                        &ldquo;{t.workshopTitle}&rdquo;
+                      <h4 style={{ margin: "2px 0 4px", fontSize: 16, fontWeight: 800, color: COLORS.heading }}>
+                        {t.name}
+                      </h4>
+                      <p style={{ margin: "0 0 10px", fontSize: 12, color: COLORS.paragraph }}>
+                        {t.role}
                       </p>
+                      <div style={{ padding: "8px 12px", background: "#F0F9FF", borderLeft: "3px solid #0284C7", borderRadius: 2 }}>
+                        <span style={{ fontSize: 9.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", color: "#0284C7", display: "block" }}>
+                          Workshop Masterclass
+                        </span>
+                        <p style={{ margin: "2px 0 0", fontSize: 12.5, fontWeight: 700, color: COLORS.heading }}>
+                          &ldquo;{t.workshopTitle}&rdquo;
+                        </p>
+                      </div>
+
+                      {t.bio && (
+                        <div style={{ marginTop: 10 }}>
+                          <button
+                            type="button"
+                            onClick={() => toggleBio(t.name)}
+                            style={{
+                              background: "transparent",
+                              border: "none",
+                              padding: 0,
+                              color: COLORS.green,
+                              fontSize: 11.5,
+                              fontWeight: 700,
+                              cursor: "pointer",
+                              display: "inline-flex",
+                              alignItems: "center",
+                              gap: 4,
+                            }}
+                          >
+                            {isExpanded ? "Hide Biography" : "Read Biography"}
+                            {isExpanded ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
+                          </button>
+                          {isExpanded && (
+                            <p style={{ marginTop: 8, fontSize: 12, lineHeight: 1.6, color: COLORS.paragraph, background: "#F8FAFC", padding: "10px 12px", border: `1px solid ${COLORS.line}`, borderRadius: 2 }}>
+                              {t.bio}
+                            </p>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

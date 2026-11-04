@@ -69,6 +69,7 @@ const SCHEDULE_DATA: DaySchedule[] = [
           "Workshop 3: Earth Observation, Google Earth Engine & Digital Earth Africa — Satellite Analytics for Climate Resilience",
           "Workshop 4: Citizen Science, Mobile GIS, UAV & Climate/Disaster Mapping — Field Data Collection & Drone Photogrammetry",
           "Special Workshop: Use of Climate Data — From Downloading to Data Embellishment (Trainer: Samson Feranmi Ayodele)",
+          "Special Workshop: Field-Based Photo Mapping with Fotoshi — Collecting, Uploading & Exploring Georeferenced Imagery (Trainer: Godwin Archibong)",
         ],
       },
       {
@@ -101,7 +102,7 @@ const SCHEDULE_DATA: DaySchedule[] = [
         time: "09:00 – 10:00",
         title: "Keynote Address: The Future of GeoAI and Open Geospatial Data in Africa",
         type: "Keynote",
-        description: "Distinguished keynote addresses by Dr. Caroline Nickerson, Dr. Ibrahimaa Cisse, Dr. AA Usman, and Prof. Rebecca Boger on citizen science, spatial intelligence, and open mapping innovation.",
+        description: "Distinguished keynote addresses by Dr. AA Usman, Prof. Rebecca Boger, Dr. Ibrahimaa Cisse, Dr. Caroline Nickerson, Joseph Tuyishimire, and Christopher Beddow on citizen science, spatial intelligence, GeoAI, Earth observation, and open mapping innovation.",
       },
       {
         time: "10:00 – 10:30",
