@@ -135,11 +135,18 @@ interface Sponsor {
 }
 
 const PAST_SPONSORS: Sponsor[] = [
-  { name: "Unique Mappers", img: "/sponsors/unique-mappers.webp" },
-  { name: "OpenStreetMap", img: "/sponsors/Openstreetmap_logo.svg.webp" },
-  { name: "tomtom", img: "/sponsors/tomtom.png" },
-  { name: "SciStarter", img: "/sponsors/SCISTARTER.webp" },
-  { name: "SpatialMatrix", img: "/sponsors/spatialmatrix-logo.png" },
+  { name: "SciStarter", img: "/sponsors/scistarter.png" },
+  { name: "Geospatial Intelligence Foundation of Nigeria (GIFON)", img: "/sponsors/gifon.png" },
+  { name: "Digital Earth Africa", img: "/sponsors/digital-earth-africa.png" },
+  { name: "TomTom", img: "/sponsors/tomtom.jpg" },
+  { name: "OpenStreetMap Foundation", img: "/sponsors/osmf.jpg" },
+  { name: "Spatialmatrix", img: "/sponsors/spatialmatrix-logo.png" },
+  { name: "GKC", img: "/sponsors/gkc.jpg" },
+  { name: "Fotoshi", img: "/sponsors/fotoshi.jpg" },
+  { name: "Unique Mappers Network", img: "/sponsors/unique-mappers.webp" },
+  { name: "University of Nigeria Nsukka", img: "/sponsors/unn.jpg" },
+  { name: "Rivers State University", img: "/sponsors/rsu.jpg" },
+  { name: "University of Uyo", img: "/sponsors/uniuyo.jpg" },
 ];
 
 export default function SponsorsPage(): any {
@@ -1476,21 +1483,21 @@ export default function SponsorsPage(): any {
         </div>
       </section>
 
-      {/* ---------------- PAST SPONSORS & PARTNERS ---------------- */}
+      {/* ---------------- PARTNERS & SPONSORS ---------------- */}
       <section style={{ padding: "56px 0", borderTop: `1px solid ${COLORS.line}` }}>
         <div className="sponsors-grid-2" style={{ maxWidth: 960, margin: "0 auto", padding: "0 20px" }}>
-          <div className="sponsors-logo-row" style={{ border: `1px solid ${COLORS.line}`, padding: "28px 24px", background: "#F8FAFC" }}>
+          <div className="sponsors-logo-row" style={{ border: `1px solid ${COLORS.line}`, padding: "28px 24px", background: "#F8FAFC", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: "20px 28px" }}>
             {PAST_SPONSORS.map((s: Sponsor) => (
-              <img key={s.name} src={s.img} alt={s.name} style={{ height: 36, width: "auto", objectFit: "contain" }} />
+              <img key={s.name} src={s.img} alt={s.name} title={s.name} style={{ maxHeight: 38, maxWidth: 120, width: "auto", height: "auto", objectFit: "contain" }} />
             ))}
           </div>
           <div>
             <h2 style={{ fontSize: "clamp(16px,2.4vw,18px)", fontWeight: 800, color: COLORS.heading, margin: 0 }}>
-              Past Sponsors &amp; Technical Partners
+              Event Partners &amp; Sponsors
             </h2>
             <p style={{ marginTop: 14, fontSize: 13.5, lineHeight: 1.7, color: COLORS.paragraph }}>
-              Thank you to every sponsor who made past editions of State of the Map Nigeria a reality.
-              We look forward to welcoming you to Uyo for SOTM Nigeria 2026! We welcome all prospective
+              We extend our heartfelt gratitude to all our organizing institutions, academic hosts, and international mapping partners.
+              We look forward to welcoming you to Uyo for State of the Map Nigeria 2026! We welcome all prospective
               sponsors on board — your support makes this conference possible.
             </p>
           </div>

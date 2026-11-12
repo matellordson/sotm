@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="grad_AB" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#grad_AB)"/>
+  <circle cx="200" cy="150" r="65" fill="rgba(255,255,255,0.08)"/>
+  <path d="M80 360 C80 250, 320 250, 320 360 Z" fill="rgba(255,255,255,0.08)"/>
+  <circle cx="200" cy="150" r="54" fill="rgba(255,255,255,0.12)" stroke="#38BDF8" stroke-width="2"/>
+  <text x="200" y="162" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.05em">AB</text>
+  <text x="200" y="372" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="rgba(255,255,255,0.7)" text-anchor="middle">Akpurhie Okiemute Blessing</text>
+</svg>

@@ -13,22 +13,35 @@ export function SiteFooter() {
   }
 
   const SPONSORS: Sponsor[] = [
-    { name: "Unique Mappers", img: "/sponsors/unique-mappers.webp" },
-    { name: "OpenStreetMap", img: "/sponsors/Openstreetmap_logo.svg.webp" },
-    { name: "tomtom", img: "/sponsors/tomtom.png" },
-    { name: "SciStarter", img: "/sponsors/SCISTARTER.webp" },
-    { name: "SpatialMatrix", img: "/sponsors/spatialmatrix-logo.png" },
+    { name: "SciStarter", img: "/sponsors/scistarter.png" },
+    { name: "Geospatial Intelligence Foundation of Nigeria (GIFON)", img: "/sponsors/gifon.png" },
+    { name: "Digital Earth Africa", img: "/sponsors/digital-earth-africa.png" },
+    { name: "TomTom", img: "/sponsors/tomtom.jpg" },
+    { name: "OpenStreetMap Foundation", img: "/sponsors/osmf.jpg" },
+    { name: "Spatialmatrix", img: "/sponsors/spatialmatrix-logo.png" },
+    { name: "GKC", img: "/sponsors/gkc.jpg" },
+    { name: "Fotoshi", img: "/sponsors/fotoshi.jpg" },
+    { name: "Unique Mappers Network", img: "/sponsors/unique-mappers.webp" },
+    { name: "University of Nigeria Nsukka", img: "/sponsors/unn.jpg" },
+    { name: "Rivers State University", img: "/sponsors/rsu.jpg" },
+    { name: "University of Uyo", img: "/sponsors/uniuyo.jpg" },
   ];
   return (
   <footer style={{ background: COLORS.heading }}>
-    <div style={{ maxWidth: 960, margin: "0 auto", padding: "40px 20px" }}>
-      <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: "24px 40px", background: "white", padding: "32px 24px" }}>
+    <div style={{ maxWidth: 1080, margin: "0 auto", padding: "40px 20px" }}>
+      <div style={{ textAlign: "center", marginBottom: 16 }}>
+        <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.12em", color: COLORS.green }}>
+          Partners &amp; Sponsors
+        </span>
+      </div>
+      <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: "24px 36px", background: "white", padding: "32px 24px", borderRadius: 4 }}>
         {SPONSORS.map((s: Sponsor) => (
           <img
             key={s.name}
             src={s.img}
             alt={s.name}
-            style={{ height: 40, width: "auto", objectFit: "contain" }}
+            title={s.name}
+            style={{ maxHeight: 42, maxWidth: 140, width: "auto", height: "auto", objectFit: "contain" }}
           />
         ))}
       </div>

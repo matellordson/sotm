@@ -21,6 +21,55 @@ interface AudienceGroup {
   body: string;
 }
 
+interface LOCMember {
+  name: string;
+  role: string;
+  img: string;
+}
+
+const LOC_MEMBERS: LOCMember[] = [
+  {
+    name: "Dr. Victor N. Sunday",
+    role: "SotMNigeria Chairperson • National Coordinator, Unique Mappers Network",
+    img: "/loc/victor_sunday.svg",
+  },
+  {
+    name: "Edidiong Robert Etim",
+    role: "LOC Secretary",
+    img: "/loc/edidiong_etim.svg",
+  },
+  {
+    name: "Samuel Etim Inwang",
+    role: "LOC Assistant Secretary",
+    img: "/loc/samuel_inwang.svg",
+  },
+  {
+    name: "Martins-Ateli Grace",
+    role: "Programs & Communication",
+    img: "/loc/martins_grace.svg",
+  },
+  {
+    name: "Chukwuemeka Emmanuel Nwosu",
+    role: "Media & Publicity",
+    img: "/loc/chukwuemeka_nwosu.svg",
+  },
+  {
+    name: "Stephen Sunday Isikong",
+    role: "Media",
+    img: "/loc/stephen_isikong.svg",
+  },
+  {
+    name: "Godswill Isaiah Akpan",
+    role: "Uyo Delegate & LOC Member",
+    img: "/loc/godswill_akpan.svg",
+  },
+  {
+    name: "Akpurhie Okiemute Blessing",
+    role: "Federal University Otuoke (FUO) Delegate",
+    img: "/loc/akpurhie_blessing.svg",
+  },
+];
+
 const AUDIENCE: AudienceGroup[] = [
   { Icon: MapPin, title: "Mapping Enthusiasts & OSM Contributors", body: "Active mappers and grassroots local chapter leaders across Nigeria and Africa." },
   { Icon: GraduationCap, title: "Academia & Researchers", body: "Scholars and students from Geoinformatics, Geography, Surveying, Remote Sensing, and Computer Science." },
@@ -51,13 +100,16 @@ export default function AboutPage() {
       <style>{`
         .about-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; align-items: start; }
         .about-audience-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: ${COLORS.line}; }
+        .loc-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
 
         @media (max-width: 900px) {
           .about-audience-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
           .about-grid-2 { grid-template-columns: 1fr; }
+          .loc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
         @media (max-width: 560px) {
           .about-audience-grid { grid-template-columns: 1fr; }
+          .loc-grid { grid-template-columns: 1fr; }
         }
       `}</style>
 
@@ -153,6 +205,62 @@ export default function AboutPage() {
             <p style={{ margin: "16px 0 0", fontSize: 13, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", color: COLORS.green, lineHeight: 1.6 }}>
               MAP TOGETHER • INNOVATE TOGETHER • BUILD RESILIENT COMMUNITIES TOGETHER.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- LOCAL ORGANIZING COMMITTEE (LOC) ---------------- */}
+      <section style={{ padding: "64px 0", background: "white" }}>
+        <div style={{ maxWidth: 1040, margin: "0 auto", padding: "0 20px" }}>
+          <div style={{ textAlign: "center", marginBottom: 36 }}>
+            <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.12em", color: COLORS.green }}>
+              Organizing Team
+            </span>
+            <h2 style={{ fontSize: "clamp(20px, 3.2vw, 28px)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: COLORS.heading, margin: "8px 0 0" }}>
+              Local Organizing Committee (LOC)
+            </h2>
+            <p style={{ maxWidth: 640, margin: "10px auto 0", fontSize: 13.5, color: COLORS.paragraph, lineHeight: 1.6 }}>
+              The dedicated committee coordinating logistics, programs, media, communications, and academic tracks for State of the Map Nigeria 2026.
+            </p>
+          </div>
+
+          <div className="loc-grid">
+            {LOC_MEMBERS.map((m: LOCMember) => (
+              <div
+                key={m.name}
+                style={{
+                  border: `1px solid ${COLORS.line}`,
+                  background: "white",
+                  display: "flex",
+                  flexDirection: "column",
+                  overflow: "hidden",
+                  borderRadius: 3,
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+                }}
+              >
+                <div style={{ position: "relative", width: "100%", aspectRatio: "1 / 1", background: "#0F172A", overflow: "hidden" }}>
+                  <img
+                    src={m.img}
+                    alt={m.name}
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "center",
+                    }}
+                  />
+                </div>
+                <div style={{ padding: "16px 14px", display: "flex", flexDirection: "column", flex: 1, textAlign: "center" }}>
+                  <h3 style={{ fontSize: 14.5, fontWeight: 800, lineHeight: 1.35, color: COLORS.heading, margin: 0 }}>
+                    {m.name}
+                  </h3>
+                  <p style={{ marginTop: 6, fontSize: 12, fontWeight: 600, color: COLORS.green, lineHeight: 1.4 }}>
+                    {m.role}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

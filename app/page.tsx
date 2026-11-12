@@ -119,6 +119,7 @@ interface Speaker {
   badge: "Lead Keynote Speaker" | "Keynote Speaker";
   role: string;
   topic?: string;
+  workshop?: string;
   bio?: string;
   img: string;
   linkedin?: string;
@@ -136,6 +137,13 @@ interface WorkshopTrainer {
 
 const KEYNOTE_SPEAKERS: Speaker[] = [
   {
+    name: "Prof. Joseph Udoh",
+    badge: "Keynote Speaker",
+    role: "Co-Chair SOTM Nigeria 2026 • Academic Track & Logistics Lead • University of Uyo",
+    bio: "Prof. Joseph Udoh is a distinguished scholar at the University of Uyo and serves as the Co-Chair of State of the Map Nigeria 2026, leading the Academic Track and Local Organizing Committee logistics.",
+    img: "/speakers/joseph_udoh.jpg",
+  },
+  {
     name: "Professor Robert Etim Ekpenyong",
     badge: "Lead Keynote Speaker",
     role: "Department of Geography & Natural Resources Management, University of Uyo, Akwa Ibom State",
@@ -144,12 +152,37 @@ const KEYNOTE_SPEAKERS: Speaker[] = [
     img: "/speakers/robert_ekpenyong.jpg",
   },
   {
-    name: "Dr. AA Usman",
+    name: "Dr. Aminu A. Usman",
     badge: "Keynote Speaker",
-    role: "Founder/CEO RESLARC Group • Founder & Executive Chairman, Geospatial Intelligence Foundation of Nigeria (GIFON)",
+    role: "Founder & Executive Chairman, Geospatial Intelligence Foundation of Nigeria (GIFON) • Founder/CEO RESLARC Group",
     topic: "From Geospatial Information to Spatial Intelligence: Democratizing Decision Making in the Digital Age",
-    bio: "Dr. AA Usman is the Founder and CEO of RESLARC Group and Founder & Executive Chairman of the Geospatial Intelligence Foundation of Nigeria (GIFON). He is an authority in spatial intelligence, geospatial infrastructure, and democratizing spatial decision-making tools for institutions and grassroots communities.",
+    bio: "Dr. Aminu A. Usman is a pioneering Nigerian geospatial intelligence (GEOINT) expert, environmental intelligence specialist, entrepreneur, and institutional leader whose work has contributed to advancing Nigeria’s capacity to harness geospatial technologies for national security, strategic intelligence, environmental management, and sustainable development. With more than four decades of professional experience, he has dedicated his career to building indigenous expertise, developing critical geospatial infrastructure, and positioning location intelligence as an indispensable instrument of national decision making. In 1995, Dr. Usman founded RESLARC Group, an indigenous Nigerian enterprise established to advance geospatial sciences, remote sensing, environmental management, and spatial intelligence. He conceptualised, designed, and led the development of Geospatial Intelligence Data Analysis Centres for strategic national institutions including the Defence Space Administration (DSA), Nigerian Air Force (NAF), Defence Intelligence Agency (DIA), Nigerian Army Intelligence Corps (NAIC), and the Independent National Electoral Commission (INEC). Recognising the need for a stronger national professional ecosystem, Dr. Usman also founded the Geospatial Intelligence Foundation of Nigeria (GIFON), advancing the understanding, responsible application, professional development, and strategic adoption of GEOINT across government, industry, academia, and society.",
     img: "/speakers/aa_usman.jpg",
+  },
+  {
+    name: "Prof. Darlene Cavalier",
+    badge: "Keynote Speaker",
+    role: "Professor of Practice, Arizona State University • Founder, SciStarter US • Founding Board Member, Citizen Science Association",
+    topic: "Discover Citizen Science: Deepen Your Skills and Earn a Digital Badge",
+    bio: "Darlene Cavalier is an American professor, author, and entrepreneur focused on democratizing STEM through citizen science. As a Professor of Practice at Arizona State University's School for the Future of Innovation in Society and a Senior Global Futures Scientist, she is the founder of SciStarter and a founding board member of the Citizen Science Association. Her publications include co-authoring The Field Guide to Citizen Science, co-editing The Rightful Place of Science: Citizen Science, and co-authoring The Educator's Guide to Citizen Science. A National Geographic Explorer and Fellow, Cavalier has served as a principal investigator on grants from federal agencies like the National Science Foundation and the National Institutes of Health, and holds advisory roles with the EPA and NOAA. Her public engagement work has earned her the ASU Medal for Social Embeddedness, the Wagner Institute of Science Award, and the Pop Warner Inspiration Award.",
+    img: "/speakers/darlene_cavalier.jpg",
+  },
+  {
+    name: "Dr. Esther Hanson",
+    badge: "Keynote Speaker",
+    role: "Deputy Director, National Space Research and Development Agency (NASRDA) • Acting Coordinator, ASTAL (University of Uyo)",
+    topic: "Space-Based Earth Observation and Geospatial Innovation for Climate Action, Disaster Risk Reduction and Sustainable Development in the Niger Delta",
+    bio: "Dr. Esther Hanson is a Deputy Director in National Space Research and Development Agency (NASRDA), Abuja, and the Acting Coordinator of Advanced Space Technology Application Laboratory – a laboratory of NASRDA, located in the University of Uyo. Dr. Hanson holds a Ph.D in Physics and Astronomy (with specialty in Atmospheric Physics) from the renowned University of Nigeria, Nsukka, Nigeria. Esther conducted her Ph.D dissertation on Solar-Terrestrial Interactions at the Heliophysics Science Division of National Aeronautics and Space Administration Goddard Space Flight Center (NASA-GSFC), Greenbelt, Maryland, USA, in which work she studied the coupling of solar magnetism and Earth’s Climate systems. Esther has attended numerous conferences, and workshops at national, regional and continental levels, including Continents-wide International Astronomical Union’s Symposia, and UNESCO’s International Space Weather Initiatives Workshops. Dr. Esther has delivered a number of keynote lectures at meetings with climate-based themes. Hanson is the Founder and Chairperson of Women in Aerospace at NASRDA-ASTAL, Uyo, through which she has conducted several STEM advocacy programmes with a focus on stimulating girls’ interests for enrolment and active participation in STEM careers.",
+    img: "/speakers/esther_hanson.jpg",
+  },
+  {
+    name: "Craig Allan",
+    badge: "Keynote Speaker",
+    role: "Chair - Board of Directors, OpenStreetMap Foundation (OSMF)",
+    topic: "Community Mapping for Climate Change",
+    bio: "Current Chair of the Board of Directors of the OpenStreetMap Foundation (OSMF), having previously served as Secretary and before that an ordinary Board member. Craig came to OSM through his work as an Urban and Regional Planner and has been working with GIS and mapping systems since the 1980s. With a strong tech background and a love for Free and Open Source Software, he lives and maps predominantly in Africa, with a special passion for mapping previously un-mapped places in Somalia, the DRC, and Chad.",
+    img: "/speakers/craig_allan.jpg",
+    linkedin: "https://www.linkedin.com/in/craig-allan-29434624/",
   },
   {
     name: "Prof. Rebecca Boger",
@@ -160,30 +193,39 @@ const KEYNOTE_SPEAKERS: Speaker[] = [
     img: "/speakers/rebecca_boger.jpg",
   },
   {
-    name: "Dr. Ibrahimaa Cisse",
-    badge: "Keynote Speaker",
-    role: "Regional Director, Open Mapping Hub West & North Africa — Humanitarian OpenStreetMap Team (HOT)",
-    topic: "Citizen Science, Community Mapping & Humanitarian Action",
-    bio: "Dr. Ibrahimaa Cisse is the Regional Director for the Open Mapping Hub in Western and Northern Africa at the Humanitarian OpenStreetMap Team (HOT). He leads regional open-mapping initiatives across Africa, mobilizing local communities and global volunteers to leverage open geospatial data for disaster risk reduction, crisis response, and sustainable development.",
-    img: "/speakers/ibrahimaa_cisse.svg",
-  },
-  {
-    name: "Dr. Caroline Nickerson",
-    badge: "Keynote Speaker",
-    role: "Executive Director & Co-Founder, Florida Community Innovation • NASA EMERGE Initiative • CitSci.org",
-    topic: "From Citizens to Scientists: Harnessing Citizen Science and Community Data for Climate Action and Resilience",
-    bio: "Dr. Caroline Nickerson is a communications and citizen science professional who works at the intersection of community engagement, open data, and civic technology. She is Executive Director and co-founder of Florida Community Innovation, a civic technology nonprofit, and Communications Specialist at Colorado State University's Natural Resource Ecology Laboratory and CitSci.org, a global citizen science platform. She also serves as Communications Lead for the NASA-funded EMERGE initiative at the University of Florida's GeoDI Lab and as Citizen Science Coordinator at the Human Computation Institute. Caroline holds a PhD in Agricultural Education and Communication from the University of Florida. She previously delivered a keynote at State of the Map Nigeria 2024.",
-    img: "/speakers/caroline_nickerson.jpg",
-  },
-  {
-    name: "Joseph Tuyishimire",
+    name: "Dr. Joseph Tuyishimire",
     badge: "Keynote Speaker",
     role: "User Engagement Manager, Digital Earth Africa PMO • Center for Geographic Information Systems & Remote Sensing, University of Rwanda (CGIS-UR)",
-    topic: "Digital Earth Africa: Earth Observation Data for Evidence-Based Decision Making & Sustainable Development",
+    topic: "Open Earth Observation for Climate Intelligence and Community Resilience in Nigeria",
     bio: "Joseph Tuyishimire is an Earth observation (EO) and Geospatial Information System (GIS) specialist. He works for Digital Earth Africa Project Management Office (PMO) as a User Engagement Manager. Joseph plays a key role in capacity development and support of stakeholders across Africa — with a focus on Francophone countries. He brings his experience in capacity building and EO to enable users to use DE Africa data for evidence-based decision making, contributing to the progress towards the UN Sustainable Development Goals and the African Union Agenda 2063. Joseph is based in Kigali, Rwanda, and has been working for the Center for Geographic Information Systems and Remote Sensing-University of Rwanda (CGIS-UR) since 2012.",
     img: "/speakers/joseph_tuyishimire.jpg",
     linkedin: "https://www.linkedin.com/in/joseph-tuyishimire-91a6a277/",
     x: "https://x.com/JosephTUYISHIMI",
+  },
+  {
+    name: "Dr. Caroline Nickerson",
+    badge: "Keynote Speaker",
+    role: "Executive Director & Co-Founder, Florida Community Innovation • NASA EMERGE Initiative • CitSci.org • SciStarter Advisor",
+    topic: "From Citizens to Scientists: Harnessing Citizen Science and Community Data for Climate Action and Resilience",
+    bio: "Dr. Caroline Nickerson is a communications and citizen science professional who works at the intersection of community engagement, open data, and civic technology. She is Executive Director and co-founder of Florida Community Innovation, a civic technology nonprofit, and Communications Specialist at Colorado State University's Natural Resource Ecology Laboratory and CitSci.org, a global citizen science platform. She also serves as Communications Lead for the NASA-funded EMERGE initiative at the University of Florida's GeoDI Lab and as Citizen Science Coordinator at the Human Computation Institute. Caroline holds a PhD in Agricultural Education and Communication from the University of Florida. Her work focuses on helping communities collect, share, and use their own data to address local challenges, including climate and environmental resilience. She previously delivered a keynote at State of the Map Nigeria 2024.",
+    img: "/speakers/caroline_nickerson.jpg",
+  },
+  {
+    name: "Kingsley Chika Chukwu",
+    badge: "Keynote Speaker",
+    role: "Community Engagement Manager for Africa & Middle East at TomTom",
+    topic: "From Community Mapping to Intelligent Maps: Strengthening OpenStreetMap, GeoAI and Location Intelligence for Africa",
+    workshop: "MapRoulette and Community Mapping Tools: Practical Approaches to Improving OpenStreetMap Data Quality",
+    bio: "Kingsley Chika Chukwu, Community Engagement Manager for Africa & Middle East at TomTom, is a geospatial data scientist specializing in geoinformatics, environmental information systems, and geospatial analytics. He leverages tools such as Python and data visualization platforms like Power BI to transform complex spatial datasets into actionable insights. Partnering with OSM communities, Kingsley is dedicated to building better maps in Africa and Beyond, advancing data quality, mapping impact, and supporting sustainable development through community-driven geospatial innovation.",
+    img: "/speakers/kingsley_chukwu.jpg",
+  },
+  {
+    name: "Captain Tobi Sowole MNITP/RTP, M.CIoD, FCG, MGBCN, Ph.D (HC)",
+    badge: "Keynote Speaker",
+    role: "Chief Technology Officer and Team Lead, Public Sector Solutions and Innovation at Spatialmatrix LTD",
+    topic: "From Geospatial Data to Intelligent Solutions: Advancing Open Geospatial Innovation for Sustainable Development in Nigeria",
+    bio: "Captain Tobi Sowole is Chief Technology Officer and Team Lead for Public Sector Solutions and Innovation at Spatialmatrix LTD. Bringing extensive cross-industry experience from Spatialmatrix LTD, Smbi Professional Services Consortium, Smbi Consortium, and the Nigerian Energy Support Programme (GIZ), he holds an International Aviation College certificate and specializes in Business Strategy, Business Process Design, GIS, Project Management, and high-precision GPS spatial analytics.",
+    img: "/speakers/tobi_sowole.png",
   },
   {
     name: "Christopher Beddow",
@@ -192,6 +234,14 @@ const KEYNOTE_SPEAKERS: Speaker[] = [
     topic: "GeoAI: Image Recognition (Aerial, Street View, Single Photos) and Crowdsourcing with AI",
     bio: "Christopher Beddow is a geospatial data engineer who focuses on the relationship of photographs and street view to the map. He previously worked on Mapillary and the maps team at Meta, helped Overture Maps improve data with imagery and AI, and plans to help everyone everywhere map the world with photos. He has a Masters in GIS from University of Washington in USA and today lives near Zürich, Switzerland.",
     img: "/speakers/christopher_beddow.jpg",
+  },
+  {
+    name: "Diego Gonzalez Ferreiro",
+    badge: "Keynote Speaker",
+    role: "Chief of the Solutions and Support Unit, United Nations Global Service Centre (UNGSC) Brindisi, Italy",
+    topic: "Open Geospatial Information for Peace, Development and Resilience: The UN Mappers Approach to Capacity Building, Collaborative Mapping and Humanitarian Action",
+    bio: "Diego Gonzalez Ferreiro is Chief of the Solutions and Support Unit at the United Nations Global Service Centre (UNGSC) in Brindisi, Italy, where he leads a multidisciplinary team delivering geospatial solutions and digital services in support of UN field operations. With more than 15 years of experience with the United Nations, including assignments supporting operations in Somalia, Kenya and the Democratic Republic of the Congo, his work has focused on applying geospatial information and technology to operational decision-making. Today, he contributes to the development of UN Maps and other geospatial capabilities that combine authoritative UN data, emerging technologies and collaborative approaches to support peacekeeping and political missions. He holds a Bachelor’s degree in Geography and a Master’s degree in Geodesy and Cartography.",
+    img: "/speakers/diego_gonzalez.png",
   },
 ];
 
@@ -210,6 +260,55 @@ const WORKSHOP_TRAINERS: WorkshopTrainer[] = [
     workshopTitle: "Field-Based Photo Mapping with Fotoshi: Collecting, Uploading & Exploring Georeferenced Imagery",
     bio: "Godwin Archibong is a Nigerian graphic designer and photographer with professional experience in visual design, digital content creation, and photography. He has hands-on experience using Fotoshi for field-based photo mapping, including collecting and uploading location-based images and exploring mapped points.",
     img: "/speakers/godwin_archibong.png",
+  },
+];
+
+interface LOCMember {
+  name: string;
+  role: string;
+  img: string;
+}
+
+const LOC_MEMBERS: LOCMember[] = [
+  {
+    name: "Dr. Victor N. Sunday",
+    role: "SotMNigeria Chairperson • National Coordinator, Unique Mappers Network",
+    img: "/loc/victor_sunday.svg",
+  },
+  {
+    name: "Edidiong Robert Etim",
+    role: "LOC Secretary",
+    img: "/loc/edidiong_etim.svg",
+  },
+  {
+    name: "Samuel Etim Inwang",
+    role: "LOC Assistant Secretary",
+    img: "/loc/samuel_inwang.svg",
+  },
+  {
+    name: "Martins-Ateli Grace",
+    role: "Programs & Communication",
+    img: "/loc/martins_grace.svg",
+  },
+  {
+    name: "Chukwuemeka Emmanuel Nwosu",
+    role: "Media & Publicity",
+    img: "/loc/chukwuemeka_nwosu.svg",
+  },
+  {
+    name: "Stephen Sunday Isikong",
+    role: "Media",
+    img: "/loc/stephen_isikong.svg",
+  },
+  {
+    name: "Godswill Isaiah Akpan",
+    role: "Uyo Delegate & LOC Member",
+    img: "/loc/godswill_akpan.svg",
+  },
+  {
+    name: "Akpurhie Okiemute Blessing",
+    role: "Federal University Otuoke (FUO) Delegate",
+    img: "/loc/akpurhie_blessing.svg",
   },
 ];
 
@@ -284,13 +383,24 @@ export default function ConferenceLandingPage() {
           grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 24px;
         }
+        .loc-grid {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 20px;
+        }
         @media (max-width: 900px) {
           .speakers-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+          .loc-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
           }
         }
         @media (max-width: 580px) {
           .speakers-grid {
+            grid-template-columns: 1fr;
+          }
+          .loc-grid {
             grid-template-columns: 1fr;
           }
         }
@@ -802,6 +912,25 @@ export default function ConferenceLandingPage() {
                       </div>
                     )}
 
+                    {s.workshop && (
+                      <div
+                        style={{
+                          marginTop: 10,
+                          padding: "10px 12px",
+                          background: "#F0FDF4",
+                          borderLeft: `3px solid ${COLORS.green}`,
+                          borderRadius: 2,
+                        }}
+                      >
+                        <span style={{ fontSize: 9.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", color: COLORS.green, display: "block", marginBottom: 3 }}>
+                          Workshop Session
+                        </span>
+                        <p style={{ margin: 0, fontSize: 12, fontWeight: 700, color: COLORS.heading, lineHeight: 1.4 }}>
+                          &ldquo;{s.workshop}&rdquo;
+                        </p>
+                      </div>
+                    )}
+
                     {(s.bio || s.linkedin || s.x) && (
                       <div style={{ marginTop: "auto", paddingTop: 14 }}>
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
@@ -999,6 +1128,62 @@ export default function ConferenceLandingPage() {
                 );
               })}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- LOCAL ORGANIZING COMMITTEE (LOC) ---------------- */}
+      <section style={{ padding: "72px 0", background: "#F8FAFC", borderTop: `1px solid ${COLORS.line}` }}>
+        <div style={{ maxWidth: 1040, margin: "0 auto", padding: "0 20px" }}>
+          <div style={{ textAlign: "center", marginBottom: 36 }}>
+            <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.12em", color: COLORS.green }}>
+              Organizing Team
+            </span>
+            <h2 style={{ fontSize: "clamp(20px, 3.2vw, 28px)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: COLORS.heading, margin: "8px 0 0" }}>
+              Local Organizing Committee (LOC)
+            </h2>
+            <p style={{ maxWidth: 640, margin: "10px auto 0", fontSize: 13.5, color: COLORS.paragraph, lineHeight: 1.6 }}>
+              The dedicated committee coordinating logistics, programs, media, communications, and academic tracks for State of the Map Nigeria 2026.
+            </p>
+          </div>
+
+          <div className="loc-grid">
+            {LOC_MEMBERS.map((m: LOCMember) => (
+              <div
+                key={m.name}
+                style={{
+                  border: `1px solid ${COLORS.line}`,
+                  background: "white",
+                  display: "flex",
+                  flexDirection: "column",
+                  overflow: "hidden",
+                  borderRadius: 3,
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+                }}
+              >
+                <div style={{ position: "relative", width: "100%", aspectRatio: "1 / 1", background: "#0F172A", overflow: "hidden" }}>
+                  <img
+                    src={m.img}
+                    alt={m.name}
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "center",
+                    }}
+                  />
+                </div>
+                <div style={{ padding: "16px 14px", display: "flex", flexDirection: "column", flex: 1, textAlign: "center" }}>
+                  <h3 style={{ fontSize: 14.5, fontWeight: 800, lineHeight: 1.35, color: COLORS.heading, margin: 0 }}>
+                    {m.name}
+                  </h3>
+                  <p style={{ marginTop: 6, fontSize: 12, fontWeight: 600, color: COLORS.green, lineHeight: 1.4 }}>
+                    {m.role}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
