@@ -126,15 +126,6 @@ interface Speaker {
   x?: string;
 }
 
-interface WorkshopTrainer {
-  name: string;
-  badge: string;
-  role: string;
-  workshopTitle: string;
-  bio?: string;
-  img: string;
-}
-
 const KEYNOTE_SPEAKERS: Speaker[] = [
   {
     name: "Prof. Joseph Udoh",
@@ -242,24 +233,6 @@ const KEYNOTE_SPEAKERS: Speaker[] = [
     topic: "Open Geospatial Information for Peace, Development and Resilience: The UN Mappers Approach to Capacity Building, Collaborative Mapping and Humanitarian Action",
     bio: "Diego Gonzalez Ferreiro is Chief of the Solutions and Support Unit at the United Nations Global Service Centre (UNGSC) in Brindisi, Italy, where he leads a multidisciplinary team delivering geospatial solutions and digital services in support of UN field operations. With more than 15 years of experience with the United Nations, including assignments supporting operations in Somalia, Kenya and the Democratic Republic of the Congo, his work has focused on applying geospatial information and technology to operational decision-making. Today, he contributes to the development of UN Maps and other geospatial capabilities that combine authoritative UN data, emerging technologies and collaborative approaches to support peacekeeping and political missions. He holds a Bachelor’s degree in Geography and a Master’s degree in Geodesy and Cartography.",
     img: "/speakers/diego_gonzalez.png",
-  },
-];
-
-const WORKSHOP_TRAINERS: WorkshopTrainer[] = [
-  {
-    name: "Samson Feranmi Ayodele",
-    badge: "Workshop Trainer",
-    role: "Geospatial Analyst & Climate Data Specialist",
-    workshopTitle: "Use of Climate Data: From Downloading to Data Embellishment",
-    img: "/speakers/samson_ayodele.jpg",
-  },
-  {
-    name: "Godwin Archibong",
-    badge: "Workshop Trainer",
-    role: "Graphic Designer, Photographer & Field Photo Mapping Specialist",
-    workshopTitle: "Field-Based Photo Mapping with Fotoshi: Collecting, Uploading & Exploring Georeferenced Imagery",
-    bio: "Godwin Archibong is a Nigerian graphic designer and photographer with professional experience in visual design, digital content creation, and photography. He has hands-on experience using Fotoshi for field-based photo mapping, including collecting and uploading location-based images and exploring mapped points.",
-    img: "/speakers/godwin_archibong.png",
   },
 ];
 
@@ -1028,112 +1001,6 @@ export default function ConferenceLandingPage() {
             })}
           </div>
 
-          {/* ---------------- WORKSHOP TRAINERS (SEPARATED) ---------------- */}
-          <div style={{ marginTop: 72, paddingTop: 56, borderTop: `1px solid ${COLORS.line}` }}>
-            <div style={{ textAlign: "center", marginBottom: 36 }}>
-              <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.15em", color: COLORS.green }}>
-                Practical Masterclasses &amp; Labs
-              </span>
-              <h3 style={{ fontSize: "clamp(18px, 3vw, 24px)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", color: COLORS.heading, margin: "8px 0 0" }}>
-                Workshop Trainers
-              </h3>
-              <p style={{ maxWidth: 640, margin: "8px auto 0", fontSize: 13.5, color: COLORS.paragraph, lineHeight: 1.6 }}>
-                Expert instructors leading practical capacity development sessions and technical masterclasses.
-              </p>
-            </div>
-
-            <div style={{ maxWidth: 720, margin: "0 auto", display: "flex", flexDirection: "column", gap: 20 }}>
-              {WORKSHOP_TRAINERS.map((t: WorkshopTrainer) => {
-                const isExpanded = expandedBio === t.name;
-                return (
-                  <div
-                    key={t.name}
-                    style={{
-                      border: `1px solid ${COLORS.line}`,
-                      background: "white",
-                      display: "flex",
-                      flexDirection: "row",
-                      flexWrap: "wrap",
-                      alignItems: "flex-start",
-                      gap: 20,
-                      padding: 20,
-                      borderRadius: 3,
-                      boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
-                    }}
-                  >
-                    <div style={{ width: 120, height: 120, flexShrink: 0, position: "relative", borderRadius: 2, overflow: "hidden", background: "#F1F5F9" }}>
-                      <img
-                        src={t.img}
-                        alt={t.name}
-                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                      />
-                    </div>
-                    <div style={{ flex: 1, minWidth: 240 }}>
-                      <span
-                        style={{
-                          display: "inline-block",
-                          background: "#0284C7",
-                          color: "white",
-                          fontSize: 9.5,
-                          fontWeight: 800,
-                          textTransform: "uppercase",
-                          letterSpacing: "0.08em",
-                          padding: "3px 8px",
-                          borderRadius: 2,
-                          marginBottom: 6,
-                        }}
-                      >
-                        {t.badge}
-                      </span>
-                      <h4 style={{ margin: "2px 0 4px", fontSize: 16, fontWeight: 800, color: COLORS.heading }}>
-                        {t.name}
-                      </h4>
-                      <p style={{ margin: "0 0 10px", fontSize: 12, color: COLORS.paragraph }}>
-                        {t.role}
-                      </p>
-                      <div style={{ padding: "8px 12px", background: "#F0F9FF", borderLeft: "3px solid #0284C7", borderRadius: 2 }}>
-                        <span style={{ fontSize: 9.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", color: "#0284C7", display: "block" }}>
-                          Workshop Masterclass
-                        </span>
-                        <p style={{ margin: "2px 0 0", fontSize: 12.5, fontWeight: 700, color: COLORS.heading }}>
-                          &ldquo;{t.workshopTitle}&rdquo;
-                        </p>
-                      </div>
-
-                      {t.bio && (
-                        <div style={{ marginTop: 10 }}>
-                          <button
-                            type="button"
-                            onClick={() => toggleBio(t.name)}
-                            style={{
-                              background: "transparent",
-                              border: "none",
-                              padding: 0,
-                              color: COLORS.green,
-                              fontSize: 11.5,
-                              fontWeight: 700,
-                              cursor: "pointer",
-                              display: "inline-flex",
-                              alignItems: "center",
-                              gap: 4,
-                            }}
-                          >
-                            {isExpanded ? "Hide Biography" : "Read Biography"}
-                            {isExpanded ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
-                          </button>
-                          {isExpanded && (
-                            <p style={{ marginTop: 8, fontSize: 12, lineHeight: 1.6, color: COLORS.paragraph, background: "#F8FAFC", padding: "10px 12px", border: `1px solid ${COLORS.line}`, borderRadius: 2 }}>
-                              {t.bio}
-                            </p>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
         </div>
       </section>
 
