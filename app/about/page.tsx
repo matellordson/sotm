@@ -31,42 +31,47 @@ const LOC_MEMBERS: LOCMember[] = [
   {
     name: "Dr. Victor N. Sunday",
     role: "SotMNigeria Chairperson • National Coordinator, Unique Mappers Network",
-    img: "/loc/victor_sunday.svg",
+    img: "/loc/victor_sunday.jpg",
   },
   {
     name: "Edidiong Robert Etim",
     role: "LOC Secretary",
-    img: "/loc/edidiong_etim.svg",
+    img: "/loc/edidiong_etim.jpg",
   },
   {
     name: "Samuel Etim Inwang",
     role: "LOC Assistant Secretary",
-    img: "/loc/samuel_inwang.svg",
+    img: "/loc/samuel_inwang.jpg",
   },
   {
     name: "Martins-Ateli Grace",
     role: "Programs & Communication",
-    img: "/loc/martins_grace.svg",
+    img: "/loc/martins_grace.jpg",
   },
   {
     name: "Chukwuemeka Emmanuel Nwosu",
     role: "Media & Publicity",
-    img: "/loc/chukwuemeka_nwosu.svg",
+    img: "/loc/chukwuemeka_nwosu.png",
   },
   {
     name: "Stephen Sunday Isikong",
     role: "Media",
-    img: "/loc/stephen_isikong.svg",
+    img: "/loc/stephen_isikong.jpg",
   },
   {
     name: "Godswill Isaiah Akpan",
     role: "Uyo Delegate & LOC Member",
-    img: "/loc/godswill_akpan.svg",
+    img: "/loc/godswill_akpan.jpg",
   },
   {
     name: "Akpurhie Okiemute Blessing",
     role: "Federal University Otuoke (FUO) Delegate",
-    img: "/loc/akpurhie_blessing.svg",
+    img: "/loc/akpurhie_blessing.jpg",
+  },
+  {
+    name: "Salvation Okoh",
+    role: "LOC Member",
+    img: "/loc/salvation_okoh.jpg",
   },
 ];
 
