@@ -333,41 +333,474 @@ const LOC_MEMBERS: LOCMember[] = [
   },
 ];
 
-// Target date the countdown counts down to (Day 1 of the conference: Nov 17, 2026)
-const TARGET_DATE: Date = new Date("2026-11-17T09:00:00");
+// Target date the countdown counts down to (Day 1 of the conference: Nov 17, 2026 at 12:00 noon WAT)
+const TARGET_DATE: Date = new Date("2026-11-17T12:00:00+01:00");
 
 // Venue coordinates — University of Uyo, Akwa Ibom State, Nigeria
 const VENUE_LAT: number = 5.0418;
 const VENUE_LON: number = 7.9205;
 
-interface TimeLeft {
+interface ConferenceSessionTime {
+  start: string;
+  end: string;
+  dayLabel: string;
+  time: string;
+  title: string;
+  type: string;
+  facilitator?: string;
+  venue: string;
+}
+
+const CONFERENCE_TIMELINE: ConferenceSessionTime[] = [
+  // DAY 1 - Tuesday, 17 Nov
+  {
+    start: "2026-11-17T12:00:00+01:00",
+    end: "2026-11-17T13:00:00+01:00",
+    dayLabel: "Day 1 (Tuesday, 17 Nov)",
+    time: "12:00 noon – 1:00 p.m.",
+    title: "Arrival and Registration",
+    type: "Registration",
+    facilitator: "Grace Martins-Ateli; Dr. Edidiong Etim",
+    venue: "Geography Laboratory, Town Campus, University of Uyo",
+  },
+  {
+    start: "2026-11-17T13:00:00+01:00",
+    end: "2026-11-17T14:00:00+01:00",
+    dayLabel: "Day 1 (Tuesday, 17 Nov)",
+    time: "1:00 p.m. – 2:00 p.m.",
+    title: "Courtesy Visits to the Vice-Chancellor and ASTAL",
+    type: "Courtesy Visit",
+    facilitator: "Prof. Joseph Udoh; Dr. Victor N. Sunday",
+    venue: "Vice-Chancellor's Office & ASTAL, University of Uyo",
+  },
+  {
+    start: "2026-11-17T14:00:00+01:00",
+    end: "2026-11-17T18:00:00+01:00",
+    dayLabel: "Day 1 (Tuesday, 17 Nov)",
+    time: "2:00 p.m. – 6:00 p.m.",
+    title: "Welcome Mapathon Party & Training Workshops 1 & 2: OpenStreetMap, HOT Tasking Manager and Photo Mapping",
+    type: "Workshop & Mapathon",
+    facilitator: "Dr. Victor N. Sunday; Salvation Okoh; Godwin Archibong",
+    venue: "Geography Laboratory, Town Campus, University of Uyo",
+  },
+
+  // DAY 2 - Wednesday, 18 Nov
+  {
+    start: "2026-11-18T08:00:00+01:00",
+    end: "2026-11-18T10:00:00+01:00",
+    dayLabel: "Day 2 (Wednesday, 18 Nov)",
+    time: "8:00 a.m. – 10:00 a.m.",
+    title: "Arrival, Registration & GIS Day Events with Secondary Schools, Posters & Mapathon",
+    type: "Special Event",
+    facilitator: "Stella, Grace, & Richard; Unique Mappers team",
+    venue: "Barth Ebong Hall & Geography Lab, University of Uyo",
+  },
+  {
+    start: "2026-11-18T10:00:00+01:00",
+    end: "2026-11-18T10:40:00+01:00",
+    dayLabel: "Day 2 (Wednesday, 18 Nov)",
+    time: "10:00 a.m. – 10:40 a.m.",
+    title: "Official Opening Ceremony, Anthem, Opening Remarks & Welcome Address",
+    type: "Plenary",
+    facilitator: "MC; VC / Head of Department; Dr. Victor N. Sunday; Prof. Joseph Udoh",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-18T10:40:00+01:00",
+    end: "2026-11-18T11:10:00+01:00",
+    dayLabel: "Day 2 (Wednesday, 18 Nov)",
+    time: "10:40 a.m. – 11:10 a.m.",
+    title: "LEAD KEYNOTE 1: Open Geospatial Innovation for Climate Action and Community Resilience",
+    type: "Lead Keynote",
+    facilitator: "Prof. Robert Etim Ekpenyong",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-18T11:10:00+01:00",
+    end: "2026-11-18T11:40:00+01:00",
+    dayLabel: "Day 2 (Wednesday, 18 Nov)",
+    time: "11:10 a.m. – 11:40 a.m.",
+    title: "LEAD KEYNOTE 2: From Geospatial Information to Spatial Intelligence: Democratizing Decision-Making in the Digital Age",
+    type: "Lead Keynote",
+    facilitator: "Dr. A. A. Usman (GIFON)",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-18T11:40:00+01:00",
+    end: "2026-11-18T12:00:00+01:00",
+    dayLabel: "Day 2 (Wednesday, 18 Nov)",
+    time: "11:40 a.m. – 12:00 p.m.",
+    title: "KEYNOTE: From Community Mapping to Intelligent Maps: Strengthening OpenStreetMap, GeoAI and Location Intelligence for Africa",
+    type: "Keynote",
+    facilitator: "Kingsley Chika Chukwu (TomTom)",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-18T12:00:00+01:00",
+    end: "2026-11-18T12:20:00+01:00",
+    dayLabel: "Day 2 (Wednesday, 18 Nov)",
+    time: "12:00 p.m. – 12:20 p.m.",
+    title: "KEYNOTE: Community Mapping for Climate Change",
+    type: "Keynote",
+    facilitator: "Craig Allan (OSMF Chairperson)",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-18T12:20:00+01:00",
+    end: "2026-11-18T12:40:00+01:00",
+    dayLabel: "Day 2 (Wednesday, 18 Nov)",
+    time: "12:20 p.m. – 12:40 p.m.",
+    title: "Keynote Conversation and Audience Interaction 1",
+    type: "Interactive",
+    facilitator: "Moderator / Keynote Speakers",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-18T12:40:00+01:00",
+    end: "2026-11-18T13:00:00+01:00",
+    dayLabel: "Day 2 (Wednesday, 18 Nov)",
+    time: "12:40 p.m. – 1:00 p.m.",
+    title: "Tea Break, Poster Viewing and Group Photograph",
+    type: "Break",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-18T13:00:00+01:00",
+    end: "2026-11-18T13:40:00+01:00",
+    dayLabel: "Day 2 (Wednesday, 18 Nov)",
+    time: "1:00 p.m. – 1:40 p.m.",
+    title: "TRAINING WORKSHOP 3: Discover Citizen Science – Deepen Your Skills and Earn a Digital Badge",
+    type: "Workshop",
+    facilitator: "Prof. Darlene Cavalier (SciStarter / Arizona State University)",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-18T13:40:00+01:00",
+    end: "2026-11-18T14:00:00+01:00",
+    dayLabel: "Day 2 (Wednesday, 18 Nov)",
+    time: "1:40 p.m. – 2:00 p.m.",
+    title: "KEYNOTE: GeoAI – Image Recognition",
+    type: "Keynote",
+    facilitator: "Christopher Beddow",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-18T14:00:00+01:00",
+    end: "2026-11-18T14:20:00+01:00",
+    dayLabel: "Day 2 (Wednesday, 18 Nov)",
+    time: "2:00 p.m. – 2:20 p.m.",
+    title: "KEYNOTE: Citizen Science, Science Diplomacy and Emerging Technologies",
+    type: "Keynote",
+    facilitator: "Prof. Rebecca Boger",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-18T14:20:00+01:00",
+    end: "2026-11-18T14:40:00+01:00",
+    dayLabel: "Day 2 (Wednesday, 18 Nov)",
+    time: "2:20 p.m. – 2:40 p.m.",
+    title: "KEYNOTE: From Citizens to Scientists: Harnessing Citizen Science and Community Data for Climate Action",
+    type: "Keynote",
+    facilitator: "Dr. Caroline Nickerson",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-18T14:40:00+01:00",
+    end: "2026-11-18T15:00:00+01:00",
+    dayLabel: "Day 2 (Wednesday, 18 Nov)",
+    time: "2:40 p.m. – 3:00 p.m.",
+    title: "Keynote Conversation and Audience Interaction 2",
+    type: "Interactive",
+    facilitator: "Moderator / Keynote Speakers",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-18T15:00:00+01:00",
+    end: "2026-11-18T15:20:00+01:00",
+    dayLabel: "Day 2 (Wednesday, 18 Nov)",
+    time: "3:00 p.m. – 3:20 p.m.",
+    title: "Lunch Break",
+    type: "Break",
+    venue: "Barth Ebong Hall Annex",
+  },
+  {
+    start: "2026-11-18T15:20:00+01:00",
+    end: "2026-11-18T16:20:00+01:00",
+    dayLabel: "Day 2 (Wednesday, 18 Nov)",
+    time: "3:20 p.m. – 4:20 p.m.",
+    title: "Academic Paper Presentations (Papers 1 – 5)",
+    type: "Paper Presentation",
+    facilitator: "Victor N. Sunday, Salvation Okoh, Godwin Akpan, Akan Tom, Joseph Udoh, Godswill Akpan, Stella Fagbuyi",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-18T16:20:00+01:00",
+    end: "2026-11-18T16:30:00+01:00",
+    dayLabel: "Day 2 (Wednesday, 18 Nov)",
+    time: "4:20 p.m. – 4:30 p.m.",
+    title: "Transition to Geography Laboratory",
+    type: "Transition",
+    venue: "Town Campus Walkway",
+  },
+  {
+    start: "2026-11-18T16:30:00+01:00",
+    end: "2026-11-18T17:30:00+01:00",
+    dayLabel: "Day 2 (Wednesday, 18 Nov)",
+    time: "4:30 p.m. – 5:30 p.m.",
+    title: "GIS Day Celebration with GIS (QGIS/ArcGIS) / MapRoulette Training Workshops 4 and 5",
+    type: "Workshop",
+    facilitator: "Unique Mappers Network; TomTom Africa",
+    venue: "Geography Laboratory, Town Campus, University of Uyo",
+  },
+  {
+    start: "2026-11-18T17:30:00+01:00",
+    end: "2026-11-18T18:00:00+01:00",
+    dayLabel: "Day 2 (Wednesday, 18 Nov)",
+    time: "5:30 p.m. – 6:00 p.m.",
+    title: "Group Photograph and Close of Day 2",
+    type: "Plenary",
+    facilitator: "Organising Committee",
+    venue: "Geography Laboratory / Campus Quad",
+  },
+
+  // DAY 3 - Thursday, 19 Nov
+  {
+    start: "2026-11-19T08:00:00+01:00",
+    end: "2026-11-19T09:30:00+01:00",
+    dayLabel: "Day 3 (Thursday, 19 Nov)",
+    time: "8:00 a.m. – 9:30 a.m.",
+    title: "Arrival, Registration, Housekeeping & Programme Briefing",
+    type: "Registration",
+    facilitator: "Master of Ceremonies; Organising Committee",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-19T09:30:00+01:00",
+    end: "2026-11-19T10:00:00+01:00",
+    dayLabel: "Day 3 (Thursday, 19 Nov)",
+    time: "9:30 a.m. – 10:00 a.m.",
+    title: "LEAD KEYNOTE 3: Space-Based Earth Observation and Geospatial Innovation for Climate Action",
+    type: "Lead Keynote",
+    facilitator: "Dr. Esther Hanson (ASTAL-NASRDA)",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-19T10:00:00+01:00",
+    end: "2026-11-19T10:30:00+01:00",
+    dayLabel: "Day 3 (Thursday, 19 Nov)",
+    time: "10:00 a.m. – 10:30 a.m.",
+    title: "KEYNOTE: Open Earth Observation for Climate Intelligence and Community Resilience in Nigeria",
+    type: "Keynote",
+    facilitator: "Dr. Joseph Tuyishimire (DE Africa)",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-19T10:30:00+01:00",
+    end: "2026-11-19T10:50:00+01:00",
+    dayLabel: "Day 3 (Thursday, 19 Nov)",
+    time: "10:30 a.m. – 10:50 a.m.",
+    title: "KEYNOTE: Open Geospatial Information for Peace, Development and Resilience: The UN Mappers Approach",
+    type: "Keynote",
+    facilitator: "Diego Gonzalez Ferreiro",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-19T10:50:00+01:00",
+    end: "2026-11-19T11:20:00+01:00",
+    dayLabel: "Day 3 (Thursday, 19 Nov)",
+    time: "10:50 a.m. – 11:20 a.m.",
+    title: "KEYNOTE: From Geospatial Data to Intelligent Solutions: Advancing Open Geospatial Innovation",
+    type: "Keynote",
+    facilitator: "Capt. (Dr.) Tobi Sowole",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-19T11:20:00+01:00",
+    end: "2026-11-19T11:30:00+01:00",
+    dayLabel: "Day 3 (Thursday, 19 Nov)",
+    time: "11:20 a.m. – 11:30 a.m.",
+    title: "Keynote Conversation and Group Photograph",
+    type: "Interactive",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-19T11:30:00+01:00",
+    end: "2026-11-19T12:30:00+01:00",
+    dayLabel: "Day 3 (Thursday, 19 Nov)",
+    time: "11:30 a.m. – 12:30 p.m.",
+    title: "Paper Presentations (Papers 6 – 10)",
+    type: "Paper Presentation",
+    facilitator: "Chicoco Maps, Akan Tom, Comfort Abraham, Edidiong Etim, Amarachi Sunday",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-19T12:30:00+01:00",
+    end: "2026-11-19T12:50:00+01:00",
+    dayLabel: "Day 3 (Thursday, 19 Nov)",
+    time: "12:30 p.m. – 12:50 p.m.",
+    title: "Participants' Interaction, Tea Break and Transition",
+    type: "Break",
+    venue: "Barth Ebong Hall Annex",
+  },
+  {
+    start: "2026-11-19T12:50:00+01:00",
+    end: "2026-11-19T13:30:00+01:00",
+    dayLabel: "Day 3 (Thursday, 19 Nov)",
+    time: "12:50 p.m. – 1:30 p.m.",
+    title: "TRAINING WORKSHOPS 6 and 7: Geospatial Information Generation; Fieldwork and Ground-Truthing Exercise",
+    type: "Workshop",
+    facilitator: "ASTAL team",
+    venue: "Geography Laboratory / Field Location",
+  },
+  {
+    start: "2026-11-19T13:30:00+01:00",
+    end: "2026-11-19T15:30:00+01:00",
+    dayLabel: "Day 3 (Thursday, 19 Nov)",
+    time: "1:30 p.m. – 3:30 p.m.",
+    title: "TRAINING WORKSHOP 8: GeoAI, Geospatial Data Science and Climate Applications",
+    type: "Workshop",
+    facilitator: "GeoKloud",
+    venue: "Geography Laboratory, Town Campus, University of Uyo",
+  },
+  {
+    start: "2026-11-19T15:30:00+01:00",
+    end: "2026-11-19T16:00:00+01:00",
+    dayLabel: "Day 3 (Thursday, 19 Nov)",
+    time: "3:30 p.m. – 4:00 p.m.",
+    title: "Lunch Break",
+    type: "Break",
+    venue: "Town Campus Annex",
+  },
+  {
+    start: "2026-11-19T16:00:00+01:00",
+    end: "2026-11-19T16:30:00+01:00",
+    dayLabel: "Day 3 (Thursday, 19 Nov)",
+    time: "4:00 p.m. – 4:30 p.m.",
+    title: "Panel Discussion: The Future of Open Mapping and Geospatial Innovation in Nigeria",
+    type: "Panel",
+    facilitator: "Moderator and Panelists",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-19T16:30:00+01:00",
+    end: "2026-11-19T17:00:00+01:00",
+    dayLabel: "Day 3 (Thursday, 19 Nov)",
+    time: "4:30 p.m. – 5:00 p.m.",
+    title: "Annual General Assembly (AGA) – Unique Mappers Network / OpenStreetMap Community in Nigeria",
+    type: "Plenary",
+    facilitator: "Dr. Victor N. Sunday, National Coordinator",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+  {
+    start: "2026-11-19T17:00:00+01:00",
+    end: "2026-11-19T18:00:00+01:00",
+    dayLabel: "Day 3 (Thursday, 19 Nov)",
+    time: "5:00 p.m. – 6:00 p.m.",
+    title: "Closing Ceremony: Awards, Recognition, Remarks and Acknowledgements",
+    type: "Plenary",
+    facilitator: "Prof. Joseph Udoh; Dr. Victor N. Sunday",
+    venue: "Barth Ebong Hall, Town Campus Annex",
+  },
+
+  // DAY 4 - Friday, 20 Nov
+  {
+    start: "2026-11-20T10:00:00+01:00",
+    end: "2026-11-20T13:00:00+01:00",
+    dayLabel: "Day 4 (Friday, 20 Nov)",
+    time: "10:00 a.m. – 1:00 p.m.",
+    title: "Official Excursion and Conference Departure",
+    type: "Excursion",
+    facilitator: "Local Organising Committee",
+    venue: "Uyo, Akwa Ibom State",
+  },
+];
+
+interface LiveConferenceState {
+  mode: "countdown" | "live" | "intermission" | "concluded";
   days: number;
   hours: number;
   minutes: number;
+  currentSession?: ConferenceSessionTime;
+  nextSession?: ConferenceSessionTime;
 }
 
-function useCountdown(target: Date): TimeLeft {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0 });
+function useConferenceScheduleStatus(): LiveConferenceState {
+  const [liveState, setLiveState] = useState<LiveConferenceState>({
+    mode: "countdown",
+    days: 0,
+    hours: 0,
+    minutes: 0,
+  });
 
   useEffect(() => {
-    const tick = () => {
-      const diff = target.getTime() - Date.now();
-      if (diff <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0 });
-        return;
-      }
-      setTimeLeft({
-        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((diff / (1000 * 60)) % 60),
-      });
-    };
-    tick();
-    const id = setInterval(tick, 1000 * 30);
-    return () => clearInterval(id);
-  }, [target]);
+    const calculateStatus = (): LiveConferenceState => {
+      const now = Date.now();
+      const confStart = new Date("2026-11-17T12:00:00+01:00").getTime();
+      const confEnd = new Date("2026-11-20T13:00:00+01:00").getTime();
 
-  return timeLeft;
+      if (now < confStart) {
+        const diff = confStart - now;
+        return {
+          mode: "countdown",
+          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((diff / (1000 * 60)) % 60),
+        };
+      }
+
+      if (now >= confEnd) {
+        return {
+          mode: "concluded",
+          days: 0,
+          hours: 0,
+          minutes: 0,
+        };
+      }
+
+      // During conference: find active session and next session
+      let currentSession: ConferenceSessionTime | undefined;
+      let nextSession: ConferenceSessionTime | undefined;
+
+      for (const session of CONFERENCE_TIMELINE) {
+        const sStart = new Date(session.start).getTime();
+        const sEnd = new Date(session.end).getTime();
+
+        if (now >= sStart && now < sEnd) {
+          currentSession = session;
+        } else if (now < sStart && !nextSession) {
+          nextSession = session;
+        }
+      }
+
+      if (currentSession) {
+        return {
+          mode: "live",
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          currentSession,
+          nextSession,
+        };
+      }
+
+      // In-between sessions or overnight pause between conference days
+      return {
+        mode: "intermission",
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        nextSession,
+      };
+    };
+
+    setLiveState(calculateStatus());
+    const interval = setInterval(() => {
+      setLiveState(calculateStatus());
+    }, 1000 * 15);
+    return () => clearInterval(interval);
+  }, []);
+
+  return liveState;
 }
 
 function pad(n: number): string {
@@ -388,13 +821,27 @@ function MapBackdrop() {
 }
 
 export default function ConferenceLandingPage() {
-  const { days, hours, minutes } = useCountdown(TARGET_DATE);
+  const liveSchedule = useConferenceScheduleStatus();
   const [expandedBio, setExpandedBio] = useState<string | null>(null);
   const toggleBio = (name: string) => setExpandedBio((prev) => (prev === name ? null : name));
 
   return (
     <div style={{ color: COLORS.paragraph, background: "white", minHeight: "100vh" }}>
       <style>{`
+        @keyframes pulse-live {
+          0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+          70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+          100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+        }
+        .live-beacon {
+          width: 9px;
+          height: 9px;
+          border-radius: 50%;
+          background: #DC2626;
+          display: inline-block;
+          animation: pulse-live 1.8s infinite;
+        }
+
         .sotm-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
         .sotm-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
         .sotm-grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; }
@@ -609,18 +1056,107 @@ export default function ConferenceLandingPage() {
 
       {/* ---------------- COUNTDOWN & SCHEDULE ---------------- */}
       <section style={{ maxWidth: 896, margin: "0 auto", padding: "64px 20px", textAlign: "center" }}>
-        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "center", gap: 12, fontWeight: 800, color: COLORS.heading, fontSize: "clamp(28px, 5vw, 36px)" }}>
-          <span>{pad(days)}</span>
-          <span style={{ color: COLORS.muted }}>:</span>
-          <span>{pad(hours)}</span>
-          <span style={{ color: COLORS.muted }}>:</span>
-          <span>{pad(minutes)}</span>
-        </div>
-        <div style={{ marginTop: 4, display: "flex", justifyContent: "center", gap: 32, fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em", color: COLORS.muted }}>
-          <span>Days</span>
-          <span>Hours</span>
-          <span>Min</span>
-        </div>
+        {liveSchedule.mode === "countdown" && (
+          <div>
+            <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "center", gap: 12, fontWeight: 800, color: COLORS.heading, fontSize: "clamp(28px, 5vw, 36px)" }}>
+              <span>{pad(liveSchedule.days)}</span>
+              <span style={{ color: COLORS.muted }}>:</span>
+              <span>{pad(liveSchedule.hours)}</span>
+              <span style={{ color: COLORS.muted }}>:</span>
+              <span>{pad(liveSchedule.minutes)}</span>
+            </div>
+            <div style={{ marginTop: 4, display: "flex", justifyContent: "center", gap: 32, fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em", color: COLORS.muted }}>
+              <span>Days</span>
+              <span>Hours</span>
+              <span>Min</span>
+            </div>
+          </div>
+        )}
+
+        {liveSchedule.mode === "live" && liveSchedule.currentSession && (
+          <div style={{ background: "#FFFFFF", border: `2px solid ${COLORS.green}`, borderRadius: 4, padding: "28px 24px", maxWidth: 740, margin: "0 auto", textAlign: "left", boxShadow: "0 4px 20px rgba(46,125,50,0.12)" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 10, borderBottom: `1px solid ${COLORS.line}`, paddingBottom: 14 }}>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+                <span className="live-beacon" />
+                <span style={{ fontSize: 11, fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.15em", color: "#DC2626" }}>
+                  Happening Now • {liveSchedule.currentSession.dayLabel}
+                </span>
+              </div>
+              <span style={{ fontSize: 11.5, fontWeight: 700, color: COLORS.muted }}>
+                📍 {liveSchedule.currentSession.venue}
+              </span>
+            </div>
+
+            <div style={{ marginTop: 18 }}>
+              <span style={{ display: "inline-block", background: "#F0FDF4", border: `1px solid ${COLORS.green}`, color: COLORS.green, fontSize: 11, fontWeight: 800, padding: "3px 8px", borderRadius: 2, marginBottom: 8 }}>
+                ⏰ {liveSchedule.currentSession.time}
+              </span>
+              <h3 style={{ margin: "4px 0 0", fontSize: "clamp(18px, 3vw, 24px)", fontWeight: 900, color: COLORS.heading, lineHeight: 1.35 }}>
+                {liveSchedule.currentSession.title}
+              </h3>
+              {liveSchedule.currentSession.facilitator && (
+                <p style={{ marginTop: 8, fontSize: 13.5, color: COLORS.heading, fontWeight: 600 }}>
+                  <span style={{ color: COLORS.muted, fontWeight: 500 }}>Lead / Facilitator: </span>
+                  {liveSchedule.currentSession.facilitator}
+                </p>
+              )}
+            </div>
+
+            {liveSchedule.nextSession && (
+              <div style={{ marginTop: 20, paddingTop: 14, borderTop: `1px dashed ${COLORS.line}`, display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
+                <div style={{ fontSize: 12.5, color: COLORS.paragraph }}>
+                  <span style={{ fontWeight: 800, color: COLORS.heading, textTransform: "uppercase", fontSize: 10.5, letterSpacing: "0.08em", marginRight: 6 }}>
+                    Up Next ({liveSchedule.nextSession.time}):
+                  </span>
+                  <span>{liveSchedule.nextSession.title}</span>
+                </div>
+                <Link href="/schedule" style={{ fontSize: 12, fontWeight: 800, color: COLORS.green, textDecoration: "none" }}>
+                  Full Schedule →
+                </Link>
+              </div>
+            )}
+          </div>
+        )}
+
+        {liveSchedule.mode === "intermission" && (
+          <div style={{ background: "#F8FAFC", border: `1px solid ${COLORS.line}`, borderRadius: 4, padding: "28px 24px", maxWidth: 740, margin: "0 auto", textAlign: "center" }}>
+            <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.15em", color: COLORS.green }}>
+              Conference in Session • Programme Intermission
+            </span>
+            <h3 style={{ margin: "10px 0 0", fontSize: 20, fontWeight: 800, color: COLORS.heading }}>
+              Today&apos;s Sessions Have Concluded
+            </h3>
+            {liveSchedule.nextSession && (
+              <p style={{ marginTop: 8, fontSize: 13.5, color: COLORS.paragraph }}>
+                Next on the programme: <strong>{liveSchedule.nextSession.title}</strong> ({liveSchedule.nextSession.time})
+              </p>
+            )}
+            <div style={{ marginTop: 16 }}>
+              <Link href="/schedule" style={{ background: COLORS.green, color: "white", padding: "10px 20px", fontSize: 11.5, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", textDecoration: "none", borderRadius: 2 }}>
+                View Upcoming Schedule →
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {liveSchedule.mode === "concluded" && (
+          <div style={{ background: "#FFFFFF", border: `1px solid ${COLORS.line}`, borderRadius: 4, padding: "36px 24px", maxWidth: 740, margin: "0 auto", textAlign: "center" }}>
+            <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.15em", color: COLORS.green }}>
+              Conference Concluded
+            </span>
+            <h3 style={{ margin: "10px 0 0", fontSize: 24, fontWeight: 900, color: COLORS.heading, textTransform: "uppercase" }}>
+              Thank You for Joining State of the Map Nigeria 2026!
+            </h3>
+            <p style={{ maxWidth: 600, margin: "12px auto 0", fontSize: 14, lineHeight: 1.6, color: COLORS.paragraph }}>
+              Over 4 impactful days in Uyo, community mappers, researchers, and geospatial innovators gathered to advance open mapping for climate resilience. See you at SOTM Nigeria 2027!
+            </p>
+            <div style={{ marginTop: 20 }}>
+              <Link href="/schedule" style={{ background: COLORS.heading, color: "white", padding: "12px 24px", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", textDecoration: "none", borderRadius: 2 }}>
+                Review Programme &amp; Presentations →
+              </Link>
+            </div>
+          </div>
+        )}
 
         <div
           className="sotm-grid-4"
@@ -629,7 +1165,16 @@ export default function ConferenceLandingPage() {
           {SCHEDULE_DAYS.map((d: ScheduleDay, i: number) => {
             const active = i === 0;
             return (
-              <div key={d.day} style={{ padding: "16px 12px", background: active ? COLORS.green : "white" }}>
+              <Link
+                key={d.day}
+                href="/schedule"
+                style={{
+                  display: "block",
+                  padding: "16px 12px",
+                  background: active ? COLORS.green : "white",
+                  textDecoration: "none",
+                }}
+              >
                 <p style={{ fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.15em", color: active ? "rgba(255,255,255,0.85)" : COLORS.muted, margin: 0 }}>
                   {d.day}
                 </p>
@@ -639,7 +1184,7 @@ export default function ConferenceLandingPage() {
                 <p style={{ marginTop: 4, fontSize: 10, fontWeight: 600, color: active ? "rgba(255,255,255,0.9)" : COLORS.paragraph, margin: "4px 0 0" }}>
                   {d.label}
                 </p>
-              </div>
+              </Link>
             );
           })}
         </div>
