@@ -135,18 +135,24 @@ interface Sponsor {
 }
 
 const PAST_SPONSORS: Sponsor[] = [
+  { name: "Unique Mappers Network", img: "/sponsors/unique-mappers.webp" },
+  { name: "University of Uyo", img: "/sponsors/uniuyo.jpg" },
   { name: "SciStarter", img: "/sponsors/scistarter.png" },
   { name: "Geospatial Intelligence Foundation of Nigeria (GIFON)", img: "/sponsors/gifon.png" },
+  { name: "NASRDA", img: "/sponsors/nasrda.png" },
+  { name: "UN Mappers", img: "/sponsors/unmappers.png" },
   { name: "Digital Earth Africa", img: "/sponsors/digital-earth-africa.png" },
-  { name: "TomTom", img: "/sponsors/tomtom.jpg" },
   { name: "OpenStreetMap Foundation", img: "/sponsors/osmf.jpg" },
-  { name: "Spatialmatrix", img: "/sponsors/spatialmatrix-logo.png" },
-  { name: "GKC", img: "/sponsors/gkc.jpg" },
+  { name: "TomTom", img: "/sponsors/tomtom.jpg" },
   { name: "Fotoshi", img: "/sponsors/fotoshi.jpg" },
-  { name: "Unique Mappers Network", img: "/sponsors/unique-mappers.webp" },
+  { name: "Geokloud", img: "/sponsors/gkc.jpg" },
+  { name: "Spatialmatrix", img: "/sponsors/spatialmatrix-logo.png" },
+  { name: "HOT OSM", img: "/sponsors/hotosm.png" },
+  { name: "University of Port Harcourt", img: "/sponsors/uniport.png" },
+  { name: "University of Science & Technology", img: "/sponsors/ust.png" },
+  { name: "Federal University Otuoke", img: "/sponsors/otuoke.png" },
   { name: "University of Nigeria Nsukka", img: "/sponsors/unn.jpg" },
-  { name: "Rivers State University", img: "/sponsors/rsu.jpg" },
-  { name: "University of Uyo", img: "/sponsors/uniuyo.jpg" },
+  { name: "University of Abuja", img: "/sponsors/uniabuja.png" },
 ];
 
 export default function SponsorsPage(): any {

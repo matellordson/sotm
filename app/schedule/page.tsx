@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { COLORS } from "@/lib/colors";
@@ -9,14 +8,13 @@ import {
   Presentation,
   Compass,
   Award,
-  Clock,
-  Calendar,
 } from "lucide-react";
 
 interface ScheduleItem {
   time: string;
   title: string;
   type: string;
+  facilitator?: string;
   description?: string;
   details?: string[];
   track?: string;
@@ -27,6 +25,7 @@ interface DaySchedule {
   day: string;
   date: string;
   title: string;
+  venue?: string;
   summary: string;
   icon: typeof Laptop;
   sessions: ScheduleItem[];
@@ -37,51 +36,28 @@ const SCHEDULE_DATA: DaySchedule[] = [
     id: "day-1",
     day: "Tuesday",
     date: "17 November 2026",
-    title: "Arrivals, Opening Ceremony & Training Workshops",
-    summary: "Hands-on, practical capacity development sessions across GIS, GeoAI, Earth Observation, and UAV technologies. Bring your laptop!",
+    title: "Arrival, Registration, Courtesy Visits & Welcome Mapathon Party",
+    venue: "Geography Laboratory, Town Campus, University of Uyo",
+    summary: "Arrival, registration, courtesy visits and Welcome Map Nigeria Mapathon Party.",
     icon: Laptop,
     sessions: [
       {
-        time: "08:00 – 09:30",
-        title: "Registration, Accreditation & Welcome Networking",
-        type: "General",
-        description: "Badge pick-up, workshop kits distribution, and early morning networking with community members and sponsors.",
+        time: "12:00 noon",
+        title: "Arrival and registration",
+        type: "Registration",
+        facilitator: "Grace Martins-Ateli; Dr. Edidiong Etim",
       },
       {
-        time: "09:30 – 11:00",
-        title: "Official Opening Ceremony & Presidential Keynote",
-        type: "Plenary",
-        description: "Welcome addresses by Unique Mappers Network, University of Uyo dignitaries, government stakeholders, and Lead Keynote Address by Prof. Robert Etim Ekpenyong on 'Open Geospatial Innovation for Climate Action and Community Resilience: The Role of Geography, Technology and Communities'.",
+        time: "1:00 p.m.",
+        title: "Courtesy visits to the Vice-Chancellor and ASTAL",
+        type: "Courtesy Visit",
+        facilitator: "Prof. Joseph Udoh; Dr. Victor N. Sunday",
       },
       {
-        time: "11:00 – 11:30",
-        title: "Tea Break & Group Photograph",
-        type: "Break",
-      },
-      {
-        time: "11:30 – 14:00",
-        title: "Parallel Training Workshop Sessions (Part 1)",
-        type: "Workshop",
-        description: "Practical, hands-on masterclasses (Beginner to Advanced):",
-        details: [
-          "Workshop 1: OpenStreetMap, Open Mapping & QGIS — From Data Capture to Advanced Spatial Cartography",
-          "Workshop 2: GeoAI, Artificial Intelligence & Spatial Data Science — Machine Learning in GIS",
-          "Workshop 3: Earth Observation, Google Earth Engine & Digital Earth Africa — Satellite Analytics for Climate Resilience",
-          "Workshop 4: Citizen Science, Mobile GIS, UAV & Climate/Disaster Mapping — Field Data Collection & Drone Photogrammetry",
-          "Special Workshop: Use of Climate Data — From Downloading to Data Embellishment (Trainer: Samson Feranmi Ayodele)",
-          "Special Workshop: Field-Based Photo Mapping with Fotoshi — Collecting, Uploading & Exploring Georeferenced Imagery (Trainer: Godwin Archibong)",
-        ],
-      },
-      {
-        time: "14:00 – 15:00",
-        title: "Lunch Break & Exhibition Networking",
-        type: "Break",
-      },
-      {
-        time: "15:00 – 17:30",
-        title: "Parallel Training Workshop Sessions (Part 2 — Deep Dive & Practical Labs)",
-        type: "Workshop",
-        description: "Continuation of practical labs, hands-on coding, dataset building, and troubleshooting with expert facilitators.",
+        time: "2:00 p.m.",
+        title: "Welcome Mapathon Party and Training Workshop 1 and 2: OpenStreetMap, HOT Tasking Manager and photo mapping",
+        type: "Workshop & Mapathon",
+        facilitator: "Dr. Victor N. Sunday; Salvation Okoh; Godwin Archibong",
       },
     ],
   },
@@ -89,66 +65,173 @@ const SCHEDULE_DATA: DaySchedule[] = [
     id: "day-2",
     day: "Wednesday",
     date: "18 November 2026",
-    title: "Conference Presentations (Tracks 1 & 2) & Exhibition Opening",
-    summary: "Academic and practical presentations focusing on Geospatial Innovation, Open Mapping, and GeoAI.",
+    title: "Main Conference: Opening, Keynote Addresses, Citizen Science Training, Paper Presentations & GIS Day Activities",
+    venue: "Barth Ebong Hall, Town Campus Annex (Selected practical sessions at Geography Laboratory)",
+    summary: "Main conference opening, keynote addresses, citizen science training, paper presentations and GIS Day activities.",
     icon: Presentation,
     sessions: [
       {
-        time: "08:30 – 09:00",
-        title: "Day 2 Registration & Plenary Recap",
-        type: "General",
+        time: "8:00 a.m.",
+        title: "Arrival of guests and participants; registration",
+        type: "Registration",
+        facilitator: "Rania; Godswill; Unique Mappers team",
       },
       {
-        time: "09:00 – 10:00",
-        title: "Keynote Address: The Future of GeoAI and Open Geospatial Data in Africa",
+        time: "8:00 a.m. – 10:00 a.m.",
+        title: "GIS Day Events – with Invited Secondary Schools, Posters, Exhibition & Mapathon",
+        type: "Special Event",
+        facilitator: "Stella, Grace, & Richard",
+      },
+      {
+        time: "10:00 a.m.",
+        title: "Opening prayer and National Anthem",
+        type: "Plenary",
+        facilitator: "Master of Ceremonies (MC)",
+      },
+      {
+        time: "10:10 a.m.",
+        title: "Introduction of dignitaries and participants",
+        type: "Plenary",
+        facilitator: "Master of Ceremonies (MC)",
+      },
+      {
+        time: "10:20 a.m.",
+        title: "Opening remarks",
+        type: "Plenary",
+        facilitator: "Vice-Chancellor / Head of Department",
+      },
+      {
+        time: "10:30 a.m.",
+        title: "Welcome address",
+        type: "Plenary",
+        facilitator: "Dr. Victor N. Sunday; Prof. Joseph Udoh",
+      },
+      {
+        time: "10:40 a.m.",
+        title: "LEAD KEYNOTE 1: Open Geospatial Innovation for Climate Action and Community Resilience: The Role of Geography, Technology and Communities",
+        type: "Lead Keynote",
+        facilitator: "Prof. Robert Etim Ekpenyong",
+      },
+      {
+        time: "11:10 a.m.",
+        title: "LEAD KEYNOTE 2: From Geospatial Information to Spatial Intelligence: Democratizing Decision-Making in the Digital Age",
+        type: "Lead Keynote",
+        facilitator: "Dr. A. A. Usman (GIFON)",
+      },
+      {
+        time: "11:40 a.m.",
+        title: "KEYNOTE: From Community Mapping to Intelligent Maps: Strengthening OpenStreetMap, GeoAI and Location Intelligence for Africa",
         type: "Keynote",
-        description: "Distinguished keynote addresses by Dr. AA Usman, Prof. Rebecca Boger, Dr. Ibrahimaa Cisse, Dr. Caroline Nickerson, Joseph Tuyishimire, and Christopher Beddow on citizen science, spatial intelligence, GeoAI, Earth observation, and open mapping innovation.",
+        facilitator: "Kingsley Chika Chukwu (TomTom)",
       },
       {
-        time: "10:00 – 10:30",
-        title: "Official Opening of the Geospatial Exhibition",
-        type: "Exhibition",
-        description: "Cutting of the ribbon and tour of tech stalls, drone showcases, and research posters.",
+        time: "12:00 p.m.",
+        title: "KEYNOTE: Community Mapping for Climate Change",
+        type: "Keynote",
+        facilitator: "Craig Allan, OpenStreetMap Foundation - Chairperson",
       },
       {
-        time: "10:30 – 11:00",
-        title: "Tea Break & Poster Session",
+        time: "12:20 p.m.",
+        title: "Keynote conversation and audience interaction 1",
+        type: "Interactive",
+        facilitator: "Moderator / keynote speakers",
+      },
+      {
+        time: "12:40 p.m.",
+        title: "Tea break, poster viewing and group photograph",
         type: "Break",
+        facilitator: "Organising Committee",
       },
       {
-        time: "11:00 – 13:30",
-        title: "Track 1: Geospatial Innovation & Open Mapping",
-        type: "Presentation Track",
-        track: "Track 1",
-        description: "Academic & practical paper presentations covering:",
-        details: [
-          "OpenStreetMap, Open Mapping & Community Mapping",
-          "Open-Source GIS, QGIS & Mobile GIS",
-          "Earth Observation, Remote Sensing, UAVs & Geospatial Applications",
-        ],
+        time: "1:00 p.m.",
+        title: "TRAINING WORKSHOP 3: Discover Citizen Science – Deepen Your Skills and Earn a Digital Badge / Champion Certificate (Free attendance/certificate for participant)",
+        type: "Workshop",
+        facilitator: "Prof. Darlene Cavalier, SciStarter / Arizona State University",
       },
       {
-        time: "13:30 – 14:30",
-        title: "Lunch Break & Exhibition Demonstrations",
+        time: "1:40 p.m.",
+        title: "KEYNOTE: GeoAI – Image Recognition",
+        type: "Keynote",
+        facilitator: "Christopher Beddow",
+      },
+      {
+        time: "2:00 p.m.",
+        title: "KEYNOTE: Citizen Science, Science Diplomacy and Emerging Technologies: Engaging Volunteers and Open Mapping Communities for Climate Action and Global Collaboration",
+        type: "Keynote",
+        facilitator: "Prof. Rebecca Boger",
+      },
+      {
+        time: "2:20 p.m.",
+        title: "KEYNOTE: From Citizens to Scientists: Harnessing Citizen Science and Community Data for Climate Action and Resilience",
+        type: "Keynote",
+        facilitator: "Dr. Caroline Nickerson",
+      },
+      {
+        time: "2:40 p.m.",
+        title: "Keynote conversation and audience interaction 2",
+        type: "Interactive",
+        facilitator: "Moderator / keynote speakers",
+      },
+      {
+        time: "3:00 p.m.",
+        title: "LUNCH BREAK",
         type: "Break",
+        facilitator: "Organising Committee",
       },
       {
-        time: "14:30 – 17:00",
-        title: "Track 2: GeoAI, Artificial Intelligence & Spatial Data Science",
-        type: "Presentation Track",
-        track: "Track 2",
-        description: "Original research and applied technical demonstrations covering:",
-        details: [
-          "GeoAI, Machine Learning & AI-Assisted Mapping",
-          "Computer Vision, Automated Feature Extraction & Spatial Analytics",
-          "Big Geospatial Data, Predictive Modelling & Responsible AI",
-        ],
+        time: "3:20 p.m.",
+        title: "PAPER 1: Integrating Open Mapping and Digital Geospatial Technologies for Monitoring, Mapping and Evaluation of School Outreach Delivery in Uyo, Akwa Ibom State, Nigeria",
+        type: "Paper Presentation",
+        facilitator: "Victor N. Sunday, Salvation Pere Okoh, and Godwin Akpan",
       },
       {
-        time: "17:00 – 18:30",
-        title: "Evening Social & Lightning Talks",
-        type: "Social",
-        description: "5-minute lightning talks from community members, students, and startups.",
+        time: "3:30 p.m.",
+        title: "POSTER PRESENTATION: GIS-Based Campus Mapping and Spatial Information Management at the University of Uyo, Nigeria",
+        type: "Poster Presentation",
+        description: "By Robert Etim Ekpenyong, Uwem Jona Ituen, Joseph C. Udo, Richard Thomas Garba, Samuel Etim Inwang and Idiongomfon Joseph Udoh.",
+        facilitator: "A Poster Presentation by Listed co-authors",
+      },
+      {
+        time: "3:40 p.m.",
+        title: "PAPER 2: A Geospatial Framework for Land Surface Temperature Assessment and Mitigation: A Case Study of Uyo Metropolis, Nigeria",
+        type: "Paper Presentation",
+        facilitator: "Akan Tom; Joseph Udoh",
+      },
+      {
+        time: "3:50 p.m.",
+        title: "PAPER 3: Spatiotemporal Analysis of Mangrove Cover Dynamics in Burutu Local Government, Delta State, Nigeria (1986-2025): A Landsat and Google Earth Engine Assessment",
+        type: "Paper Presentation",
+        facilitator: "Victor N. Sunday and Salvation Pere Okoh",
+      },
+      {
+        time: "4:00 p.m.",
+        title: "PAPER 4: Citizen Science and Community Mapping for Climate Resilience in Nigeria: Opportunities for Young Geographers",
+        type: "Paper Presentation",
+        facilitator: "Godswill Akpan Isaiah",
+      },
+      {
+        time: "4:10 p.m.",
+        title: "PAPER 5: Spatial Consistency and Relative Completeness of Open Building Footprint Datasets: Implications for Urban Density Estimation in Ibadan, Nigeria",
+        type: "Paper Presentation",
+        facilitator: "Stella Fagbuyi 1,2 and Victor N. Sunday 1,3",
+      },
+      {
+        time: "4:20 p.m.",
+        title: "Transition to Geography Laboratory",
+        type: "Transition",
+        facilitator: "Organising Committee",
+      },
+      {
+        time: "4:30 p.m.",
+        title: "GIS Day Celebration with GIS (QGIS/ARCGIS) / MapRoulette Training Workshops 4 and 5",
+        type: "Workshop",
+        facilitator: "Unique Mappers Network; TomTom Africa | Geography Laboratory",
+      },
+      {
+        time: "5:30 p.m.",
+        title: "Group photograph and close of day",
+        type: "Plenary",
+        facilitator: "Organising Committee",
       },
     ],
   },
@@ -156,60 +239,124 @@ const SCHEDULE_DATA: DaySchedule[] = [
     id: "day-3",
     day: "Thursday",
     date: "19 November 2026",
-    title: "Conference Presentations (Tracks 3 & 4) & Collaborative Mapathon",
-    summary: "Climate action, disaster risk reduction, citizen science, and a nationwide collaborative Mapathon.",
+    title: "Keynote Addresses, Paper Presentations, Technical Workshops, Panel Discussion & Annual General Assembly",
+    venue: "Barth Ebong Hall, Town Campus Annex (Practical workshops at Geography Laboratory)",
+    summary: "Keynote addresses, paper presentations, technical workshops, panel discussion and Annual General Assembly.",
     icon: Compass,
     sessions: [
       {
-        time: "08:30 – 09:00",
-        title: "Morning Welcome & Announcements",
-        type: "General",
+        time: "8:00 a.m.",
+        title: "Arrival and registration",
+        type: "Registration",
+        facilitator: "Organising Committee",
       },
       {
-        time: "09:00 – 11:00",
-        title: "Track 3: Climate Action, Disaster Risk Reduction & Community Resilience",
-        type: "Presentation Track",
-        track: "Track 3",
-        description: "Academic research and field case studies:",
-        details: [
-          "Climate Change Adaptation & Vulnerability Assessment",
-          "Flood, Heat, Drought & Environmental Risk Mapping",
-          "Disaster Risk Reduction, Emergency Response & Resilient Communities",
-        ],
+        time: "9:00 a.m.",
+        title: "Housekeeping and programme briefing",
+        type: "Plenary",
+        facilitator: "Master of Ceremonies",
       },
       {
-        time: "11:00 – 11:30",
-        title: "Tea Break & Networking",
+        time: "9:30 a.m.",
+        title: "LEAD KEYNOTE 3: Space-Based Earth Observation and Geospatial Innovation for Climate Action, Disaster Risk Reduction and Sustainable Development in the Niger Delta",
+        type: "Lead Keynote",
+        facilitator: "Dr. Esther Hanson (ASTAL-NASRDA)",
+      },
+      {
+        time: "10:00 a.m.",
+        title: "KEYNOTE: Open Earth Observation for Climate Intelligence and Community Resilience in Nigeria",
+        type: "Keynote",
+        facilitator: "Dr. Joseph Tuyishimire (DE Africa)",
+      },
+      {
+        time: "10:30 a.m.",
+        title: "KEYNOTE: Open Geospatial Information for Peace, Development and Resilience: The UN Mappers Approach to Capacity Building, Collaborative Mapping and Humanitarian Action",
+        type: "Keynote",
+        facilitator: "Diego Gonzalez Ferreiro",
+      },
+      {
+        time: "10:50 a.m.",
+        title: "KEYNOTE: From Geospatial Data to Intelligent Solutions: Advancing Open Geospatial Innovation for Sustainable Development in Nigeria",
+        type: "Keynote",
+        facilitator: "Capt. (Dr.) Tobi Sowole",
+      },
+      {
+        time: "11:20 a.m.",
+        title: "Keynote conversation and group photograph",
+        type: "Interactive",
+        facilitator: "Moderator / keynote speakers",
+      },
+      {
+        time: "11:30 a.m.",
+        title: "PAPER 6: Fast and Wide – Rapid Profiling of Informal Waterfront Settlements",
+        type: "Paper Presentation",
+        facilitator: "Chicoco Maps",
+      },
+      {
+        time: "11:50 a.m.",
+        title: "PAPER 7: GIS-Based Estimation of Flood-Exposed Roads and Buildings in Uyo, Nigeria: A Zonal Analysis of Urban Infrastructure at Risk",
+        type: "Paper Presentation",
+        facilitator: "Akan Tom; Comfort Abraham",
+      },
+      {
+        time: "12:00 p.m.",
+        title: "PAPER 8: Open Geospatial Mapping of Malaria Habitat Suitability and Observed RDT Positivity in Akwa Ibom State, Nigeria",
+        type: "Paper Presentation",
+        facilitator: "Edidiong Robert Etim; Etiobong Simeon Ema; Chidimma Chisom Maduka",
+      },
+      {
+        time: "12:10 p.m.",
+        title: "PAPER 9: Integrating Open Mapping and Digital Geospatial Technologies for Monitoring, Mapping and Evaluation of School Outreach Delivery in Uyo, Akwa Ibom State, Nigeria",
+        type: "Paper Presentation",
+        facilitator: "Victor N. Sunday, Salvation Pere Okoh and Godswill Akpan",
+      },
+      {
+        time: "12:20 p.m.",
+        title: "PAPER 10: Barriers to Mainstreaming Geospatial Nature-Based Solutions in Urban Flood Management in Nigerian Cities",
+        type: "Paper Presentation",
+        facilitator: "Amarachi Sunday",
+      },
+      {
+        time: "12:30 p.m.",
+        title: "Participants' interaction, tea break and transition",
         type: "Break",
+        facilitator: "Organising Committee",
       },
       {
-        time: "11:30 – 13:30",
-        title: "Track 4: Citizen Science, Community Mapping & Humanitarian Action",
-        type: "Presentation Track",
-        track: "Track 4",
-        description: "Community initiatives, grassroots projects, and youth engagement:",
-        details: [
-          "Citizen Science, Citizen-Generated Data & Participatory Mapping",
-          "Humanitarian, Crisis & Community Mapping",
-          "Youth, Volunteers, Local Knowledge & Community Empowerment",
-        ],
+        time: "12:50 p.m.",
+        title: "TRAINING WORKSHOPS 6 and 7: Geospatial Information Generation; Fieldwork and Ground-Truthing Exercise",
+        type: "Workshop",
+        facilitator: "ASTAL team | Geography Laboratory / field location",
       },
       {
-        time: "13:30 – 14:30",
-        title: "Lunch Break",
+        time: "1:30 p.m.",
+        title: "TRAINING WORKSHOP 8: GeoAI, Geospatial Data Science and Climate Applications",
+        type: "Workshop",
+        facilitator: "GeoKloud | Geography Laboratory",
+      },
+      {
+        time: "3:30 p.m.",
+        title: "LUNCH BREAK",
         type: "Break",
+        facilitator: "Organising Committee",
       },
       {
-        time: "14:30 – 17:30",
-        title: "National SOTM Mapathon Session",
-        type: "Mapathon",
-        description: "High-energy collaborative mapping session focusing on OpenStreetMap humanitarian tasks, flood vulnerability validation, and local infrastructure mapping.",
-        details: [
-          "OpenStreetMap & Tasking Manager Tasks",
-          "Humanitarian & Crisis Mapping Validation",
-          "Citizen Science & Community Mapping",
-          "Disaster Response & Vulnerability Data Synthesis",
-        ],
+        time: "4:00 p.m.",
+        title: "Panel discussion: The Future of Open Mapping and Geospatial Innovation in Nigeria",
+        type: "Panel",
+        facilitator: "Moderator and panelists",
+      },
+      {
+        time: "4:30 p.m.",
+        title: "Annual General Assembly – Unique Mappers Network / OpenStreetMap Community in Nigeria",
+        type: "Plenary",
+        facilitator: "Dr. Victor N. Sunday, National Coordinator",
+      },
+      {
+        time: "5:00 p.m.",
+        title: "Closing ceremony: awards, recognition, remarks and acknowledgements",
+        type: "Plenary",
+        facilitator: "Prof. Joseph Udoh; Dr. Victor N. Sunday",
       },
     ],
   },
@@ -217,49 +364,16 @@ const SCHEDULE_DATA: DaySchedule[] = [
     id: "day-4",
     day: "Friday",
     date: "20 November 2026",
-    title: "Track 5 Presentations, AGA & Awards Ceremony",
-    summary: "SDG geospatial applications, the Annual General Assembly of OSM Nigeria, awards, and grand closing.",
+    title: "Excursion and Departure",
+    venue: "Uyo, Akwa Ibom State",
+    summary: "Guided local excursion and official conference departure.",
     icon: Award,
     sessions: [
       {
-        time: "09:00 – 11:00",
-        title: "Track 5: Geospatial Applications, Education, Innovation & Sustainable Development",
-        type: "Presentation Track",
-        track: "Track 5",
-        description: "Cross-disciplinary applications and capacity development:",
-        details: [
-          "Smart Cities, Health, Agriculture & Infrastructure",
-          "Geospatial Education, Capacity Development & Digital Skills",
-          "Entrepreneurship, Partnerships, Innovation & SDG Applications",
-        ],
-      },
-      {
-        time: "11:00 – 11:30",
-        title: "Tea Break & Final Exhibition Visits",
-        type: "Break",
-      },
-      {
-        time: "11:30 – 14:00",
-        title: "Annual General Assembly (AGA) — OpenStreetMap Nigeria / Unique Mappers Network",
-        type: "Governance",
-        description: "Community engagement, reporting, leadership transitions, and strategic discussions for the future of open mapping in Nigeria.",
-        details: [
-          "Annual Activity & Financial Reports",
-          "Community Working Groups & Chapter Updates",
-          "Strategic Roadmap for 2027 & Beyond",
-          "Open Floor & Stakeholder Resolutions",
-        ],
-      },
-      {
-        time: "14:00 – 15:00",
-        title: "Lunch Break",
-        type: "Break",
-      },
-      {
-        time: "15:00 – 17:00",
-        title: "Awards, Recognitions, Communiqué & Grand Closing Ceremony",
-        type: "Plenary",
-        description: "Best Paper Awards, Mapathon Champions Recognition, Outstanding Community Contributor Awards, adoption of Conference Communiqué, and closing remarks.",
+        time: "10:00 a.m. – 12:00 noon",
+        title: "Excursion and departure",
+        type: "Excursion",
+        facilitator: "Local Organising Committee",
       },
     ],
   },
@@ -284,7 +398,7 @@ export default function SchedulePage() {
 
       {/* ---------------- HERO ---------------- */}
       <section style={{ background: COLORS.heading, color: "white", padding: "64px 20px 48px", textAlign: "center" }}>
-        <div style={{ maxWidth: 760, margin: "0 auto" }}>
+        <div style={{ maxWidth: 840, margin: "0 auto" }}>
           <p style={{ margin: 0, fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.15em", color: COLORS.green }}>
             17th – 20th November 2026 • University of Uyo
           </p>
@@ -292,14 +406,28 @@ export default function SchedulePage() {
           <h1 style={{ marginTop: 14, fontWeight: 900, textTransform: "uppercase", fontSize: "clamp(22px, 4.5vw, 34px)", margin: "14px 0 0" }}>
             Conference Programme &amp; Schedule
           </h1>
-          <p style={{ marginTop: 12, fontSize: 13.5, color: "rgba(255,255,255,0.8)", maxWidth: 640, margin: "12px auto 0", lineHeight: 1.6 }}>
-            4-day schedule spanning hands-on workshops, 5 thematic presentation tracks, collaborative mapathons, geospatial exhibitions, and the Annual General Assembly.
+
+          <p style={{ marginTop: 10, fontSize: 13.5, fontWeight: 700, color: COLORS.green, letterSpacing: "0.03em" }}>
+            Theme: Open Geospatial Innovation for Climate Action and Community Resilience
+          </p>
+
+          <div style={{ marginTop: 18, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 10, fontSize: 12.5, color: "rgba(255,255,255,0.9)" }}>
+            <span style={{ background: "rgba(255,255,255,0.1)", padding: "6px 12px", borderRadius: 3, border: "1px solid rgba(255,255,255,0.15)" }}>
+              🏛️ <strong>Main Venue:</strong> Barth Ebong Hall, Town Campus Annex, UniUyo
+            </span>
+            <span style={{ background: "rgba(255,255,255,0.1)", padding: "6px 12px", borderRadius: 3, border: "1px solid rgba(255,255,255,0.15)" }}>
+              💻 <strong>Workshops Venue:</strong> Geography Lab, Town Campus, UniUyo
+            </span>
+          </div>
+
+          <p style={{ marginTop: 14, fontSize: 11.5, color: "rgba(255,255,255,0.6)", fontStyle: "italic" }}>
+            State of the Map Nigeria 2026 | Proposed Programme – Subject to LOC Confirmation
           </p>
         </div>
       </section>
 
       {/* ---------------- DAY TABS & SCHEDULE CONTENT ---------------- */}
-      <section style={{ maxWidth: 896, margin: "0 auto", padding: "56px 20px 80px" }}>
+      <section style={{ maxWidth: 960, margin: "0 auto", padding: "56px 20px 80px" }}>
         {/* Day Switcher */}
         <div className="sched-tabs" style={{ border: `1px solid ${COLORS.line}` }}>
           {SCHEDULE_DATA.map((day) => {
@@ -330,10 +458,17 @@ export default function SchedulePage() {
 
         {/* Active Day Header */}
         <div style={{ marginTop: 32, padding: "24px 28px", border: `1px solid ${COLORS.line}`, background: "#F8FAFC" }}>
-          <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.12em", color: COLORS.green }}>
-            {currentSchedule.day} • {currentSchedule.date}
-          </span>
-          <h2 style={{ margin: "6px 0 0", fontSize: "clamp(16px, 2.5vw, 20px)", fontWeight: 800, textTransform: "uppercase", color: COLORS.heading }}>
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
+            <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.12em", color: COLORS.green }}>
+              {currentSchedule.day} • {currentSchedule.date}
+            </span>
+            {currentSchedule.venue && (
+              <span style={{ fontSize: 11.5, fontWeight: 700, color: COLORS.heading, background: "#E2E8F0", padding: "4px 10px", borderRadius: 3 }}>
+                📍 {currentSchedule.venue}
+              </span>
+            )}
+          </div>
+          <h2 style={{ margin: "8px 0 0", fontSize: "clamp(16px, 2.5vw, 20px)", fontWeight: 800, textTransform: "uppercase", color: COLORS.heading }}>
             {currentSchedule.title}
           </h2>
           <p style={{ marginTop: 8, fontSize: 13.5, lineHeight: 1.6, color: COLORS.paragraph, margin: "8px 0 0" }}>
@@ -361,23 +496,34 @@ export default function SchedulePage() {
 
               <div>
                 <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 8 }}>
-                  <h3 style={{ margin: 0, fontSize: 14, fontWeight: 800, color: COLORS.heading }}>
+                  <h3 style={{ margin: 0, fontSize: 14.5, fontWeight: 800, color: COLORS.heading, lineHeight: 1.4 }}>
                     {session.title}
                   </h3>
                   <span
                     style={{
                       border: `1px solid ${COLORS.line}`,
                       color: COLORS.green,
+                      background: "#F0FDF4",
                       fontSize: 10,
                       fontWeight: 700,
                       textTransform: "uppercase",
                       letterSpacing: "0.05em",
-                      padding: "2px 6px",
+                      padding: "2px 8px",
+                      borderRadius: 2,
                     }}
                   >
                     {session.type}
                   </span>
                 </div>
+
+                {session.facilitator && (
+                  <div style={{ marginTop: 8, fontSize: 12.5, color: COLORS.heading, display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 6 }}>
+                    <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: COLORS.green }}>
+                      Facilitator / Presenter:
+                    </span>
+                    <span style={{ fontWeight: 600 }}>{session.facilitator}</span>
+                  </div>
+                )}
 
                 {session.description && (
                   <p style={{ marginTop: 6, fontSize: 13, lineHeight: 1.6, color: COLORS.paragraph, margin: "6px 0 0" }}>

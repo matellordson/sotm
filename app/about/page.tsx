@@ -34,6 +34,16 @@ const LOC_MEMBERS: LOCMember[] = [
     img: "/loc/victor_sunday.jpg",
   },
   {
+    name: "Prof. Joseph Udoh",
+    role: "Co-Chair SOTM Nigeria 2026 • Academic Track & Logistics Lead • University of Uyo",
+    img: "/speakers/joseph_udoh.jpg",
+  },
+  {
+    name: "Martins-Ateli Grace",
+    role: "Programs & Communication",
+    img: "/loc/martins_grace.jpg",
+  },
+  {
     name: "Edidiong Robert Etim",
     role: "LOC Secretary",
     img: "/loc/edidiong_etim.jpg",
@@ -42,11 +52,6 @@ const LOC_MEMBERS: LOCMember[] = [
     name: "Samuel Etim Inwang",
     role: "LOC Assistant Secretary",
     img: "/loc/samuel_inwang.jpg",
-  },
-  {
-    name: "Martins-Ateli Grace",
-    role: "Programs & Communication",
-    img: "/loc/martins_grace.jpg",
   },
   {
     name: "Chukwuemeka Emmanuel Nwosu",
@@ -89,7 +94,7 @@ const AUDIENCE: AudienceGroup[] = [
 function HeroBackdrop() {
   return (
     <Image
-      src="https://www.ibomair.com/wp-content/uploads/2022/01/hl81gtkfqex41.jpg"
+      src="/hero-banner.jpg"
       alt="State of the Map Nigeria Conference Venue - Akwa Ibom State"
       fill
       sizes="100vw"
@@ -214,7 +219,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ---------------- LOCAL ORGANIZING COMMITTEE (LOC) ---------------- */}
+      {/* ---------------- LOCAL AND INTERNATIONAL ORGANIZING COMMITTEE ---------------- */}
       <section style={{ padding: "64px 0", background: "white" }}>
         <div style={{ maxWidth: 1040, margin: "0 auto", padding: "0 20px" }}>
           <div style={{ textAlign: "center", marginBottom: 36 }}>
@@ -222,7 +227,7 @@ export default function AboutPage() {
               Organizing Team
             </span>
             <h2 style={{ fontSize: "clamp(20px, 3.2vw, 28px)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: COLORS.heading, margin: "8px 0 0" }}>
-              Local Organizing Committee (LOC)
+              Local and International Organizing Committee
             </h2>
             <p style={{ maxWidth: 640, margin: "10px auto 0", fontSize: 13.5, color: COLORS.paragraph, lineHeight: 1.6 }}>
               The dedicated committee coordinating logistics, programs, media, communications, and academic tracks for State of the Map Nigeria 2026.

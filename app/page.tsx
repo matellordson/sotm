@@ -128,13 +128,6 @@ interface Speaker {
 
 const KEYNOTE_SPEAKERS: Speaker[] = [
   {
-    name: "Prof. Joseph Udoh",
-    badge: "Keynote Speaker",
-    role: "Co-Chair SOTM Nigeria 2026 • Academic Track & Logistics Lead • University of Uyo",
-    bio: "Prof. Joseph Udoh is a distinguished scholar at the University of Uyo and serves as the Co-Chair of State of the Map Nigeria 2026, leading the Academic Track and Local Organizing Committee logistics.",
-    img: "/speakers/joseph_udoh.jpg",
-  },
-  {
     name: "Professor Robert Etim Ekpenyong",
     badge: "Lead Keynote Speaker",
     role: "Department of Geography & Natural Resources Management, University of Uyo, Akwa Ibom State",
@@ -194,6 +187,14 @@ const KEYNOTE_SPEAKERS: Speaker[] = [
     x: "https://x.com/JosephTUYISHIMI",
   },
   {
+    name: "Diego Gonzalez Ferreiro",
+    badge: "Keynote Speaker",
+    role: "Chief of the Solutions and Support Unit, United Nations Global Service Centre (UNGSC) Brindisi, Italy",
+    topic: "Open Geospatial Information for Peace, Development and Resilience: The UN Mappers Approach to Capacity Building, Collaborative Mapping and Humanitarian Action",
+    bio: "Diego Gonzalez Ferreiro is Chief of the Solutions and Support Unit at the United Nations Global Service Centre (UNGSC) in Brindisi, Italy, where he leads a multidisciplinary team delivering geospatial solutions and digital services in support of UN field operations. With more than 15 years of experience with the United Nations, including assignments supporting operations in Somalia, Kenya and the Democratic Republic of the Congo, his work has focused on applying geospatial information and technology to operational decision-making. Today, he contributes to the development of UN Maps and other geospatial capabilities that combine authoritative UN data, emerging technologies and collaborative approaches to support peacekeeping and political missions. He holds a Bachelor's degree in Geography and a Master's degree in Geodesy and Cartography.",
+    img: "/speakers/diego_gonzalez.png",
+  },
+  {
     name: "Dr. Caroline Nickerson",
     badge: "Keynote Speaker",
     role: "Executive Director & Co-Founder, Florida Community Innovation • NASA EMERGE Initiative • CitSci.org • SciStarter Advisor",
@@ -206,7 +207,6 @@ const KEYNOTE_SPEAKERS: Speaker[] = [
     badge: "Keynote Speaker",
     role: "Community Engagement Manager for Africa & Middle East at TomTom",
     topic: "From Community Mapping to Intelligent Maps: Strengthening OpenStreetMap, GeoAI and Location Intelligence for Africa",
-    workshop: "MapRoulette and Community Mapping Tools: Practical Approaches to Improving OpenStreetMap Data Quality",
     bio: "Kingsley Chika Chukwu, Community Engagement Manager for Africa & Middle East at TomTom, is a geospatial data scientist specializing in geoinformatics, environmental information systems, and geospatial analytics. He leverages tools such as Python and data visualization platforms like Power BI to transform complex spatial datasets into actionable insights. Partnering with OSM communities, Kingsley is dedicated to building better maps in Africa and Beyond, advancing data quality, mapping impact, and supporting sustainable development through community-driven geospatial innovation.",
     img: "/speakers/kingsley_chukwu.jpg",
   },
@@ -226,13 +226,51 @@ const KEYNOTE_SPEAKERS: Speaker[] = [
     bio: "Christopher Beddow is a geospatial data engineer who focuses on the relationship of photographs and street view to the map. He previously worked on Mapillary and the maps team at Meta, helped Overture Maps improve data with imagery and AI, and plans to help everyone everywhere map the world with photos. He has a Masters in GIS from University of Washington in USA and today lives near Zürich, Switzerland.",
     img: "/speakers/christopher_beddow.jpg",
   },
+];
+
+interface WorkshopSessionLead {
+  name: string;
+  role: string;
+  workshopTitle: string;
+  img: string;
+}
+
+const WORKSHOP_LEADS: WorkshopSessionLead[] = [
   {
-    name: "Diego Gonzalez Ferreiro",
-    badge: "Keynote Speaker",
-    role: "Chief of the Solutions and Support Unit, United Nations Global Service Centre (UNGSC) Brindisi, Italy",
-    topic: "Open Geospatial Information for Peace, Development and Resilience: The UN Mappers Approach to Capacity Building, Collaborative Mapping and Humanitarian Action",
-    bio: "Diego Gonzalez Ferreiro is Chief of the Solutions and Support Unit at the United Nations Global Service Centre (UNGSC) in Brindisi, Italy, where he leads a multidisciplinary team delivering geospatial solutions and digital services in support of UN field operations. With more than 15 years of experience with the United Nations, including assignments supporting operations in Somalia, Kenya and the Democratic Republic of the Congo, his work has focused on applying geospatial information and technology to operational decision-making. Today, he contributes to the development of UN Maps and other geospatial capabilities that combine authoritative UN data, emerging technologies and collaborative approaches to support peacekeeping and political missions. He holds a Bachelor’s degree in Geography and a Master’s degree in Geodesy and Cartography.",
-    img: "/speakers/diego_gonzalez.png",
+    name: "Prof. Darlene Cavalier",
+    role: "Professor of Practice, Arizona State University • Founder, SciStarter US • Founding Board Member, Citizen Science Association",
+    workshopTitle: "Discover Citizen Science: Deepen Your Skills and Earn a Digital Badge",
+    img: "/speakers/darlene_cavalier.jpg",
+  },
+  {
+    name: "Dr. Esther Hanson",
+    role: "Deputy Director, National Space Research and Development Agency (NASRDA) • Acting Coordinator, ASTAL (University of Uyo)",
+    workshopTitle: "Earth Observation & Geospatial Innovation for Climate Action and Disaster Risk Reduction",
+    img: "/speakers/esther_hanson.jpg",
+  },
+  {
+    name: "Kingsley Chika Chukwu",
+    role: "Community Engagement Manager for Africa & Middle East at TomTom",
+    workshopTitle: "MapRoulette and Community Mapping Tools: Practical Approaches to Improving OpenStreetMap Data Quality",
+    img: "/speakers/kingsley_chukwu.jpg",
+  },
+  {
+    name: "Dr. Victor N. Sunday",
+    role: "SotMNigeria Chairperson • National Coordinator, Unique Mappers Network",
+    workshopTitle: "OpenStreetMap, Open Mapping & QGIS: From Data Capture to Advanced Spatial Cartography",
+    img: "/loc/victor_sunday.jpg",
+  },
+  {
+    name: "Martins-Ateli Grace",
+    role: "Programs & Communication • Unique Mappers Network",
+    workshopTitle: "Citizen Science, Mobile GIS, UAV & Climate/Disaster Field Data Collection",
+    img: "/loc/martins_grace.jpg",
+  },
+  {
+    name: "Salvation Okoh",
+    role: "LOC Member • Unique Mappers Network",
+    workshopTitle: "Collaborative Open Mapping, Data Quality & Vulnerability Assessment",
+    img: "/loc/salvation_okoh.jpg",
   },
 ];
 
@@ -249,6 +287,16 @@ const LOC_MEMBERS: LOCMember[] = [
     img: "/loc/victor_sunday.jpg",
   },
   {
+    name: "Prof. Joseph Udoh",
+    role: "Co-Chair SOTM Nigeria 2026 • Academic Track & Logistics Lead • University of Uyo",
+    img: "/speakers/joseph_udoh.jpg",
+  },
+  {
+    name: "Martins-Ateli Grace",
+    role: "Programs & Communication",
+    img: "/loc/martins_grace.jpg",
+  },
+  {
     name: "Edidiong Robert Etim",
     role: "LOC Secretary",
     img: "/loc/edidiong_etim.jpg",
@@ -257,11 +305,6 @@ const LOC_MEMBERS: LOCMember[] = [
     name: "Samuel Etim Inwang",
     role: "LOC Assistant Secretary",
     img: "/loc/samuel_inwang.jpg",
-  },
-  {
-    name: "Martins-Ateli Grace",
-    role: "Programs & Communication",
-    img: "/loc/martins_grace.jpg",
   },
   {
     name: "Chukwuemeka Emmanuel Nwosu",
@@ -334,7 +377,7 @@ function pad(n: number): string {
 function MapBackdrop() {
   return (
     <Image
-      src="https://discoverakwaibom.com/wp-content/uploads/2024/11/DJI_0822-scaled.jpg"
+      src="/hero-banner.jpg"
       alt="State of the Map Nigeria Conference Venue - Akwa Ibom"
       fill
       sizes="100vw"
@@ -843,25 +886,8 @@ export default function ConferenceLandingPage() {
                         objectPosition: "top center",
                       }}
                     />
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: 12,
-                        left: 12,
-                        background: isLead ? COLORS.green : COLORS.heading,
-                        color: "white",
-                        fontSize: 10,
-                        fontWeight: 800,
-                        textTransform: "uppercase",
-                        letterSpacing: "0.08em",
-                        padding: "5px 10px",
-                        borderRadius: 2,
-                        boxShadow: "0 2px 4px rgba(0,0,0,0.25)",
-                      }}
-                    >
-                      {s.badge}
                     </div>
-                  </div>
+
 
                   <div style={{ padding: "20px 18px", display: "flex", flexDirection: "column", flex: 1 }}>
                     <h3 style={{ fontSize: 16, fontWeight: 800, lineHeight: 1.35, color: COLORS.heading, margin: 0 }}>
@@ -1004,15 +1030,89 @@ export default function ConferenceLandingPage() {
         </div>
       </section>
 
-      {/* ---------------- LOCAL ORGANIZING COMMITTEE (LOC) ---------------- */}
-      <section style={{ padding: "72px 0", background: "#F8FAFC", borderTop: `1px solid ${COLORS.line}` }}>
+      {/* ---------------- WORKSHOP SESSIONS ---------------- */}
+      <section style={{ padding: "72px 0 64px", background: "#F8FAFC", borderTop: `1px solid ${COLORS.line}` }}>
+        <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 20px" }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.15em", color: COLORS.green }}>
+              Hands-On Practical Labs &amp; Masterclasses
+            </span>
+            <h2 style={{ fontSize: "clamp(20px, 3.5vw, 28px)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", color: COLORS.heading, margin: "8px 0 0" }}>
+              Workshop Sessions
+            </h2>
+            <p style={{ maxWidth: 640, margin: "10px auto 0", fontSize: 13.5, color: COLORS.paragraph, lineHeight: 1.6 }}>
+              Hands-on practical masterclasses, technical labs, and interactive geospatial mapping sessions led by expert practitioners.
+            </p>
+          </div>
+
+          <div className="speakers-grid">
+            {WORKSHOP_LEADS.map((w: WorkshopSessionLead) => (
+              <div
+                key={w.name}
+                style={{
+                  border: `1px solid ${COLORS.line}`,
+                  background: "white",
+                  display: "flex",
+                  flexDirection: "column",
+                  borderRadius: 3,
+                  overflow: "hidden",
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+                }}
+              >
+                <div style={{ position: "relative", width: "100%", aspectRatio: "1 / 1", background: "#F1F5F9", overflow: "hidden" }}>
+                  <img
+                    src={w.img}
+                    alt={w.name}
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "top center",
+                    }}
+                  />
+                </div>
+
+                <div style={{ padding: "20px 18px", display: "flex", flexDirection: "column", flex: 1 }}>
+                  <h3 style={{ fontSize: 16, fontWeight: 800, lineHeight: 1.35, color: COLORS.heading, margin: 0 }}>
+                    {w.name}
+                  </h3>
+                  <p style={{ marginTop: 6, fontSize: 12, fontWeight: 600, color: COLORS.paragraph, lineHeight: 1.45 }}>
+                    {w.role}
+                  </p>
+
+                  <div
+                    style={{
+                      marginTop: 14,
+                      padding: "10px 12px",
+                      background: "#F0FDF4",
+                      borderLeft: `3px solid ${COLORS.green}`,
+                      borderRadius: 2,
+                    }}
+                  >
+                    <span style={{ fontSize: 9.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", color: COLORS.green, display: "block", marginBottom: 3 }}>
+                      Workshop Session
+                    </span>
+                    <p style={{ margin: 0, fontSize: 12, fontWeight: 700, color: COLORS.heading, lineHeight: 1.4 }}>
+                      &ldquo;{w.workshopTitle}&rdquo;
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- LOCAL AND INTERNATIONAL ORGANIZING COMMITTEE ---------------- */}
+      <section style={{ padding: "72px 0", background: "#FFFFFF", borderTop: `1px solid ${COLORS.line}` }}>
         <div style={{ maxWidth: 1040, margin: "0 auto", padding: "0 20px" }}>
           <div style={{ textAlign: "center", marginBottom: 36 }}>
             <span style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.12em", color: COLORS.green }}>
               Organizing Team
             </span>
             <h2 style={{ fontSize: "clamp(20px, 3.2vw, 28px)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: COLORS.heading, margin: "8px 0 0" }}>
-              Local Organizing Committee (LOC)
+              Local and International Organizing Committee
             </h2>
             <p style={{ maxWidth: 640, margin: "10px auto 0", fontSize: 13.5, color: COLORS.paragraph, lineHeight: 1.6 }}>
               The dedicated committee coordinating logistics, programs, media, communications, and academic tracks for State of the Map Nigeria 2026.
