@@ -78,6 +78,11 @@ const LOC_MEMBERS: LOCMember[] = [
     role: "Technical & Media • University of Port Harcourt Delegate",
     img: "/loc/salvation_okoh.jpg",
   },
+  {
+    name: "Matel Lordson",
+    role: "Web Lead & Developer • Rivers State University Delegate",
+    img: "/loc/matel_lordson.png",
+  },
 ];
 
 const AUDIENCE: AudienceGroup[] = [
