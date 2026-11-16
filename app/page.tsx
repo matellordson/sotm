@@ -231,7 +231,7 @@ const KEYNOTE_SPEAKERS: Speaker[] = [
 interface WorkshopSessionLead {
   name: string;
   role: string;
-  workshopTitle: string;
+  workshopTitle?: string;
   img: string;
 }
 
@@ -257,19 +257,19 @@ const WORKSHOP_LEADS: WorkshopSessionLead[] = [
   {
     name: "Dr. Victor N. Sunday",
     role: "SotMNigeria Chairperson • National Coordinator, Unique Mappers Network",
-    workshopTitle: "OpenStreetMap, Open Mapping & QGIS: From Data Capture to Advanced Spatial Cartography",
+    // workshopTitle: "OpenStreetMap, Open Mapping & QGIS: From Data Capture to Advanced Spatial Cartography",
     img: "/loc/victor_sunday.jpg",
   },
   {
     name: "Grace Martins-Ateli",
     role: "Communications • Rivers State University Delegate • Unique Mappers Network",
-    workshopTitle: "Citizen Science, Mobile GIS, UAV & Climate/Disaster Field Data Collection",
+    // workshopTitle: "Citizen Science, Mobile GIS, UAV & Climate/Disaster Field Data Collection",
     img: "/loc/martins_grace.jpg",
   },
   {
     name: "Salvation Okoh",
     role: "Technical & Media • University of Port Harcourt Delegate • Unique Mappers Network",
-    workshopTitle: "Collaborative Open Mapping, Data Quality & Vulnerability Assessment",
+    // workshopTitle: "Collaborative Open Mapping, Data Quality & Vulnerability Assessment",
     img: "/loc/salvation_okoh.jpg",
   },
 ];
@@ -1631,22 +1631,24 @@ export default function ConferenceLandingPage() {
                     {w.role}
                   </p>
 
-                  <div
-                    style={{
-                      marginTop: 14,
-                      padding: "10px 12px",
-                      background: "#F0FDF4",
-                      borderLeft: `3px solid ${COLORS.green}`,
-                      borderRadius: 2,
-                    }}
-                  >
-                    <span style={{ fontSize: 9.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", color: COLORS.green, display: "block", marginBottom: 3 }}>
-                      Workshop Session
-                    </span>
-                    <p style={{ margin: 0, fontSize: 12, fontWeight: 700, color: COLORS.heading, lineHeight: 1.4 }}>
-                      &ldquo;{w.workshopTitle}&rdquo;
-                    </p>
-                  </div>
+                  {w.workshopTitle && (
+                    <div
+                      style={{
+                        marginTop: 14,
+                        padding: "10px 12px",
+                        background: "#F0FDF4",
+                        borderLeft: `3px solid ${COLORS.green}`,
+                        borderRadius: 2,
+                      }}
+                    >
+                      <span style={{ fontSize: 9.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", color: COLORS.green, display: "block", marginBottom: 3 }}>
+                        Workshop Session
+                      </span>
+                      <p style={{ margin: 0, fontSize: 12, fontWeight: 700, color: COLORS.heading, lineHeight: 1.4 }}>
+                        &ldquo;{w.workshopTitle}&rdquo;
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -1654,7 +1656,7 @@ export default function ConferenceLandingPage() {
         </div>
       </section>
 
-      {/* ---------------- LOCAL AND INTERNATIONAL ORGANIZING COMMITTEE ---------------- */}
+      {/* ---------------- NATIONAL AND LOCAL ORGANISING COMMITTEE ---------------- */}
       <section style={{ padding: "72px 0", background: "#FFFFFF", borderTop: `1px solid ${COLORS.line}` }}>
         <div style={{ maxWidth: 1040, margin: "0 auto", padding: "0 20px" }}>
           <div style={{ textAlign: "center", marginBottom: 36 }}>
@@ -1662,7 +1664,7 @@ export default function ConferenceLandingPage() {
               Organizing Team
             </span>
             <h2 style={{ fontSize: "clamp(20px, 3.2vw, 28px)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: COLORS.heading, margin: "8px 0 0" }}>
-              Local and International Organizing Committee
+              National and Local Organising Committee
             </h2>
             <p style={{ maxWidth: 640, margin: "10px auto 0", fontSize: 13.5, color: COLORS.paragraph, lineHeight: 1.6 }}>
               The dedicated committee coordinating logistics, programs, media, communications, and academic tracks for State of the Map Nigeria 2026.

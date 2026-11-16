@@ -224,7 +224,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ---------------- LOCAL AND INTERNATIONAL ORGANIZING COMMITTEE ---------------- */}
+      {/* ---------------- NATIONAL AND LOCAL ORGANISING COMMITTEE ---------------- */}
       <section style={{ padding: "64px 0", background: "white" }}>
         <div style={{ maxWidth: 1040, margin: "0 auto", padding: "0 20px" }}>
           <div style={{ textAlign: "center", marginBottom: 36 }}>
@@ -232,7 +232,7 @@ export default function AboutPage() {
               Organizing Team
             </span>
             <h2 style={{ fontSize: "clamp(20px, 3.2vw, 28px)", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: COLORS.heading, margin: "8px 0 0" }}>
-              Local and International Organizing Committee
+              National and Local Organising Committee
             </h2>
             <p style={{ maxWidth: 640, margin: "10px auto 0", fontSize: 13.5, color: COLORS.paragraph, lineHeight: 1.6 }}>
               The dedicated committee coordinating logistics, programs, media, communications, and academic tracks for State of the Map Nigeria 2026.
