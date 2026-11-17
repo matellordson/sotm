@@ -243,10 +243,10 @@ const WORKSHOP_LEADS: WorkshopSessionLead[] = [
     img: "/speakers/darlene_cavalier.jpg",
   },
   {
-    name: "Dr. Esther Hanson",
-    role: "Deputy Director, National Space Research and Development Agency (NASRDA) • Acting Coordinator, ASTAL (University of Uyo)",
+    name: "Stella Fagbuyi",
+    role: "Fundraising & Partnership • University of Ibadan Delegate • Unique Mappers Network",
     workshopTitle: "Earth Observation & Geospatial Innovation for Climate Action and Disaster Risk Reduction",
-    img: "/speakers/esther_hanson.jpg",
+    img: "/loc/stella_fagbuyi.jpg",
   },
   {
     name: "Kingsley Chika Chukwu",
@@ -330,6 +330,11 @@ const LOC_MEMBERS: LOCMember[] = [
     name: "Salvation Okoh",
     role: "Technical & Media • University of Port Harcourt Delegate",
     img: "/loc/salvation_okoh.jpg",
+  },
+  {
+    name: "Stella Fagbuyi",
+    role: "Fundraising & Partnership • University of Ibadan Delegate",
+    img: "/loc/stella_fagbuyi.jpg",
   },
   {
     name: "Matel Lordson",

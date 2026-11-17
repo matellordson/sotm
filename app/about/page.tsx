@@ -79,6 +79,11 @@ const LOC_MEMBERS: LOCMember[] = [
     img: "/loc/salvation_okoh.jpg",
   },
   {
+    name: "Stella Fagbuyi",
+    role: "Fundraising & Partnership • University of Ibadan Delegate",
+    img: "/loc/stella_fagbuyi.jpg",
+  },
+  {
     name: "Matel Lordson",
     role: "Web Lead & Developer • Rivers State University Delegate",
     img: "/loc/matel_lordson.png",
