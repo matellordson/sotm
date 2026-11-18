@@ -54,9 +54,9 @@ const LOC_MEMBERS: LOCMember[] = [
     img: "/loc/samuel_inwang.jpg",
   },
   {
-    name: "Chukwuemeka Emmanuel Nwosu",
+    name: "Aguocha Collins Uzochukwu",
     role: "Media • University of Port Harcourt Delegate",
-    img: "/loc/chukwuemeka_nwosu.png",
+    img: "/loc/aguocha_collins.jpg",
   },
   {
     name: "Stephen Sunday Isikong",
@@ -84,9 +84,9 @@ const LOC_MEMBERS: LOCMember[] = [
     img: "/loc/stella_fagbuyi.jpg",
   },
   {
-    name: "Matel Lordson",
-    role: "Web Lead & Developer • Rivers State University Delegate",
-    img: "/loc/matel_lordson.png",
+    name: "Rania Oghenerume Sheluwa",
+    role: "Registration & Media • University of Port Harcourt Delegate",
+    img: "/loc/rania_sheluwa.jpg",
   },
 ];
 

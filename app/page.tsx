@@ -307,9 +307,9 @@ const LOC_MEMBERS: LOCMember[] = [
     img: "/loc/samuel_inwang.jpg",
   },
   {
-    name: "Chukwuemeka Emmanuel Nwosu",
+    name: "Aguocha Collins Uzochukwu",
     role: "Media • University of Port Harcourt Delegate",
-    img: "/loc/chukwuemeka_nwosu.png",
+    img: "/loc/aguocha_collins.jpg",
   },
   {
     name: "Stephen Sunday Isikong",
@@ -337,9 +337,9 @@ const LOC_MEMBERS: LOCMember[] = [
     img: "/loc/stella_fagbuyi.jpg",
   },
   {
-    name: "Matel Lordson",
-    role: "Web Lead & Developer • Rivers State University Delegate",
-    img: "/loc/matel_lordson.png",
+    name: "Rania Oghenerume Sheluwa",
+    role: "Registration & Media • University of Port Harcourt Delegate",
+    img: "/loc/rania_sheluwa.jpg",
   },
 ];
 
@@ -1173,7 +1173,11 @@ export default function ConferenceLandingPage() {
           style={{ maxWidth: 640, margin: "32px auto 0", background: COLORS.line, padding: 1 }}
         >
           {SCHEDULE_DAYS.map((d: ScheduleDay, i: number) => {
-            const active = i === 0;
+            const today = new Date();
+            const isConferenceWeek = today.getFullYear() === 2026 && today.getMonth() === 10; // November = month 10
+            const todayDate = isConferenceWeek ? String(today.getDate()) : null;
+            // Green = today's date during the conference; fallback to Day 1 before conference starts
+            const active = todayDate ? d.date === todayDate : i === 0;
             return (
               <Link
                 key={d.day}
